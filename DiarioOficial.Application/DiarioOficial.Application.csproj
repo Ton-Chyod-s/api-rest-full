@@ -7,4 +7,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DiarioOficial.CrossCutting\DiarioOficial.CrossCutting.csproj" />
+    <ProjectReference Include="..\DiarioOficial.Domain\DiarioOficial.Domain.csproj" />
+    <ProjectReference Include="..\DiarioOficial.Infraestructure\DiarioOficial.Infraestructure.csproj" />
+  </ItemGroup>
+
 </Project>
