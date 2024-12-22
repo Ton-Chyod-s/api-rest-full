@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiarioOficial.API", "Diario
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiarioOficial.Application", "..\DiarioOficial.Application\DiarioOficial.Application.csproj", "{5C67FE94-AB4E-4FBE-B09E-9FEDC2613B49}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiarioOficial.Domain", "..\DiarioOficial.Domain\DiarioOficial.Domain.csproj", "{CA4BE509-BE3B-4524-8A63-9FAFE6E65C90}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{5C67FE94-AB4E-4FBE-B09E-9FEDC2613B49}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5C67FE94-AB4E-4FBE-B09E-9FEDC2613B49}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C67FE94-AB4E-4FBE-B09E-9FEDC2613B49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA4BE509-BE3B-4524-8A63-9FAFE6E65C90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA4BE509-BE3B-4524-8A63-9FAFE6E65C90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA4BE509-BE3B-4524-8A63-9FAFE6E65C90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA4BE509-BE3B-4524-8A63-9FAFE6E65C90}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
