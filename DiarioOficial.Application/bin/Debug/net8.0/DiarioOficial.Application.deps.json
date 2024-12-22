@@ -1,0 +1,67 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "DiarioOficial.Application/1.0.0": {
+        "dependencies": {
+          "DiarioOficial.CrossCutting": "1.0.0",
+          "DiarioOficial.Domain": "1.0.0",
+          "DiarioOficial.Infraestructure": "1.0.0"
+        },
+        "runtime": {
+          "DiarioOficial.Application.dll": {}
+        }
+      },
+      "DiarioOficial.CrossCutting/1.0.0": {
+        "runtime": {
+          "DiarioOficial.CrossCutting.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "DiarioOficial.Domain/1.0.0": {
+        "runtime": {
+          "DiarioOficial.Domain.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "DiarioOficial.Infraestructure/1.0.0": {
+        "runtime": {
+          "DiarioOficial.Infraestructure.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "DiarioOficial.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DiarioOficial.CrossCutting/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DiarioOficial.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DiarioOficial.Infraestructure/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

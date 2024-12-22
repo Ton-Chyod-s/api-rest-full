@@ -1,5 +1,5 @@
-﻿using DocumentFormat.OpenXml.EMMA;
-using Microsoft.AspNetCore.Mvc;
+﻿using DiarioOficial.CrossCutting.Errors;
+using DocumentFormat.OpenXml.EMMA;
 
 namespace DiarioOficial.API.Endpoints
 {
@@ -11,6 +11,8 @@ namespace DiarioOficial.API.Endpoints
                 .WithTags("Official Diary")
                 .WithDescription("Endpoints for the Official Diary")
                 .WithOpenApi();
+
+           
 
 
             return app;
