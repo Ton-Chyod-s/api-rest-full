@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiarioOficial.Domain", "..\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiarioOficial.Infraestructure", "..\DiarioOficial.Infraestructure\DiarioOficial.Infraestructure.csproj", "{CEEBFA13-06D4-48CC-9A90-F4A30D89ED85}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiarioOficial.Tests", "..\DiarioOficial.Tests\DiarioOficial.Tests.csproj", "{966AEFCB-25DC-4E5C-AD2E-8C7BB18C3749}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{CEEBFA13-06D4-48CC-9A90-F4A30D89ED85}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CEEBFA13-06D4-48CC-9A90-F4A30D89ED85}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CEEBFA13-06D4-48CC-9A90-F4A30D89ED85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{966AEFCB-25DC-4E5C-AD2E-8C7BB18C3749}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{966AEFCB-25DC-4E5C-AD2E-8C7BB18C3749}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{966AEFCB-25DC-4E5C-AD2E-8C7BB18C3749}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{966AEFCB-25DC-4E5C-AD2E-8C7BB18C3749}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
