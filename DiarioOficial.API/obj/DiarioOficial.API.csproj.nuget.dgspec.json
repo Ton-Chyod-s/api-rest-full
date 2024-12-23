@@ -63,9 +63,17 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
+            "DocumentFormat.OpenXml": {
+              "target": "Package",
+              "version": "[3.2.0, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[9.0.0, )"
+            },
+            "OneOf": {
+              "target": "Package",
+              "version": "[3.0.271, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
@@ -122,7 +130,11 @@
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\Klay\\OneDrive\\Documentos\\GitHub Ton-Chyod-S\\api-rest-full\\DiarioOficial.Domain\\DiarioOficial.Domain.csproj": {
+                "projectPath": "C:\\Users\\Klay\\OneDrive\\Documentos\\GitHub Ton-Chyod-S\\api-rest-full\\DiarioOficial.Domain\\DiarioOficial.Domain.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

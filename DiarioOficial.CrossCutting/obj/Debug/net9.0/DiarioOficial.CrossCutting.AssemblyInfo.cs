@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DiarioOficial.CrossCutting")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+720913bea8151990a608bb8e33a83c3cb0ae3b81")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d8d665944fc5b738657aacb4d7fa6e638050bd90")]
 [assembly: System.Reflection.AssemblyProductAttribute("DiarioOficial.CrossCutting")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DiarioOficial.CrossCutting")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
