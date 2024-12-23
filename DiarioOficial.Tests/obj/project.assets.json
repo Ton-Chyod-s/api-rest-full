@@ -448,6 +448,9 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v9.0",
         "dependencies": {
+          "DiarioOficial.Application": "1.0.0",
+          "DiarioOficial.Domain": "1.0.0",
+          "DiarioOficial.Infraestructure": "1.0.0",
           "Microsoft.AspNetCore.OpenApi": "9.0.0"
         },
         "compile": {
@@ -468,16 +471,6 @@
         },
         "runtime": {
           "bin/placeholder/DiarioOficial.Application.dll": {}
-        }
-      },
-      "DiarioOficial.CrossCutting/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v9.0",
-        "compile": {
-          "bin/placeholder/DiarioOficial.CrossCutting.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/DiarioOficial.CrossCutting.dll": {}
         }
       },
       "DiarioOficial.Domain/1.0.0": {
@@ -1062,11 +1055,6 @@
       "path": "../DiarioOficial.Application/DiarioOficial.Application.csproj",
       "msbuildProject": "../DiarioOficial.Application/DiarioOficial.Application.csproj"
     },
-    "DiarioOficial.CrossCutting/1.0.0": {
-      "type": "project",
-      "path": "../DiarioOficial.CrossCutting/DiarioOficial.CrossCutting.csproj",
-      "msbuildProject": "../DiarioOficial.CrossCutting/DiarioOficial.CrossCutting.csproj"
-    },
     "DiarioOficial.Domain/1.0.0": {
       "type": "project",
       "path": "../DiarioOficial.Domain/DiarioOficial.Domain.csproj",
@@ -1082,7 +1070,6 @@
     "net9.0": [
       "DiarioOficial.API >= 1.0.0",
       "DiarioOficial.Application >= 1.0.0",
-      "DiarioOficial.CrossCutting >= 1.0.0",
       "DiarioOficial.Domain >= 1.0.0",
       "DiarioOficial.Infraestructure >= 1.0.0",
       "Microsoft.NET.Test.Sdk >= 17.11.1",
@@ -1128,9 +1115,6 @@
             },
             "C:\\Users\\Klay\\OneDrive\\Documentos\\GitHub Ton-Chyod-S\\api-rest-full\\DiarioOficial.Application\\DiarioOficial.Application.csproj": {
               "projectPath": "C:\\Users\\Klay\\OneDrive\\Documentos\\GitHub Ton-Chyod-S\\api-rest-full\\DiarioOficial.Application\\DiarioOficial.Application.csproj"
-            },
-            "C:\\Users\\Klay\\OneDrive\\Documentos\\GitHub Ton-Chyod-S\\api-rest-full\\DiarioOficial.CrossCutting\\DiarioOficial.CrossCutting.csproj": {
-              "projectPath": "C:\\Users\\Klay\\OneDrive\\Documentos\\GitHub Ton-Chyod-S\\api-rest-full\\DiarioOficial.CrossCutting\\DiarioOficial.CrossCutting.csproj"
             },
             "C:\\Users\\Klay\\OneDrive\\Documentos\\GitHub Ton-Chyod-S\\api-rest-full\\DiarioOficial.Domain\\DiarioOficial.Domain.csproj": {
               "projectPath": "C:\\Users\\Klay\\OneDrive\\Documentos\\GitHub Ton-Chyod-S\\api-rest-full\\DiarioOficial.Domain\\DiarioOficial.Domain.csproj"

@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiarioOficial.API", "Diario
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiarioOficial.Application", "..\DiarioOficial.Application\DiarioOficial.Application.csproj", "{1D91B245-4A1F-4204-923C-6DE4BA09F01B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiarioOficial.CrossCutting", "..\DiarioOficial.CrossCutting\DiarioOficial.CrossCutting.csproj", "{49B2FA13-A18C-4364-868F-780650C97195}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiarioOficial.Domain", "..\DiarioOficial.Domain\DiarioOficial.Domain.csproj", "{E2CC35EE-B42A-4F44-909F-3678879EA81C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiarioOficial.Infraestructure", "..\DiarioOficial.Infraestructure\DiarioOficial.Infraestructure.csproj", "{DD0CFB2C-E9CF-486A-9AC4-6E0B5595B011}"
@@ -29,10 +27,6 @@ Global
 		{1D91B245-4A1F-4204-923C-6DE4BA09F01B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D91B245-4A1F-4204-923C-6DE4BA09F01B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D91B245-4A1F-4204-923C-6DE4BA09F01B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{49B2FA13-A18C-4364-868F-780650C97195}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{49B2FA13-A18C-4364-868F-780650C97195}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{49B2FA13-A18C-4364-868F-780650C97195}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{49B2FA13-A18C-4364-868F-780650C97195}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E2CC35EE-B42A-4F44-909F-3678879EA81C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E2CC35EE-B42A-4F44-909F-3678879EA81C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E2CC35EE-B42A-4F44-909F-3678879EA81C}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -1,0 +1,15 @@
+C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.Infraestructure\bin\Debug\net9.0\DiarioOficial.Infraestructure.exe
+C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.Infraestructure\bin\Debug\net9.0\DiarioOficial.Infraestructure.deps.json
+C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.Infraestructure\bin\Debug\net9.0\DiarioOficial.Infraestructure.runtimeconfig.json
+C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.Infraestructure\bin\Debug\net9.0\DiarioOficial.Infraestructure.dll
+C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.Infraestructure\bin\Debug\net9.0\DiarioOficial.Infraestructure.pdb
+C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.Infraestructure\obj\Debug\net9.0\DiarioOficial.Infraestructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.Infraestructure\obj\Debug\net9.0\DiarioOficial.Infraestructure.AssemblyInfoInputs.cache
+C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.Infraestructure\obj\Debug\net9.0\DiarioOficial.Infraestructure.AssemblyInfo.cs
+C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.Infraestructure\obj\Debug\net9.0\DiarioOficial.Infraestructure.csproj.CoreCompileInputs.cache
+C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.Infraestructure\obj\Debug\net9.0\DiarioOficial.Infraestructure.sourcelink.json
+C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.Infraestructure\obj\Debug\net9.0\DiarioOficial.Infraestructure.dll
+C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.Infraestructure\obj\Debug\net9.0\refint\DiarioOficial.Infraestructure.dll
+C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.Infraestructure\obj\Debug\net9.0\DiarioOficial.Infraestructure.pdb
+C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.Infraestructure\obj\Debug\net9.0\DiarioOficial.Infraestructure.genruntimeconfig.cache
+C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.Infraestructure\obj\Debug\net9.0\ref\DiarioOficial.Infraestructure.dll
