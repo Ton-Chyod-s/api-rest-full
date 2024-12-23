@@ -6,7 +6,7 @@
         {
             var root = app.MapGroup("/api/official-diary")
                 .WithTags("Official Diary")
-                .WithDescription("Endpoints related to the Official Diary!")
+                .WithDescription("Endpoints related to the Official Diary!!")
                 .WithOpenApi();
 
 
