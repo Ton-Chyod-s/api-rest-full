@@ -1,8 +1,0 @@
-C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.API\obj\Debug\net8.0\DiarioOficial.API.csproj.AssemblyReference.cache
-C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.API\obj\Debug\net8.0\DiarioOficial.API.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.API\obj\Debug\net8.0\DiarioOficial.API.AssemblyInfoInputs.cache
-C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.API\obj\Debug\net8.0\DiarioOficial.API.AssemblyInfo.cs
-C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.API\obj\Debug\net8.0\DiarioOficial.API.csproj.CoreCompileInputs.cache
-C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.API\obj\Debug\net8.0\DiarioOficial.API.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.API\obj\Debug\net8.0\DiarioOficial.API.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.API\obj\Debug\net8.0\DiarioOficial.API.sourcelink.json
