@@ -1,11 +1,11 @@
 ﻿namespace DiarioOficial.CrossCutting.DTOs
 {
-    public record officialStateDiaryDTO
+    public record OfficialStateDiaryDTO
         (
             string Cpf,
             string Name,
-            string BirthDate,
-            string DiaryNumber
+            string DiaryNumber,
+            string Url
         );
     
    

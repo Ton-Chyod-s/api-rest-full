@@ -7,4 +7,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="OneOf" Version="3.0.271" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DiarioOficial.CrossCutting\DiarioOficial.CrossCutting.csproj" />
+  </ItemGroup>
+
 </Project>

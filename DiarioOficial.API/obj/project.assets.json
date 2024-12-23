@@ -257,7 +257,9 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v9.0",
         "dependencies": {
-          "DiarioOficial.Domain": "1.0.0"
+          "DiarioOficial.CrossCutting": "1.0.0",
+          "DiarioOficial.Domain": "1.0.0",
+          "OneOf": "3.0.271"
         },
         "compile": {
           "bin/placeholder/DiarioOficial.Application.dll": {}
@@ -282,6 +284,10 @@
       "DiarioOficial.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "DiarioOficial.CrossCutting": "1.0.0",
+          "OneOf": "3.0.271"
+        },
         "compile": {
           "bin/placeholder/DiarioOficial.Domain.dll": {}
         },

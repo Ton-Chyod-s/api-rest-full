@@ -1,1 +1,102 @@
-[]
+[
+  {
+    "ContainingType": "DiarioOficial.API.Endpoints.OfficialDiaryEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapOfficialDiaryEndpoints\u003Eb__0_0",
+    "RelativePath": "diary/official-electronic-diary",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "cpf",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "OneOf.OneOf\u00602[[DiarioOficial.CrossCutting.DTOs.OfficialElectronicDiaryDTO, DiarioOficial.CrossCutting, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[DiarioOficial.CrossCutting.Errors.BaseError, DiarioOficial.CrossCutting, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "OneOf.OneOf\u00602[[DiarioOficial.CrossCutting.DTOs.OfficialElectronicDiaryDTO, DiarioOficial.CrossCutting, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[DiarioOficial.CrossCutting.Errors.BaseError, DiarioOficial.CrossCutting, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 401
+      },
+      {
+        "Type": "OneOf.OneOf\u00602[[DiarioOficial.CrossCutting.DTOs.OfficialElectronicDiaryDTO, DiarioOficial.CrossCutting, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[DiarioOficial.CrossCutting.Errors.BaseError, DiarioOficial.CrossCutting, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 404
+      },
+      {
+        "Type": "OneOf.OneOf\u00602[[DiarioOficial.CrossCutting.DTOs.OfficialElectronicDiaryDTO, DiarioOficial.CrossCutting, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[DiarioOficial.CrossCutting.Errors.BaseError, DiarioOficial.CrossCutting, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 500
+      }
+    ],
+    "Tags": [
+      "Diary"
+    ],
+    "EndpointName": "Official Electronic Diary",
+    "Description": "Endpoints related to the Official Diary!!!"
+  },
+  {
+    "ContainingType": "DiarioOficial.API.Endpoints.OfficialDiaryEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapOfficialDiaryEndpoints\u003Eb__0_1",
+    "RelativePath": "diary/official-state-diary",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "cpf",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "OneOf.OneOf\u00602[[DiarioOficial.CrossCutting.DTOs.OfficialStateDiaryDTO, DiarioOficial.CrossCutting, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[DiarioOficial.CrossCutting.Errors.BaseError, DiarioOficial.CrossCutting, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "OneOf.OneOf\u00602[[DiarioOficial.CrossCutting.DTOs.OfficialStateDiaryDTO, DiarioOficial.CrossCutting, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[DiarioOficial.CrossCutting.Errors.BaseError, DiarioOficial.CrossCutting, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 401
+      },
+      {
+        "Type": "OneOf.OneOf\u00602[[DiarioOficial.CrossCutting.DTOs.OfficialStateDiaryDTO, DiarioOficial.CrossCutting, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[DiarioOficial.CrossCutting.Errors.BaseError, DiarioOficial.CrossCutting, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 404
+      },
+      {
+        "Type": "OneOf.OneOf\u00602[[DiarioOficial.CrossCutting.DTOs.OfficialStateDiaryDTO, DiarioOficial.CrossCutting, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[DiarioOficial.CrossCutting.Errors.BaseError, DiarioOficial.CrossCutting, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 500
+      }
+    ],
+    "Tags": [
+      "Diary"
+    ],
+    "EndpointName": "Official State Diary",
+    "Description": "Endpoints related to the Official Diary!!!"
+  }
+]

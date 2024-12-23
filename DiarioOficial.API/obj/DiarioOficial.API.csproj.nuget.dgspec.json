@@ -131,6 +131,9 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
+              "C:\\Users\\Klay\\OneDrive\\Documentos\\GitHub Ton-Chyod-S\\api-rest-full\\DiarioOficial.CrossCutting\\DiarioOficial.CrossCutting.csproj": {
+                "projectPath": "C:\\Users\\Klay\\OneDrive\\Documentos\\GitHub Ton-Chyod-S\\api-rest-full\\DiarioOficial.CrossCutting\\DiarioOficial.CrossCutting.csproj"
+              },
               "C:\\Users\\Klay\\OneDrive\\Documentos\\GitHub Ton-Chyod-S\\api-rest-full\\DiarioOficial.Domain\\DiarioOficial.Domain.csproj": {
                 "projectPath": "C:\\Users\\Klay\\OneDrive\\Documentos\\GitHub Ton-Chyod-S\\api-rest-full\\DiarioOficial.Domain\\DiarioOficial.Domain.csproj"
               }
@@ -152,6 +155,12 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
+          "dependencies": {
+            "OneOf": {
+              "target": "Package",
+              "version": "[3.0.271, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -270,7 +279,11 @@
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\Klay\\OneDrive\\Documentos\\GitHub Ton-Chyod-S\\api-rest-full\\DiarioOficial.CrossCutting\\DiarioOficial.CrossCutting.csproj": {
+                "projectPath": "C:\\Users\\Klay\\OneDrive\\Documentos\\GitHub Ton-Chyod-S\\api-rest-full\\DiarioOficial.CrossCutting\\DiarioOficial.CrossCutting.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -288,6 +301,12 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
+          "dependencies": {
+            "OneOf": {
+              "target": "Package",
+              "version": "[3.0.271, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

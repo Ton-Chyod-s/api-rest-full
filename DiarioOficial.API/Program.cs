@@ -34,8 +34,8 @@ builder.Services.AddSwaggerGen(options =>
         Contact = new Microsoft.OpenApi.Models.OpenApiContact
         {
             Name = "Dev-Ton-Chyod-$",
-            Email = "seuemail@dominio.com",
-            Url = new Uri("https://seusite.com"),
+            Email = "hix_x@hotmail.com",
+            Url = new Uri("https://github.com/Ton-Chyod-s"),
         }
     });
 });
