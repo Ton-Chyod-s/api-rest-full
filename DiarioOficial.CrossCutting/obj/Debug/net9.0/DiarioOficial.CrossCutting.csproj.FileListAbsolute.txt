@@ -13,3 +13,8 @@ C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial
 C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.CrossCutting\obj\Debug\net9.0\DiarioOficial.CrossCutting.pdb
 C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.CrossCutting\obj\Debug\net9.0\DiarioOficial.CrossCutting.genruntimeconfig.cache
 C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.CrossCutting\obj\Debug\net9.0\ref\DiarioOficial.CrossCutting.dll
+C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.CrossCutting\obj\Debug\net9.0\DiarioOficial.CrossCutting.csproj.AssemblyReference.cache
+C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.CrossCutting\bin\Debug\net9.0\Microsoft.AspNetCore.Http.Abstractions.dll
+C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.CrossCutting\bin\Debug\net9.0\Microsoft.AspNetCore.Http.Features.dll
+C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.CrossCutting\bin\Debug\net9.0\Microsoft.Extensions.Primitives.dll
+C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.CrossCutting\obj\Debug\net9.0\DiarioOf.44D057C6.Up2Date

@@ -53,3 +53,6 @@ C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial
 C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.API\bin\Debug\net9.0\DiarioOficial.CrossCutting.exe
 C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.API\bin\Debug\net9.0\DiarioOficial.CrossCutting.dll
 C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.API\bin\Debug\net9.0\DiarioOficial.CrossCutting.pdb
+C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.API\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.API\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.API\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
