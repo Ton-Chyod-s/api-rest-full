@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DiarioOficial.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+396e8780b224474a3f0dcb8a9254554887bd6f5c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+188ce82dd508de7edcc187a7a8dce602dac862b7")]
 [assembly: System.Reflection.AssemblyProductAttribute("DiarioOficial.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DiarioOficial.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

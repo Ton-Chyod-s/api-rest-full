@@ -9,6 +9,7 @@
       "DiarioOficial.API/1.0.0": {
         "dependencies": {
           "DiarioOficial.Application": "1.0.0",
+          "DiarioOficial.CrossCutting": "1.0.0",
           "DiarioOficial.Domain": "1.0.0",
           "DiarioOficial.Infraestructure": "1.0.0",
           "Microsoft.AspNetCore.OpenApi": "9.0.0"
@@ -39,6 +40,14 @@
       "DiarioOficial.Application/1.0.0": {
         "runtime": {
           "DiarioOficial.Application.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "DiarioOficial.CrossCutting/1.0.0": {
+        "runtime": {
+          "DiarioOficial.CrossCutting.dll": {
             "assemblyVersion": "1.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -83,6 +92,11 @@
       "hashPath": "microsoft.openapi.1.6.17.nupkg.sha512"
     },
     "DiarioOficial.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DiarioOficial.CrossCutting/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -1,4 +1,6 @@
-﻿namespace DiarioOficial.API.Middlewares
+﻿using DiarioOficial.CrossCutting.Errors.Common;
+
+namespace DiarioOficial.API.Middlewares
 {
     public class ExceptionMiddleware : IMiddleware
     {
@@ -18,7 +20,7 @@
         {
             httpContext.Response.StatusCode = StatusCodes.Status500InternalServerError;
 
-            await httpContext.Response.WriteAsJsonAsync("new InvalidEnteredInformations()");
+            await httpContext.Response.WriteAsJsonAsync(new UnexpectedError("Deu ruim ae!"));
         }
     }
 }

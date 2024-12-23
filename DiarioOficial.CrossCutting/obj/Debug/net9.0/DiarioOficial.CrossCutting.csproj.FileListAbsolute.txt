@@ -1,0 +1,15 @@
+C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.CrossCutting\bin\Debug\net9.0\DiarioOficial.CrossCutting.exe
+C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.CrossCutting\bin\Debug\net9.0\DiarioOficial.CrossCutting.deps.json
+C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.CrossCutting\bin\Debug\net9.0\DiarioOficial.CrossCutting.runtimeconfig.json
+C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.CrossCutting\bin\Debug\net9.0\DiarioOficial.CrossCutting.dll
+C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.CrossCutting\bin\Debug\net9.0\DiarioOficial.CrossCutting.pdb
+C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.CrossCutting\obj\Debug\net9.0\DiarioOficial.CrossCutting.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.CrossCutting\obj\Debug\net9.0\DiarioOficial.CrossCutting.AssemblyInfoInputs.cache
+C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.CrossCutting\obj\Debug\net9.0\DiarioOficial.CrossCutting.AssemblyInfo.cs
+C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.CrossCutting\obj\Debug\net9.0\DiarioOficial.CrossCutting.csproj.CoreCompileInputs.cache
+C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.CrossCutting\obj\Debug\net9.0\DiarioOficial.CrossCutting.sourcelink.json
+C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.CrossCutting\obj\Debug\net9.0\DiarioOficial.CrossCutting.dll
+C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.CrossCutting\obj\Debug\net9.0\refint\DiarioOficial.CrossCutting.dll
+C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.CrossCutting\obj\Debug\net9.0\DiarioOficial.CrossCutting.pdb
+C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.CrossCutting\obj\Debug\net9.0\DiarioOficial.CrossCutting.genruntimeconfig.cache
+C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.CrossCutting\obj\Debug\net9.0\ref\DiarioOficial.CrossCutting.dll

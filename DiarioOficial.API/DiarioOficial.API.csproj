@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DiarioOficial.Application\DiarioOficial.Application.csproj" />
+    <ProjectReference Include="..\DiarioOficial.CrossCutting\DiarioOficial.CrossCutting.csproj" />
     <ProjectReference Include="..\DiarioOficial.Domain\DiarioOficial.Domain.csproj" />
     <ProjectReference Include="..\DiarioOficial.Infraestructure\DiarioOficial.Infraestructure.csproj" />
   </ItemGroup>

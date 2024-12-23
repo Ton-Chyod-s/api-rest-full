@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DiarioOficial.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2dafa2df871b94a0845e16adf63a3b40649b16d2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+188ce82dd508de7edcc187a7a8dce602dac862b7")]
 [assembly: System.Reflection.AssemblyProductAttribute("DiarioOficial.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DiarioOficial.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
