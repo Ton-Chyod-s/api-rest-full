@@ -2,10 +2,11 @@
 {
     public record ResponseOfficialStateDiaryDTO
         (
-            string Cpf,
-            string Name,
-            string DiaryNumber,
-            string Url
+            string Number,
+            string Day,
+            string File,
+            string Description,
+            string DayCode
         );
 
 

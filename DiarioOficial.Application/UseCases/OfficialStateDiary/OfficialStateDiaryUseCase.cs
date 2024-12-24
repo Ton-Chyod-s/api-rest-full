@@ -15,10 +15,15 @@ namespace DiarioOficial.Application.UseCases.OfficialStateDiary
 
         public async Task<OneOf<ResponseOfficialStateDiaryDTO, BaseError>> Execute(string name)
         {
-            var officialStateDiary = await _officialStateDiaryService.ResponseOfficialStateDiaryService(name);
+            var dateTime = DateTime.Now;
 
-            // Implementation
-            throw new NotImplementedException();
+            var year = dateTime.Year;
+
+            var officialStateDiary = await _officialStateDiaryService.ResponseOfficialStateDiaryService(name, "2021");
+
+            return officialStateDiary;
+
         }
     }
 }
+

@@ -59,21 +59,21 @@ namespace DiarioOficial.Infraestructure.Helpers
             return JObject.Parse(responseContent);
         }
 
-        internal static async Task<RestResponse> FetchQueryAsync(object queryBody)
+        internal static async Task<RestResponse> FetchQueryAsync(Dictionary<string, string> queryBody)
         {
             if (queryBody == null)
                 throw new ArgumentNullException(nameof(queryBody), "O corpo da requisição não pode ser nulo.");
 
-            var jsonContent = JsonSerializer.Serialize(queryBody);
-
             var client = new RestClient(UrlConstants.OFFICIAL_DIARY_URL);
             var request = new RestRequest
             {
-                Method = Method.Post,
-                RequestFormat = DataFormat.Json
+                Method = Method.Get,
             };
 
-            request.AddJsonBody(jsonContent);
+            queryBody
+                .Where(x => !string.IsNullOrEmpty(x.Key)) 
+                .ToList()
+                .ForEach(property => request.AddQueryParameter(property.Key, property.Value)); 
 
             var response = await client.ExecuteAsync(request);
 
