@@ -31,19 +31,19 @@ namespace DiarioOficial.API.Endpoints
             .Produces<OneOf<OfficialElectronicDiaryDTO, BaseError>>(StatusCodes.Status404NotFound)
             .Produces<OneOf<OfficialElectronicDiaryDTO, BaseError>>(StatusCodes.Status500InternalServerError);
 
-            root.MapGet("/official-state-diary", async ([FromServices] IOfficialStateDiaryUseCase officialStateDiary, [FromQuery] string name) =>
+            root.MapGet("/official-state-diary", async ([FromServices] IOfficialStateDiaryUseCase officialStateDiary, [FromQuery] string name, string year) =>
             {
-                var result = await officialStateDiary.Execute(name);
+                var result = await officialStateDiary.Execute(name, year);
 
                 return result.Match(
                     response => Results.Ok(response),
                     error => Results.Json(error, statusCode: error.HttpErrorCode));
             })
             .WithName("Official State Diary")
-            .Produces<OneOf<ResponseOfficialStateDiaryDTO, BaseError>>(StatusCodes.Status200OK)
-            .Produces<OneOf<ResponseOfficialStateDiaryDTO, BaseError>>(StatusCodes.Status401Unauthorized)
-            .Produces<OneOf<ResponseOfficialStateDiaryDTO, BaseError>>(StatusCodes.Status404NotFound)
-            .Produces<OneOf<ResponseOfficialStateDiaryDTO, BaseError>>(StatusCodes.Status500InternalServerError);
+            .Produces<OneOf<List<ResponseOfficialStateDiaryDTO>, BaseError>>(StatusCodes.Status200OK)
+            .Produces<OneOf<List<ResponseOfficialStateDiaryDTO>, BaseError>>(StatusCodes.Status401Unauthorized)
+            .Produces<OneOf<List<ResponseOfficialStateDiaryDTO>, BaseError>>(StatusCodes.Status404NotFound)
+            .Produces<OneOf<List<ResponseOfficialStateDiaryDTO>, BaseError>>(StatusCodes.Status500InternalServerError);
 
             return app;
         }

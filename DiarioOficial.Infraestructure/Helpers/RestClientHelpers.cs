@@ -59,29 +59,29 @@ namespace DiarioOficial.Infraestructure.Helpers
             return JObject.Parse(responseContent);
         }
 
+        internal static RestClient _client = new RestClient(UrlConstants.OFFICIAL_DIARY_URL);
+
         internal static async Task<RestResponse> FetchQueryAsync(Dictionary<string, string> queryBody)
         {
-            if (queryBody == null)
-                throw new ArgumentNullException(nameof(queryBody), "O corpo da requisição não pode ser nulo.");
+            if (queryBody == null || queryBody.Count == 0)
+                throw new ArgumentException("O corpo da requisição não pode ser nulo ou vazio.", nameof(queryBody));
 
-            var client = new RestClient(UrlConstants.OFFICIAL_DIARY_URL);
             var request = new RestRequest
             {
-                Method = Method.Get,
+                Method = Method.Get
             };
 
-            queryBody
-                .Where(x => !string.IsNullOrEmpty(x.Key)) 
-                .ToList()
-                .ForEach(property => request.AddQueryParameter(property.Key, property.Value)); 
+            foreach (var (key, value) in queryBody.Where(x => !string.IsNullOrEmpty(x.Key) && !string.IsNullOrEmpty(x.Value)))
+            {
+                request.AddQueryParameter(key, value);
+            }
 
-            var response = await client.ExecuteAsync(request);
+            var response = await _client.ExecuteAsync(request);
 
             if (!response.IsSuccessful)
                 throw new HttpRequestException($"Erro ao chamar a API: {response.StatusCode} - {response.ErrorMessage}");
 
             return response;
         }
-
     }
 }

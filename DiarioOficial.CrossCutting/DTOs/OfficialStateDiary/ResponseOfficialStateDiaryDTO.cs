@@ -8,6 +8,4 @@
             string Description,
             string DayCode
         );
-
-
 }

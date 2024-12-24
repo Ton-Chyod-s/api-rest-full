@@ -13,13 +13,9 @@ namespace DiarioOficial.Application.UseCases.OfficialStateDiary
     {
         private readonly IOfficialStateDiaryService _officialStateDiaryService = officialStateDiaryService;
 
-        public async Task<OneOf<ResponseOfficialStateDiaryDTO, BaseError>> Execute(string name)
+        public async Task<OneOf<List<ResponseOfficialStateDiaryDTO>, BaseError>> Execute(string name, string year)
         {
-            var dateTime = DateTime.Now;
-
-            var year = dateTime.Year;
-
-            var officialStateDiary = await _officialStateDiaryService.ResponseOfficialStateDiaryService(name, "2021");
+            var officialStateDiary = await _officialStateDiaryService.ResponseOfficialStateDiaryService(name, year);
 
             return officialStateDiary;
 

@@ -4,17 +4,16 @@ using DiarioOficial.CrossCutting.Errors.Common;
 using DiarioOficial.Domain.Interface.Services.OfficialStateDiary;
 using DiarioOficial.Infraestructure.Helpers;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using OneOf;
 using RestSharp;
-using static System.Runtime.CompilerServices.RuntimeHelpers;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace DiarioOficial.Infraestructure.Services.OfficialStateDiary
 {
     public class OfficialStateDiaryService() : IOfficialStateDiaryService
     {
 
-        public async Task<OneOf<ResponseOfficialStateDiaryDTO, BaseError>> ResponseOfficialStateDiaryService(string name, string year)
+        public async Task<OneOf<List<ResponseOfficialStateDiaryDTO>, BaseError>> ResponseOfficialStateDiaryService(string name, string year)
         {
             var queryBody = QueryBody(name, year);
 
@@ -34,11 +33,11 @@ namespace DiarioOficial.Infraestructure.Services.OfficialStateDiary
             };
         }
 
-        internal OneOf<ResponseOfficialStateDiaryDTO, BaseError> DeserializeOfficialStateDiary(RestResponse restResponse)
+        internal OneOf<List<ResponseOfficialStateDiaryDTO>, BaseError> DeserializeOfficialStateDiary(RestResponse restResponse)
         {
             var diaryContent = restResponse.Content;
 
-            if (diaryContent is null)
+            if (string.IsNullOrWhiteSpace(diaryContent))
                 return new DatabaseError();
 
             var diaryObject = JsonConvert.DeserializeObject<Dictionary<string, object>>(diaryContent);
@@ -46,21 +45,21 @@ namespace DiarioOficial.Infraestructure.Services.OfficialStateDiary
             if (diaryObject is null || diaryObject.ContainsKey("erro"))
                 return new DatabaseError();
 
-            var diary = new List<ResponseOfficialStateDiaryDTO>();
+            if (!diaryObject.TryGetValue("data", out var data) || data is not JArray dataArray)
+                return new DatabaseError();
 
-            foreach (var item in diaryObject)
-            {
-                diary.Add(new ResponseOfficialStateDiaryDTO
-                {
-                    Number = item["numero"],
-                    Day = item["dia"],
-                    File = item["arquivo"],
-                    Description = item["desctpd"],
-                    DayCode = item["codigodia"]
-                });
-            }
+            var diary = dataArray
+                .Select(jsonItem => new ResponseOfficialStateDiaryDTO(
+                    jsonItem["numero"]?.ToString() ?? string.Empty,
+                    jsonItem["dia"]?.ToString() ?? string.Empty,
+                    jsonItem["arquivo"]?.ToString() ?? string.Empty,
+                    jsonItem["desctpd"]?.ToString() ?? string.Empty,
+                    jsonItem["codigodia"]?.ToString() ?? string.Empty
+                ))
+                .ToList();
 
-            throw new NotImplementedException();
+            return diary;
         }
+
     }
 }
