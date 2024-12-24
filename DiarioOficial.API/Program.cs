@@ -1,6 +1,8 @@
 using System.Text.Json.Serialization;
 using DiarioOficial.API.Endpoints;
 using Microsoft.AspNetCore.Mvc;
+using DiarioOficial.Application.Extensions;
+using DiarioOficial.Infraestructure.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -40,6 +42,9 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 
+builder.Services
+    .ConfigureServices(builder.Configuration)
+    .AddUseCases();
 
 var app = builder.Build();
 

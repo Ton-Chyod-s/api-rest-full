@@ -24,3 +24,5 @@ C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial
 C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.Domain\bin\Debug\net9.0\DiarioOficial.CrossCutting.pdb
 C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.Domain\obj\Debug\net9.0\DiarioOficial.Domain.csproj.AssemblyReference.cache
 C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.Domain\obj\Debug\net9.0\DiarioOf.CE2F934E.Up2Date
+C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.Domain\bin\Debug\net9.0\Newtonsoft.Json.dll
+C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.Domain\bin\Debug\net9.0\RestSharp.dll

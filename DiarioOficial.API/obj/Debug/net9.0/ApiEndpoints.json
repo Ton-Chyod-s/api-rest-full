@@ -58,35 +58,35 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "cpf",
+        "Name": "name",
         "Type": "System.String",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "OneOf.OneOf\u00602[[DiarioOficial.CrossCutting.DTOs.OfficialStateDiaryDTO, DiarioOficial.CrossCutting, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[DiarioOficial.CrossCutting.Errors.BaseError, DiarioOficial.CrossCutting, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "OneOf.OneOf\u00602[[DiarioOficial.CrossCutting.DTOs.OfficialStateDiary.ResponseOfficialStateDiaryDTO, DiarioOficial.CrossCutting, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[DiarioOficial.CrossCutting.Errors.BaseError, DiarioOficial.CrossCutting, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "application/json"
         ],
         "StatusCode": 200
       },
       {
-        "Type": "OneOf.OneOf\u00602[[DiarioOficial.CrossCutting.DTOs.OfficialStateDiaryDTO, DiarioOficial.CrossCutting, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[DiarioOficial.CrossCutting.Errors.BaseError, DiarioOficial.CrossCutting, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "OneOf.OneOf\u00602[[DiarioOficial.CrossCutting.DTOs.OfficialStateDiary.ResponseOfficialStateDiaryDTO, DiarioOficial.CrossCutting, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[DiarioOficial.CrossCutting.Errors.BaseError, DiarioOficial.CrossCutting, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "application/json"
         ],
         "StatusCode": 401
       },
       {
-        "Type": "OneOf.OneOf\u00602[[DiarioOficial.CrossCutting.DTOs.OfficialStateDiaryDTO, DiarioOficial.CrossCutting, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[DiarioOficial.CrossCutting.Errors.BaseError, DiarioOficial.CrossCutting, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "OneOf.OneOf\u00602[[DiarioOficial.CrossCutting.DTOs.OfficialStateDiary.ResponseOfficialStateDiaryDTO, DiarioOficial.CrossCutting, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[DiarioOficial.CrossCutting.Errors.BaseError, DiarioOficial.CrossCutting, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "application/json"
         ],
         "StatusCode": 404
       },
       {
-        "Type": "OneOf.OneOf\u00602[[DiarioOficial.CrossCutting.DTOs.OfficialStateDiaryDTO, DiarioOficial.CrossCutting, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[DiarioOficial.CrossCutting.Errors.BaseError, DiarioOficial.CrossCutting, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "OneOf.OneOf\u00602[[DiarioOficial.CrossCutting.DTOs.OfficialStateDiary.ResponseOfficialStateDiaryDTO, DiarioOficial.CrossCutting, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[DiarioOficial.CrossCutting.Errors.BaseError, DiarioOficial.CrossCutting, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "application/json"
         ],

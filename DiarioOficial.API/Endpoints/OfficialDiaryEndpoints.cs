@@ -1,6 +1,8 @@
 ﻿using DiarioOficial.CrossCutting.DTOs;
+using DiarioOficial.CrossCutting.DTOs.OfficialStateDiary;
 using DiarioOficial.CrossCutting.Errors;
 using DiarioOficial.Domain.Interface.UseCases;
+using DiarioOficial.Domain.Interface.UseCases.OfficialStateDiary;
 using Microsoft.AspNetCore.Mvc;
 using OneOf;
 
@@ -29,19 +31,19 @@ namespace DiarioOficial.API.Endpoints
             .Produces<OneOf<OfficialElectronicDiaryDTO, BaseError>>(StatusCodes.Status404NotFound)
             .Produces<OneOf<OfficialElectronicDiaryDTO, BaseError>>(StatusCodes.Status500InternalServerError);
 
-            root.MapGet("/official-state-diary", async ([FromServices] IOfficialStateDiary officialStateDiary, [FromQuery] string cpf) =>
+            root.MapGet("/official-state-diary", async ([FromServices] IOfficialStateDiaryUseCase officialStateDiary, [FromQuery] string name) =>
             {
-                var result = await officialStateDiary.Execute(cpf);
+                var result = await officialStateDiary.Execute(name);
 
                 return result.Match(
                     response => Results.Ok(response),
                     error => Results.Json(error, statusCode: error.HttpErrorCode));
             })
             .WithName("Official State Diary")
-            .Produces<OneOf<OfficialStateDiaryDTO, BaseError>>(StatusCodes.Status200OK)
-            .Produces<OneOf<OfficialStateDiaryDTO, BaseError>>(StatusCodes.Status401Unauthorized)
-            .Produces<OneOf<OfficialStateDiaryDTO, BaseError>>(StatusCodes.Status404NotFound)
-            .Produces<OneOf<OfficialStateDiaryDTO, BaseError>>(StatusCodes.Status500InternalServerError);
+            .Produces<OneOf<ResponseOfficialStateDiaryDTO, BaseError>>(StatusCodes.Status200OK)
+            .Produces<OneOf<ResponseOfficialStateDiaryDTO, BaseError>>(StatusCodes.Status401Unauthorized)
+            .Produces<OneOf<ResponseOfficialStateDiaryDTO, BaseError>>(StatusCodes.Status404NotFound)
+            .Produces<OneOf<ResponseOfficialStateDiaryDTO, BaseError>>(StatusCodes.Status500InternalServerError);
 
             return app;
         }
