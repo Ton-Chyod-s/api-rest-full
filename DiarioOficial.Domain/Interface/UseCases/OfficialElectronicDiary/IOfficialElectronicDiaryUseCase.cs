@@ -2,7 +2,7 @@
 using DiarioOficial.CrossCutting.Errors;
 using OneOf;
 
-namespace DiarioOficial.Domain.Interface.UseCases
+namespace DiarioOficial.Domain.Interface.UseCases.OfficialElectronicDiary
 {
     public interface IOfficialElectronicDiaryUseCase
     {

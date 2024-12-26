@@ -5,7 +5,6 @@
             string Number,
             string Day,
             string File,
-            string Description,
-            string DayCode
+            string Description
         );
 }

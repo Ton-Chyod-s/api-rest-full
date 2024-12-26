@@ -81,13 +81,6 @@
         "MediaTypes": [
           "application/json"
         ],
-        "StatusCode": 401
-      },
-      {
-        "Type": "OneOf.OneOf\u00602[[System.Collections.Generic.List\u00601[[DiarioOficial.CrossCutting.DTOs.OfficialStateDiary.ResponseOfficialStateDiaryDTO, DiarioOficial.CrossCutting, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[DiarioOficial.CrossCutting.Errors.BaseError, DiarioOficial.CrossCutting, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "application/json"
-        ],
         "StatusCode": 404
       },
       {

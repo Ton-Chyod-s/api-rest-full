@@ -1,72 +1,22 @@
-﻿using System.Net.Http.Json;
-using System.Text.Json;
-using DiarioOficial.CrossCutting.DTOs.Session;
-using DiarioOficial.Infraestructure.Constants;
-using Newtonsoft.Json.Linq;
+﻿using DiarioOficial.Infraestructure.Constants;
 using RestSharp;
 
 namespace DiarioOficial.Infraestructure.Helpers
 {
     internal static class RestClientHelpers
     {
-        internal static async Task<JObject> Fetch(object queryBody)
+        internal static async Task<RestResponse?> GetOfficialStateDiary(Dictionary<string, string> queryBody, string client)
         {
-            var request = GetHttpRequestMessage(queryBody);
+            var request = CreateHttpRequestQuery(queryBody, client);
 
-            //var cookieHeader = GetCookieHeader(cookies);
-            //request.AddHeader("Cookie", cookieHeader);
+            var response = await SendOfficialDiaryRequest(request);
 
-            var response = await SendEsusRequest(request);
-            var jsonResponseContent = GetReponseContent(response);
-
-            return jsonResponseContent;
+            return GetResponseContentQuery(response);
         }
 
-        internal static string GetCookieHeader(List<SessionCookieDTO> cookies)
-            => string.Join("; ", cookies.Select(c => $"{c.Name}={c.Value}"));
-
-        internal static RestRequest GetHttpRequestMessage(object queryBody)
+        internal static RestRequest CreateHttpRequestQuery(Dictionary<string, string> queryBody, string client)
         {
-            var jsonContent = JsonSerializer.Serialize(queryBody);
-
-            var request = new RestRequest(UrlConstants.OFFICIAL_DIARY_URL)
-            {
-                RequestFormat = DataFormat.Json,
-                Method = Method.Post
-            };
-
-            request.AddJsonBody(jsonContent);
-
-            return request;
-        }
-
-        internal static async Task<RestResponse> SendEsusRequest(RestRequest request)
-        {
-            var client = new RestClient();
-
-            var response = await client.ExecuteAsync(request);
-
-            return response;
-        }
-
-        internal static JObject GetReponseContent(RestResponse response)
-        {
-            var responseContent = response.Content;
-
-            if (string.IsNullOrWhiteSpace(responseContent))
-                return [];
-
-            return JObject.Parse(responseContent);
-        }
-
-        internal static RestClient _client = new RestClient(UrlConstants.OFFICIAL_DIARY_URL);
-
-        internal static async Task<RestResponse> FetchQueryAsync(Dictionary<string, string> queryBody)
-        {
-            if (queryBody == null || queryBody.Count == 0)
-                throw new ArgumentException("O corpo da requisição não pode ser nulo ou vazio.", nameof(queryBody));
-
-            var request = new RestRequest
+            var request = new RestRequest(client)
             {
                 Method = Method.Get
             };
@@ -76,10 +26,22 @@ namespace DiarioOficial.Infraestructure.Helpers
                 request.AddQueryParameter(key, value);
             }
 
-            var response = await _client.ExecuteAsync(request);
+            return request;
+        }
 
-            if (!response.IsSuccessful)
-                throw new HttpRequestException($"Erro ao chamar a API: {response.StatusCode} - {response.ErrorMessage}");
+        internal static async Task<RestResponse> SendOfficialDiaryRequest(RestRequest request)
+        {
+            var client = new RestClient();
+
+            var response = await client.ExecuteAsync(request);
+
+            return response;
+        }
+
+        internal static RestResponse? GetResponseContentQuery(RestResponse response)
+        {
+            if (string.IsNullOrWhiteSpace(response.Content))
+                return null;
 
             return response;
         }

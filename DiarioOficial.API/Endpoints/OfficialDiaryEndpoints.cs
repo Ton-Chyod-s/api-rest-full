@@ -1,7 +1,7 @@
 ﻿using DiarioOficial.CrossCutting.DTOs;
 using DiarioOficial.CrossCutting.DTOs.OfficialStateDiary;
 using DiarioOficial.CrossCutting.Errors;
-using DiarioOficial.Domain.Interface.UseCases;
+using DiarioOficial.Domain.Interface.UseCases.OfficialElectronicDiary;
 using DiarioOficial.Domain.Interface.UseCases.OfficialStateDiary;
 using Microsoft.AspNetCore.Mvc;
 using OneOf;
@@ -41,7 +41,6 @@ namespace DiarioOficial.API.Endpoints
             })
             .WithName("Official State Diary")
             .Produces<OneOf<List<ResponseOfficialStateDiaryDTO>, BaseError>>(StatusCodes.Status200OK)
-            .Produces<OneOf<List<ResponseOfficialStateDiaryDTO>, BaseError>>(StatusCodes.Status401Unauthorized)
             .Produces<OneOf<List<ResponseOfficialStateDiaryDTO>, BaseError>>(StatusCodes.Status404NotFound)
             .Produces<OneOf<List<ResponseOfficialStateDiaryDTO>, BaseError>>(StatusCodes.Status500InternalServerError);
 
