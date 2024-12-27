@@ -3,5 +3,10 @@
 .env
 /DiarioOficial.API/bin
 /DiarioOficial.Application/bin
+/DiarioOficial.CrossCutting/bin
 /DiarioOficial.Domain/bin
+/DiarioOficial.API/obj
+/DiarioOficial.Application/obj
+/DiarioOficial.CrossCutting/obj
+/DiarioOficial.Domain/obj
 
