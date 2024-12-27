@@ -5,8 +5,11 @@
 /DiarioOficial.Application/bin
 /DiarioOficial.CrossCutting/bin
 /DiarioOficial.Domain/bin
+/DiarioOficial.Infraestructure/bin
+/DiarioOficial.Tests/bin
 /DiarioOficial.API/obj
 /DiarioOficial.Application/obj
 /DiarioOficial.CrossCutting/obj
 /DiarioOficial.Domain/obj
-
+/DiarioOficial.Infraestructure/obj
+/DiarioOficial.Tests/obj
