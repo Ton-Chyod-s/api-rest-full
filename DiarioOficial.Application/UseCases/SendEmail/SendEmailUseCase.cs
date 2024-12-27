@@ -11,13 +11,9 @@ namespace DiarioOficial.Application.UseCases.SendEmail
             ISendEmailService sendEmailService
         ) : ISendEmailUseCase
     {
-        private readonly ISendEmailService _sendEmailService;   
+        private readonly ISendEmailService _sendEmailService = sendEmailService;   
 
-        public async Task<OneOf<bool, BaseError>> SendAsyncEmail(RequestSendEmailDTO requestSendEmailDTO)
-        {
-            var lol = await _sendEmailService.SendAsyncEmail(requestSendEmailDTO);
-
-            throw new NotImplementedException();
-        }
+        public async Task<OneOf<bool, BaseError>> SendAsyncEmail(RequestSendEmailDTO requestSendEmailDTO) => 
+            await _sendEmailService.SendAsyncEmail(requestSendEmailDTO);
     }
 }
