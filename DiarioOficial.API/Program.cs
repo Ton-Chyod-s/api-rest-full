@@ -61,6 +61,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app
-    .MapOfficialDiaryEndpoints();
+    .MapOfficialDiaryEndpoints()
+    .MapMailEndpoints();
 
 app.Run();

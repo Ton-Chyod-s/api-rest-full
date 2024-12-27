@@ -3,7 +3,7 @@ using DiarioOficial.CrossCutting.Errors;
 using DiarioOficial.CrossCutting.Errors.OfficialStateDiary;
 using DiarioOficial.Domain.Interface.Services.OfficialStateDiary;
 using DiarioOficial.Infraestructure.Constants;
-using DiarioOficial.Infraestructure.Helpers;
+using DiarioOficial.Infraestructure.Helpers.RestClientHelpers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using OneOf;
@@ -15,11 +15,11 @@ namespace DiarioOficial.Infraestructure.Services.OfficialStateDiary
     {
         public async Task<OneOf<List<ResponseOfficialStateDiaryDTO>, BaseError>> GetOfficialStateDiaryResponse(string name, string year)
         {
-            var requestBody = CreateRequestBody(name, year);
+            var requestQuery = CreateRequestQuery(name, year);
 
             var url = UrlConstants.OFFICIAL_DIARY_URL;
 
-            var response = await RestClientHelpers.GetOfficialStateDiary(requestBody, url);
+            var response = await RestClientQueryHelpers.GetOfficialStateDiary(requestQuery, url);
 
             if (response is null)
                 return new InvalidResponseContent();
@@ -27,7 +27,7 @@ namespace DiarioOficial.Infraestructure.Services.OfficialStateDiary
             return DeserializeOfficialStateDiary(response);
         }
 
-        internal Dictionary<string, string> CreateRequestBody(string name, string year)
+        internal Dictionary<string, string> CreateRequestQuery(string name, string year)
         {
             return new Dictionary<string, string>
             {

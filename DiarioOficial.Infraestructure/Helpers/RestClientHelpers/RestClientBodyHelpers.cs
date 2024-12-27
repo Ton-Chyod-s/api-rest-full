@@ -1,33 +1,41 @@
-﻿using DiarioOficial.Infraestructure.Constants;
+﻿using System.Text.Json;
+using Newtonsoft.Json.Linq;
 using RestSharp;
+using System.Net.Http;
+using System.Threading.Tasks;
 
-namespace DiarioOficial.Infraestructure.Helpers
+
+namespace DiarioOficial.Infraestructure.Helpers.RestClientHelpers
 {
-    internal static class RestClientHelpers
+    internal class RestClientBodyHelpers
     {
+        
+
+
         internal static async Task<RestResponse?> GetOfficialStateDiary(Dictionary<string, string> queryBody, string client)
         {
-            var request = CreateHttpRequestQuery(queryBody, client);
+            var request = CreateHttpRequestBody(queryBody, client);
 
             var response = await SendOfficialDiaryRequest(request);
 
             return GetResponseContentQuery(response);
         }
 
-        internal static RestRequest CreateHttpRequestQuery(Dictionary<string, string> queryBody, string client)
+        internal static RestRequest CreateHttpRequestBody(Dictionary<string, string> queryBody, string client)
         {
             var request = new RestRequest(client)
             {
-                Method = Method.Get
+                Method = Method.Post
             };
 
             foreach (var (key, value) in queryBody.Where(x => !string.IsNullOrEmpty(x.Key) && !string.IsNullOrEmpty(x.Value)))
-            {
-                request.AddQueryParameter(key, value);
-            }
+                request.AddParameter(key, value); 
+            
+            request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
 
             return request;
         }
+
 
         internal static async Task<RestResponse> SendOfficialDiaryRequest(RestRequest request)
         {
@@ -45,5 +53,6 @@ namespace DiarioOficial.Infraestructure.Helpers
 
             return response;
         }
+
     }
 }

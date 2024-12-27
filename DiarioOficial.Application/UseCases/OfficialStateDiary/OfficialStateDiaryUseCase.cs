@@ -14,13 +14,10 @@ namespace DiarioOficial.Application.UseCases.OfficialStateDiary
     {
         private readonly IOfficialStateDiaryService _officialStateDiaryService = officialStateDiaryService;
 
-        public async Task<OneOf<List<ResponseOfficialStateDiaryDTO>, BaseError>> Execute(string name, string year)
+        public async Task<OneOf<List<ResponseOfficialStateDiaryDTO>, BaseError>> GetStateDiaryRecords(string name, string year)
         {
-            if (string.IsNullOrWhiteSpace(name))
+            if (string.IsNullOrWhiteSpace(name) || name.Length < 3)
                 return new InvalidName();
-
-            if (string.IsNullOrWhiteSpace(year) || !int.TryParse(year, out _))
-                return new InvalidYear();
 
             return await _officialStateDiaryService.GetOfficialStateDiaryResponse(name, year);
         }

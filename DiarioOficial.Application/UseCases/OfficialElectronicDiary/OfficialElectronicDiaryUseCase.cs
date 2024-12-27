@@ -1,16 +1,19 @@
-﻿using DiarioOficial.CrossCutting.DTOs.OfficialStateDiary;
+﻿using DiarioOficial.CrossCutting.DTOs.OfficialElectronicDiary;
 using DiarioOficial.CrossCutting.Errors;
+using DiarioOficial.Domain.Interface.Services.OfficialElectronicDiary;
 using DiarioOficial.Domain.Interface.UseCases.OfficialElectronicDiary;
 using OneOf;
 
 namespace DiarioOficial.Application.UseCases.OfficialElectronicDiary
 {
-    internal class OfficialElectronicDiaryUseCase() : IOfficialElectronicDiaryUseCase
+    internal class OfficialElectronicDiaryUseCase
+        (
+            IOfficialElectronicDiaryService officialElectronicDiaryService
+        ) : IOfficialElectronicDiaryUseCase
     {
-        public async Task<OneOf<ResponseOfficialStateDiaryDTO, BaseError>> Execute(string cpf)
-        {
+        private readonly IOfficialElectronicDiaryService _officialElectronicDiaryService = officialElectronicDiaryService;
 
-            throw new NotImplementedException();
-        }
+        public async Task<OneOf<List<ResponseOfficialElectronicDiaryDTO>, BaseError>> GetElectronicDiaryRecords(string name, string year) => 
+            await _officialElectronicDiaryService.GetOfficialElectronicDiaryresponse(name, year);
     }
 }
