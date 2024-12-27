@@ -2,6 +2,7 @@
 using System.Net.Mail;
 using DiarioOficial.CrossCutting.DTOs.SendEmail;
 using DiarioOficial.CrossCutting.Errors;
+using DiarioOficial.CrossCutting.Errors.SendEmail;
 using DiarioOficial.Domain.Interface.Services.SendEmail;
 using DotNetEnv;
 using Newtonsoft.Json.Linq;
@@ -13,20 +14,37 @@ namespace DiarioOficial.Infraestructure.Services.SendEmail
     {
         public async Task<OneOf<bool, BaseError>> SendAsyncEmail(RequestSendEmailDTO requestSendEmailDTO)
         {
-            var envValue = EnvValue();
+            if (string.IsNullOrEmpty(requestSendEmailDTO.From))
+                return new InvalidEmail();
+
+            var envValue = EnvValue().AsT0;
+
+            var body = CreateMailMessageBody.GenerateEmailHtmlTemplate(requestSendEmailDTO.Subject, requestSendEmailDTO.Body);
 
             var smtpClient = CreateSmtpClient(envValue["SMTP_SERVER"]!.ToString(), int.Parse(envValue["SMTP_PORT"]!.ToString()), envValue["EMAIL"]!.ToString(), envValue["EMAIL_PASSWORD"]!.ToString());
            
-            var mailMessage = CreateMailMessage(envValue["EMAIL"]!.ToString(), requestSendEmailDTO.Subject, requestSendEmailDTO.Body);
+            var mailMessage = CreateMailMessage(envValue["EMAIL"]!.ToString(), requestSendEmailDTO.Subject, body);
 
             mailMessage.To.Add(requestSendEmailDTO.From);
 
-            await smtpClient.SendMailAsync(mailMessage);
+            try
+            {
+                await smtpClient.SendMailAsync(mailMessage);
 
-            return true;
+                return true;
+            }
+            catch (SmtpException ex)
+            {
+                return new SendEmailError(ex);
+            }
+            catch (Exception ex)
+            {
+                return new UnexpectedMailError(ex);
+            }
+
         }
 
-        internal JObject EnvValue()
+        internal OneOf<JObject,BaseError> EnvValue()
         {
             string basePath = "C:\\Users\\Klay\\OneDrive\\Documentos\\GitHub Ton-Chyod-S\\api-rest-full\\config\\.env";
 
@@ -36,6 +54,11 @@ namespace DiarioOficial.Infraestructure.Services.SendEmail
             var smtpPort = Env.GetString("SMTP_PORT");
             var email = Env.GetString("EMAIL");
             var emailPassword = Env.GetString("EMAIL_PASSWORD");
+
+            if (string.IsNullOrEmpty(smtpServer) || string.IsNullOrEmpty(smtpPort) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(emailPassword))
+            {
+                return new MissingParameters();
+            }
 
             return new JObject {
                 { "SMTP_SERVER", smtpServer },
@@ -62,7 +85,7 @@ namespace DiarioOficial.Infraestructure.Services.SendEmail
                 From = new MailAddress(email),
                 Subject = subject,
                 Body = body,
-                IsBodyHtml = true // Altere para 'true' se o corpo for HTML
+                IsBodyHtml = true // Altere para 'false' se o corpo não for HTML
             };
         }
 

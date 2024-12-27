@@ -4,7 +4,7 @@
         (
             string From,
             string Subject,
-            string Body
+            Dictionary<string, string> Body
         );
     
 }
