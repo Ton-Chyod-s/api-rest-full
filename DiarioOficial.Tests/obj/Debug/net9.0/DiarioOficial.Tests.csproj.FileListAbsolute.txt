@@ -1,8 +1,0 @@
-C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.Tests\bin\Debug\net9.0\.msCoverageSourceRootsMapping_DiarioOficial.Tests
-C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.Tests\bin\Debug\net9.0\CoverletSourceRootsMapping_DiarioOficial.Tests
-C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.Tests\obj\Debug\net9.0\DiarioOficial.Tests.csproj.AssemblyReference.cache
-C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.Tests\obj\Debug\net9.0\DiarioOficial.Tests.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.Tests\obj\Debug\net9.0\DiarioOficial.Tests.AssemblyInfoInputs.cache
-C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.Tests\obj\Debug\net9.0\DiarioOficial.Tests.AssemblyInfo.cs
-C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.Tests\obj\Debug\net9.0\DiarioOficial.Tests.csproj.CoreCompileInputs.cache
-C:\Users\Klay\OneDrive\Documentos\GitHub Ton-Chyod-S\api-rest-full\DiarioOficial.Tests\obj\Debug\net9.0\DiarioOficial.Tests.sourcelink.json
