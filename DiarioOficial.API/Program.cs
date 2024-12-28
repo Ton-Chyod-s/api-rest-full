@@ -42,7 +42,15 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 
+var connectionString = builder.Configuration.GetConnectionString("OfficialDiaryDb");
+
+if (string.IsNullOrEmpty(connectionString))
+{
+    throw new InvalidOperationException("Connection string 'OfficialDiaryDb' not found.");
+}
+
 builder.Services
+    .AddSingleton(connectionString)
     .ConfigureServices(builder.Configuration)
     .AddUseCases();
 

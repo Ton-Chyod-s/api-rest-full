@@ -1,28 +1,25 @@
-﻿using DiarioOficial.Domain.Interface.DatabaseAccessor.Base;
+﻿using System.Data;
+using DiarioOficial.Domain.Interface.DatabaseAccessor.Base;
 using Npgsql;
 
 namespace DiarioOficial.Infraestructure.DatabaseAccessor.Base
 {
     internal class NpgsqlService : INpgsqlService
-    { 
-        private readonly NpgsqlConnection _officialDiaryDbConnection;
+    {
+        private readonly string _officialDiaryDbConnection;
 
-        public NpgsqlService(NpgsqlConnection officialDiaryDbConnection)
+        public NpgsqlService(string officialDiaryDbConnection)
         {
             _officialDiaryDbConnection = officialDiaryDbConnection;
-            OpenOfficialDiaryConnectionIfNotOpen();
         }
 
         public async Task<NpgsqlDataReader> ExecuteCommandAndReaderAsync(string query)
         {
-            using var command = new NpgsqlCommand(query, _officialDiaryDbConnection);
-            return await command.ExecuteReaderAsync();
-        }
+            using var connection = new NpgsqlConnection(_officialDiaryDbConnection);
+            await connection.OpenAsync();
 
-        private void OpenOfficialDiaryConnectionIfNotOpen()
-        {
-            if (_officialDiaryDbConnection.State != System.Data.ConnectionState.Open)
-                _officialDiaryDbConnection.Open();
+            using var command = new NpgsqlCommand(query, connection);
+            return await command.ExecuteReaderAsync(CommandBehavior.CloseConnection);
         }
     }
 }
