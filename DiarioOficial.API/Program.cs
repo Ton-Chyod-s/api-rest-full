@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using DiarioOficial.Application.Extensions;
 using DiarioOficial.Infraestructure.Extensions;
 using DiarioOficial.API.Middlewares;
-using DiarioOficial.Infraestructure.Context;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -53,9 +52,7 @@ builder.Services
     .AddSingleton(connectionString)
     .ConfigureServices(builder.Configuration)
     .ConfigureRepositories(builder.Configuration)
-    .AddUseCases()
-    .AddDbContext<OfficialDiaryDbContext>(options =>
-    options.UseNpgsql(configuration.GetConnectionString("OfficialDiaryDb")));
+    .AddUseCases();
 
 builder.Services.AddTransient<ExceptionMiddleware>();
 

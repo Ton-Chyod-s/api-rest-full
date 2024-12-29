@@ -1,5 +1,6 @@
 ﻿using DiarioOficial.CrossCutting.Errors;
 using DiarioOficial.CrossCutting.Errors.Person;
+using DiarioOficial.CrossCutting.Extensions;
 using DiarioOficial.Domain.Interface.UnitOfWork;
 using DiarioOficial.Domain.Interface.UseCases.Person;
 using OneOf;
@@ -23,7 +24,7 @@ namespace DiarioOficial.Application.UseCases.Person
             if (sizeName < 2)
                 return new PersonNotSavedName();
 
-            var getOrAddPerson = await _unitOfWork.PersonRepository.AddOrUpdatePerson(name);
+            var getOrAddPerson = await _unitOfWork.PersonRepository.AddOrUpdatePerson(name.TextToTitleCase());
 
             return true;
         }
