@@ -1,8 +1,10 @@
 ﻿using DiarioOficial.Application.UseCases.OfficialElectronicDiary;
 using DiarioOficial.Application.UseCases.OfficialStateDiary;
+using DiarioOficial.Application.UseCases.Person;
 using DiarioOficial.Application.UseCases.SendEmail;
 using DiarioOficial.Domain.Interface.UseCases.OfficialElectronicDiary;
 using DiarioOficial.Domain.Interface.UseCases.OfficialStateDiary;
+using DiarioOficial.Domain.Interface.UseCases.Person;
 using DiarioOficial.Domain.Interface.UseCases.SendEmail;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -15,6 +17,7 @@ namespace DiarioOficial.Application.Extensions
             services.AddScoped<IOfficialStateDiaryUseCase, OfficialStateDiaryUseCase>();
             services.AddScoped<IOfficialElectronicDiaryUseCase, OfficialElectronicDiaryUseCase>();
             services.AddScoped<ISendEmailUseCase, SendEmailUseCase>();
+            services.AddScoped<IPersonUseCase, PersonUseCase>();
 
             return services;
         }

@@ -76,6 +76,7 @@ app.UseAuthorization();
 
 app
     .MapOfficialDiaryEndpoints()
-    .MapMailEndpoints();
+    .MapMailEndpoints()
+    .MapPersonEndpoints();
 
 app.Run();

@@ -2,6 +2,7 @@
 using DiarioOficial.Domain.Interface.Services.OfficialElectronicDiary;
 using DiarioOficial.Domain.Interface.Services.OfficialStateDiary;
 using DiarioOficial.Domain.Interface.Services.SendEmail;
+using DiarioOficial.Domain.Interface.UnitOfWork;
 using DiarioOficial.Infraestructure.DatabaseAccessor.Base;
 using DiarioOficial.Infraestructure.Services.OfficialElectronicDiary;
 using DiarioOficial.Infraestructure.Services.OfficialStateDiary;
