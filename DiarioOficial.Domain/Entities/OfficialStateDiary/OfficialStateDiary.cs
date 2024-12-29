@@ -1,15 +1,34 @@
-﻿namespace DiarioOficial.Domain.Entities.OfficialStateDiary
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace DiarioOficial.Domain.Entities.OfficialStateDiary
 {
     public class OfficialStateDiary : BaseEntity.BaseEntity
     {
-        public string? Title { get; private set; }
+        public string Number { get; private set; }
+        public string Day { get; private set; }
+        public string File { get; private set; }
+        public string Description { get; private set; }
+        public long SessionId { get; private set; }
 
         private OfficialStateDiary() { }
-
-        public OfficialStateDiary(string title)
+      
+        public OfficialStateDiary(string number, string day, string file, string description)
         {
-            Title = title;
+            Number = number;
+            Day = day;
+            File = file;
+            Description = description;
         }
 
+        public void AddSession(string name, string year)
+        {
+            Session.Name = name;
+            Session.Year = year;
+        }
+
+        #region [Foreign Key]
+        [ForeignKey(nameof(SessionId))]
+        public Session.Session Session { get; private set; }
+        #endregion
     }
 }

@@ -3,9 +3,11 @@ using DiarioOficial.API.Endpoints;
 using Microsoft.AspNetCore.Mvc;
 using DiarioOficial.Application.Extensions;
 using DiarioOficial.Infraestructure.Extensions;
+using DiarioOficial.API.Middlewares;
+using DiarioOficial.Infraestructure.Context;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-
 
 builder.Services.ConfigureHttpJsonOptions(options =>
 {
@@ -17,14 +19,10 @@ builder.Services.Configure<JsonOptions>(options =>
     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
 });
 
-
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+
 builder.Services.AddOpenApi();
 
-// Configuration title for Swagger documentation
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
@@ -49,20 +47,28 @@ if (string.IsNullOrEmpty(connectionString))
     throw new InvalidOperationException("Connection string 'OfficialDiaryDb' not found.");
 }
 
+var configuration = builder.Configuration; 
+
 builder.Services
     .AddSingleton(connectionString)
     .ConfigureServices(builder.Configuration)
-    .AddUseCases();
+    .ConfigureRepositories(builder.Configuration)
+    .AddUseCases()
+    .AddDbContext<OfficialDiaryDbContext>(options =>
+    options.UseNpgsql(configuration.GetConnectionString("OfficialDiaryDb")));
+
+builder.Services.AddTransient<ExceptionMiddleware>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
     app.MapOpenApi();
 }
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseHttpsRedirection();
 

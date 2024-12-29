@@ -1,13 +1,16 @@
 ﻿using DiarioOficial.Domain.Entities.BaseEntity;
 using DiarioOficial.Domain.Entities.OfficialStateDiary;
+using DiarioOficial.Domain.Entities.Session;
 using Microsoft.EntityFrameworkCore;
 
 namespace DiarioOficial.Infraestructure.Context
 {
     public sealed class OfficialDiaryDbContext(DbContextOptions<OfficialDiaryDbContext> options) : DbContext(options)
     {
+
         #region [DbSet]
         public DbSet<OfficialStateDiary> OfficialStateDiaries { get; set; }
+        public DbSet<Session> Sessions { get; set; }
         #endregion
 
         #region [Config Official Diary]
@@ -35,6 +38,7 @@ namespace DiarioOficial.Infraestructure.Context
 
             return await base.SaveChangesAsync(cancellationToken);
         }
+
         #endregion
     }
 }

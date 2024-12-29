@@ -17,7 +17,7 @@ namespace DiarioOficial.API.Endpoints
                 .WithDescription("Endpoints related to the Official Diary!!!")
                 .WithOpenApi();
 
-            root.MapGet("/official-electronic-diary", async ([FromServices] IOfficialElectronicDiaryUseCase officialElectronicDiaryUseCase, [FromQuery] string name, string year) =>
+            root.MapGet("/official-electronic-diary", async ([FromServices] IOfficialElectronicDiaryUseCase officialElectronicDiaryUseCase, [FromQuery] string name, [FromQuery] string year) =>
             {
                 var result = await officialElectronicDiaryUseCase.GetElectronicDiaryRecords(name, year);
 
@@ -30,7 +30,7 @@ namespace DiarioOficial.API.Endpoints
             .Produces<OneOf<List<ResponseOfficialElectronicDiaryDTO>, BaseError>>(StatusCodes.Status404NotFound)
             .Produces<OneOf<List<ResponseOfficialElectronicDiaryDTO>, BaseError>>(StatusCodes.Status500InternalServerError);
 
-            root.MapGet("/official-state-diary", async ([FromServices] IOfficialStateDiaryUseCase officialStateDiary, [FromQuery] string name, string year) =>
+            root.MapGet("/official-state-diary", async ([FromServices] IOfficialStateDiaryUseCase officialStateDiary, [FromQuery] string name, [FromQuery] string year) =>
             {
                 var result = await officialStateDiary.GetStateDiaryRecords(name, year);
 
