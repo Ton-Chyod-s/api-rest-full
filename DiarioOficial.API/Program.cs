@@ -27,9 +27,9 @@ builder.Services.AddSwaggerGen(options =>
 {
     options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
     {
-        Title = "Official Diary API",
+        Title = "Public Records API",
         Version = "v1",
-        Description = "Endpoints related to the Official Diary",
+        Description = "API for accessing and managing public records and official diaries.",
         Contact = new Microsoft.OpenApi.Models.OpenApiContact
         {
             Name = "Dev-Ton-Chyod-$",
