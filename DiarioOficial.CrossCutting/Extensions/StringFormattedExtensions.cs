@@ -3,10 +3,11 @@ using DiarioOficial.CrossCutting.Errors.Person;
 using System.Xml.Linq;
 using DiarioOficial.CrossCutting.Errors;
 using OneOf;
+using DiarioOficial.CrossCutting.Errors.Common;
 
 namespace DiarioOficial.CrossCutting.Extensions
 {
-    public static class TextFormattedExtensions
+    public static class StringFormattedExtensions
     {
         public static string TextToTitleCase(this string name)
         {
@@ -25,6 +26,14 @@ namespace DiarioOficial.CrossCutting.Extensions
                 return new PersonNotSavedName();
 
             return name;
+        }
+
+        public static OneOf<string, BaseError> EnsureValidYear(this string year)
+        {
+            if (!System.Text.RegularExpressions.Regex.IsMatch(year, @"\b20\d{2}\b"))
+                return new InvalitYear();
+
+            return year;
         }
 
     }

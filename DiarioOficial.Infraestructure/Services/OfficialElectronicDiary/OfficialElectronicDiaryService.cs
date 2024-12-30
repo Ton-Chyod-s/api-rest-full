@@ -1,5 +1,6 @@
 ﻿using DiarioOficial.CrossCutting.DTOs.OfficialElectronicDiary;
 using DiarioOficial.CrossCutting.DTOs.OfficialStateDiary;
+using DiarioOficial.CrossCutting.Enums.OfficialStateDiaries;
 using DiarioOficial.CrossCutting.Errors;
 using DiarioOficial.CrossCutting.Errors.OfficialStateDiary;
 using DiarioOficial.Domain.Interface.Services.OfficialElectronicDiary;
@@ -54,12 +55,15 @@ namespace DiarioOficial.Infraestructure.Services.OfficialElectronicDiary
             if (!diaryObject.TryGetValue("dataElastic", out var data) || data is not JArray dataArray)
                 return new NotFoundOfficialStateDiary();
 
+            var lol = dataArray;
+
             var diary = dataArray
                 .Select(jsonItem => new ResponseOfficialElectronicDiaryDTO(
-                    jsonItem["Numero"]?.ToString() ?? string.Empty,
-                    jsonItem["DataInicioPublicacaoArquivo"]?.ToString() ?? string.Empty,
-                    jsonItem["NomeArquivo"]?.ToString() ?? string.Empty,
-                    jsonItem["Descricao"]?.ToString() ?? string.Empty
+                    jsonItem["Source"]?["Numero"]?.ToString() ?? string.Empty,
+                    jsonItem["Source"]?["DataInicioPublicacaoArquivo"]?.ToString() ?? string.Empty,
+                    jsonItem["Source"]?["NomeArquivo"]?.ToString() ?? string.Empty,
+                    jsonItem["Source"]?["Descricao"]?.ToString() ?? string.Empty,
+                    TypeDiaryEnum.OfficialElectronicDiary
                 ))
 
                 .ToList();

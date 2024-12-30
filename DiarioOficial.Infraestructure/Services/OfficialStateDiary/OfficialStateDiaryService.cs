@@ -1,4 +1,5 @@
 ﻿using DiarioOficial.CrossCutting.DTOs.OfficialStateDiary;
+using DiarioOficial.CrossCutting.Enums.OfficialStateDiaries;
 using DiarioOficial.CrossCutting.Errors;
 using DiarioOficial.CrossCutting.Errors.OfficialStateDiary;
 using DiarioOficial.Domain.Interface.Services.OfficialStateDiary;
@@ -58,7 +59,8 @@ namespace DiarioOficial.Infraestructure.Services.OfficialStateDiary
                     jsonItem["numero"]?.ToString() ?? string.Empty,
                     jsonItem["dia"]?.ToString() ?? string.Empty,
                     jsonItem["arquivo"]?.ToString() ?? string.Empty,
-                    jsonItem["desctpd"]?.ToString() ?? string.Empty
+                    jsonItem["desctpd"]?.ToString() ?? string.Empty,
+                    TypeDiaryEnum.OfficialStateDiary
                 ))
                 .ToList();
 
