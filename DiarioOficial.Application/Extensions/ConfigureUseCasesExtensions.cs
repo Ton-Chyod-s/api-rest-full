@@ -18,6 +18,7 @@ namespace DiarioOficial.Application.Extensions
             services.AddScoped<IOfficialElectronicDiaryUseCase, OfficialElectronicDiaryUseCase>();
             services.AddScoped<ISendEmailUseCase, SendEmailUseCase>();
             services.AddScoped<IPersonUseCase, PersonUseCase>();
+            services.AddScoped<IGetIdPersonUseCase, GetIdPersonUseCase>();
 
             return services;
         }

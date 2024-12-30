@@ -10,18 +10,18 @@ namespace DiarioOficial.Infraestructure.Repository
 {
     internal class PersonRepository(OfficialDiaryDbContext context) : BaseRepository<Person>(context), IPersonRepository
     {
-        public async Task<OneOf<bool, BaseError>> AddOrUpdatePerson(string name)
+        public async Task<OneOf<bool, BaseError>> AddOrUpdatePerson(string name, string email)
         {
             var person = await _context.Person
                 .FirstOrDefaultAsync(p => p.Name.Contains(name));
 
             if (person is null || !person.Name.Contains(name))
             {
-                var newPerson = new Person(name);
+                var newPerson = new Person(name, email);
                 await _context.Person.AddAsync(newPerson);
             } else
             {
-                person.UpdatePerson(name);
+                person.UpdatePerson(name, email);
                 _context.Person.Update(person);
             }
 

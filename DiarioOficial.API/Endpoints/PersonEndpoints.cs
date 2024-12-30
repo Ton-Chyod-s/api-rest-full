@@ -1,5 +1,6 @@
 ﻿using DiarioOficial.CrossCutting.DTOs.OfficialElectronicDiary;
 using DiarioOficial.CrossCutting.DTOs.SendEmail;
+using DiarioOficial.CrossCutting.Enums.Person;
 using DiarioOficial.CrossCutting.Errors;
 using DiarioOficial.Domain.Interface.Repository;
 using DiarioOficial.Domain.Interface.UseCases.Person;
@@ -18,9 +19,9 @@ namespace DiarioOficial.API.Endpoints
                 .WithDescription("This group contains endpoints for managing person-related operations, including creation, updates, and retrieval of person details.")
                 .WithOpenApi();
 
-            root.MapGet("", async ([FromServices] IPersonUseCase personUseCase, [FromQuery] string name) =>
+            root.MapPost("", async ([FromServices] IPersonUseCase personUseCase, [FromBody] PersonEnum personEnum) =>
             {
-                var result = await personUseCase.AddOrUpdatePerson(name);
+                var result = await personUseCase.AddOrUpdatePerson(personEnum);
 
                 return result.Match(
                     response => Results.Ok(response),
@@ -30,6 +31,19 @@ namespace DiarioOficial.API.Endpoints
            .Produces<OneOf<bool, BaseError>>(StatusCodes.Status200OK)
            .Produces<OneOf<bool, BaseError>>(StatusCodes.Status404NotFound)
            .Produces<OneOf<bool, BaseError>>(StatusCodes.Status500InternalServerError);
+
+            root.MapGet("/get-id-person", async ([FromServices] IGetIdPersonUseCase getIdPersonUseCase, [FromQuery] string name) =>
+            {
+                var result = await getIdPersonUseCase.GetIdPerson(name);
+
+                return result.Match(
+                    response => Results.Ok(response),
+                    error => Results.Json(error, statusCode: error.HttpErrorCode));
+            })
+           .WithName("GetIdPerson")
+           .Produces<OneOf<long, BaseError>>(StatusCodes.Status200OK)
+           .Produces<OneOf<long, BaseError>>(StatusCodes.Status404NotFound)
+           .Produces<OneOf<long, BaseError>>(StatusCodes.Status500InternalServerError);
 
 
             return app;

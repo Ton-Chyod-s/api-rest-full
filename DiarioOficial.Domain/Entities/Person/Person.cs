@@ -7,17 +7,20 @@ namespace DiarioOficial.Domain.Entities.Person
         [Required]
         [StringLength(100)]
         public string Name { get; set; }
+        public string Email { get; set; }
 
         private Person() { }
 
-        public Person(string name)
+        public Person(string name, string email)
         {
             Name = name;
+            Email = email;
         }
 
-        public void UpdatePerson(string name)
+        public void UpdatePerson(string name, string email)
         {
             Name = name;
+            Email = email;
         }
 
     }

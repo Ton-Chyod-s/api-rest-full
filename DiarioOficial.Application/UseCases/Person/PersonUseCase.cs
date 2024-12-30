@@ -1,4 +1,5 @@
-﻿using DiarioOficial.CrossCutting.Errors;
+﻿using DiarioOficial.CrossCutting.Enums.Person;
+using DiarioOficial.CrossCutting.Errors;
 using DiarioOficial.CrossCutting.Errors.Person;
 using DiarioOficial.CrossCutting.Extensions;
 using DiarioOficial.Domain.Interface.UnitOfWork;
@@ -14,17 +15,14 @@ namespace DiarioOficial.Application.UseCases.Person
     {
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
 
-        public async Task<OneOf<bool, BaseError>> AddOrUpdatePerson(string name)
+        public async Task<OneOf<bool, BaseError>> AddOrUpdatePerson(PersonEnum personEnum)
         {
-            if (string.IsNullOrWhiteSpace(name) || name.Length < 3)
+            if (string.IsNullOrWhiteSpace(personEnum.Name) || personEnum.Name.Length < 3)
                 return new InvalidName();
 
-            var sizeName = name.Split(" ").Length;
+            var sizeName = personEnum.Name.EnsureValidName();
 
-            if (sizeName < 2)
-                return new PersonNotSavedName();
-
-            var getOrAddPerson = await _unitOfWork.PersonRepository.AddOrUpdatePerson(name.TextToTitleCase());
+            var getOrAddPerson = await _unitOfWork.PersonRepository.AddOrUpdatePerson(personEnum.Name.TextToTitleCase(), personEnum.Email.ToLower());
 
             return true;
         }
