@@ -51,13 +51,17 @@ namespace DiarioOficial.Infraestructure.Services.OfficialElectronicDiary
             if (diaryObject is null || diaryObject.ContainsKey("erro"))
                 return new InvalidResponseContent();
 
-            if (!diaryObject.TryGetValue("data", out var data) || data is not JArray dataArray)
+            if (!diaryObject.TryGetValue("dataElastic", out var data) || data is not JArray dataArray)
                 return new NotFoundOfficialStateDiary();
 
             var diary = dataArray
                 .Select(jsonItem => new ResponseOfficialElectronicDiaryDTO(
-                    //jsonItem["numero"]?.ToString() ?? string.Empty
+                    jsonItem["Numero"]?.ToString() ?? string.Empty,
+                    jsonItem["DataInicioPublicacaoArquivo"]?.ToString() ?? string.Empty,
+                    jsonItem["NomeArquivo"]?.ToString() ?? string.Empty,
+                    jsonItem["Descricao"]?.ToString() ?? string.Empty
                 ))
+
                 .ToList();
 
             return diary;

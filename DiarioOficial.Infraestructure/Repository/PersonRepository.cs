@@ -33,17 +33,17 @@ namespace DiarioOficial.Infraestructure.Repository
         public async Task<long?> GetIdPerson(string name)
         {
             return await _context.Person
-                .Where(p => p.Name == name)
+                .Where(p => p.Name.Contains(name))
                 .Select(p => p.Id)   
                 .FirstOrDefaultAsync();
         }
 
-        public async Task<OneOf<bool, BaseError>> RemovePerson(string name, long personId)
+        public async Task<OneOf<bool?, BaseError>> RemovePerson(long personId)
         {
             var person = await _context.Person
-                .FirstOrDefaultAsync(p => p.Name == name && p.Id == personId);
+                .FirstOrDefaultAsync(p => p.Id == personId);
 
-            if (person is null || !person.Name.Contains(name))
+            if (person is null)
             {
                 return new PersonNotDeleted();
             }

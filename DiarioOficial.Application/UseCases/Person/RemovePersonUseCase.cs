@@ -7,24 +7,22 @@ using OneOf;
 
 namespace DiarioOficial.Application.UseCases.Person
 {
-    internal class GetIdPersonUseCase
+    internal class RemovePersonUseCase
         (
             IUnitOfWork unitOfWork
-        ) : IGetIdPersonUseCase
+        ) : IRemovePersonUseCase
     {
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
 
-        public async Task<OneOf<long?, BaseError>> GetIdPerson(string name)
+        public async Task<OneOf<bool, BaseError>> RemovePerson(long id)
         {
-            var sizeName = name.EnsureValidName();
+            var removePerson = await _unitOfWork.PersonRepository.RemovePerson(id);
 
-            var getIdPerson = await _unitOfWork.PersonRepository.GetIdPerson(name.TextToTitleCase());
+            if (removePerson.IsError())
+                return removePerson.GetError();
 
-            if (getIdPerson == 0)
-                return new PersonNotFound();
-            
-            return getIdPerson;
+            return true;
         }
+
     }
 }
-

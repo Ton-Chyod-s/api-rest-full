@@ -3,6 +3,7 @@ using System.Net.Mail;
 using DiarioOficial.CrossCutting.DTOs.SendEmail;
 using DiarioOficial.CrossCutting.Errors;
 using DiarioOficial.CrossCutting.Errors.SendEmail;
+using DiarioOficial.CrossCutting.Extensions;
 using DiarioOficial.Domain.Interface.Services.SendEmail;
 using DotNetEnv;
 using Newtonsoft.Json.Linq;
@@ -17,7 +18,7 @@ namespace DiarioOficial.Infraestructure.Services.SendEmail
             if (string.IsNullOrEmpty(requestSendEmailDTO.From))
                 return new InvalidEmail();
 
-            var envValue = EnvValue().AsT0;
+            var envValue = EnvValue().GetValue();
 
             var body = CreateMailMessageBody.GenerateEmailHtmlTemplate(requestSendEmailDTO.Subject, requestSendEmailDTO.Body);
 

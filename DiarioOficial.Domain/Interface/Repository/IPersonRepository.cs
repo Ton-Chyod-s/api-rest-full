@@ -8,6 +8,6 @@ namespace DiarioOficial.Domain.Interface.Repository
     {
         Task<OneOf<bool, BaseError>> AddOrUpdatePerson(string name, string email);
         Task<long?> GetIdPerson(string name);
-        Task<OneOf<bool, BaseError>> RemovePerson(string name, long personId);
+        Task<OneOf<bool?, BaseError>> RemovePerson(long personId);
     }
 }

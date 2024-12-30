@@ -1,17 +1,9 @@
-﻿using System.Text.Json;
-using Newtonsoft.Json.Linq;
-using RestSharp;
-using System.Net.Http;
-using System.Threading.Tasks;
-
+﻿using RestSharp;
 
 namespace DiarioOficial.Infraestructure.Helpers.RestClientHelpers
 {
     internal class RestClientBodyHelpers
     {
-        
-
-
         internal static async Task<RestResponse?> GetOfficialStateDiary(Dictionary<string, string> queryBody, string client)
         {
             var request = CreateHttpRequestBody(queryBody, client);
@@ -29,13 +21,12 @@ namespace DiarioOficial.Infraestructure.Helpers.RestClientHelpers
             };
 
             foreach (var (key, value) in queryBody.Where(x => !string.IsNullOrEmpty(x.Key) && !string.IsNullOrEmpty(x.Value)))
-                request.AddParameter(key, value); 
-            
-            request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+                request.AddParameter(key, value);
+
+            request.AlwaysMultipartFormData = true;
 
             return request;
         }
-
 
         internal static async Task<RestResponse> SendOfficialDiaryRequest(RestRequest request)
         {
