@@ -21,8 +21,10 @@ namespace DiarioOficial.Application.UseCases.SaveAndNotify
         private readonly IOfficialStateDiaryService _officialStateDiaryService = officialStateDiaryService;
         private readonly IOfficialElectronicDiaryService _officialElectronicDiaryService = officialElectronicDiaryService;
 
-        public async Task<OneOf<bool, BaseError>> SaveAndNotify(string name)
+        public async Task<OneOf<bool, BaseError>> SaveAndNotify()
         {
+            var name = "Klayton Chrysthian";
+
             if (string.IsNullOrWhiteSpace(name) || name.Length < 3)
                 return new InvalidName();
 

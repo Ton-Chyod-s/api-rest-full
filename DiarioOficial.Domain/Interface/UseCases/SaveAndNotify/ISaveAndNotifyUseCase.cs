@@ -5,6 +5,6 @@ namespace DiarioOficial.Domain.Interface.UseCases.SaveAndNotify
 {
     public interface ISaveAndNotifyUseCase
     {
-        Task<OneOf<bool, BaseError>> SaveAndNotify(string name);
+        Task<OneOf<bool, BaseError>> SaveAndNotify();
     }
 }

@@ -32,19 +32,6 @@ namespace DiarioOficial.API.Endpoints
            .Produces<OneOf<bool, BaseError>>(StatusCodes.Status404NotFound)
            .Produces<OneOf<bool, BaseError>>(StatusCodes.Status500InternalServerError);
 
-            root.MapGet("/get-id-person", async ([FromServices] IGetIdPersonUseCase getIdPersonUseCase, [FromQuery] string name) =>
-            {
-                var result = await getIdPersonUseCase.GetIdPerson(name);
-
-                return result.Match(
-                    response => Results.Ok(response),
-                    error => Results.Json(error, statusCode: error.HttpErrorCode));
-            })
-           .WithName("GetIdPerson")
-           .Produces<OneOf<long, BaseError>>(StatusCodes.Status200OK)
-           .Produces<OneOf<long, BaseError>>(StatusCodes.Status404NotFound)
-           .Produces<OneOf<long, BaseError>>(StatusCodes.Status500InternalServerError);
-
             root.MapDelete("/remove-person", async ([FromServices] IRemovePersonUseCase removePersonUseCase, [FromQuery] long personId) =>
             {
                 var result = await removePersonUseCase.RemovePerson(personId);

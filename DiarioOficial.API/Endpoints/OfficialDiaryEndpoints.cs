@@ -44,9 +44,9 @@ namespace DiarioOficial.API.Endpoints
             .Produces<OneOf<List<ResponseOfficialStateDiaryDTO>, BaseError>>(StatusCodes.Status404NotFound)
             .Produces<OneOf<List<ResponseOfficialStateDiaryDTO>, BaseError>>(StatusCodes.Status500InternalServerError);
 
-            root.MapPost("/save-and-notify", async ([FromServices] ISaveAndNotifyUseCase saveAndNotifyUseCase, [FromBody] string name) =>
+            root.MapPost("/save-and-notify", async ([FromServices] ISaveAndNotifyUseCase saveAndNotifyUseCase) =>
             {
-                var result = await saveAndNotifyUseCase.SaveAndNotify(name);
+                var result = await saveAndNotifyUseCase.SaveAndNotify();
 
                 return result.Match(
                     response => Results.Ok(response),
