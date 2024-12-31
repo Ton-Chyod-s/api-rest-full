@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DiarioOficial.Domain.Entities.Person
 {
@@ -6,8 +7,9 @@ namespace DiarioOficial.Domain.Entities.Person
     {
         [Required]
         [StringLength(100)]
-        public string Name { get; set; }
-        public string Email { get; set; }
+        public string Name { get; private set; }
+        public string Email { get; private set; }
+        public long UserId { get; private set; }
 
         private Person() { }
 
@@ -22,6 +24,11 @@ namespace DiarioOficial.Domain.Entities.Person
             Name = name;
             Email = email;
         }
+
+        #region [Foreign Key]
+        [ForeignKey(nameof(UserId))]
+        public User.User User { get; set; }
+        #endregion
 
     }
 }

@@ -3,6 +3,7 @@ using DiarioOficial.CrossCutting.DTOs.OfficialStateDiary;
 using DiarioOficial.CrossCutting.Errors;
 using DiarioOficial.Domain.Interface.UseCases.OfficialElectronicDiary;
 using DiarioOficial.Domain.Interface.UseCases.OfficialStateDiary;
+using DiarioOficial.Domain.Interface.UseCases.SaveAndNotify;
 using Microsoft.AspNetCore.Mvc;
 using OneOf;
 
@@ -42,6 +43,19 @@ namespace DiarioOficial.API.Endpoints
             .Produces<OneOf<List<ResponseOfficialStateDiaryDTO>, BaseError>>(StatusCodes.Status200OK)
             .Produces<OneOf<List<ResponseOfficialStateDiaryDTO>, BaseError>>(StatusCodes.Status404NotFound)
             .Produces<OneOf<List<ResponseOfficialStateDiaryDTO>, BaseError>>(StatusCodes.Status500InternalServerError);
+
+            root.MapPost("/save-and-notify", async ([FromServices] ISaveAndNotifyUseCase saveAndNotifyUseCase, [FromBody] string name) =>
+            {
+                var result = await saveAndNotifyUseCase.SaveAndNotify(name);
+
+                return result.Match(
+                    response => Results.Ok(response),
+                    error => Results.Json(error, statusCode: error.HttpErrorCode));
+            })
+            .WithName("Save And Notify")
+            .Produces<OneOf<bool, BaseError>>(StatusCodes.Status200OK)
+            .Produces<OneOf<bool, BaseError>>(StatusCodes.Status404NotFound)
+            .Produces<OneOf<bool, BaseError>>(StatusCodes.Status500InternalServerError);
 
             return app;
         }

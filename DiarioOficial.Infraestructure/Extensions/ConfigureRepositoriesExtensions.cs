@@ -26,6 +26,7 @@ namespace DiarioOficial.Infraestructure.Extensions
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddScoped<IUnitOfWork, UnitOfWorkClass>();
             services.AddScoped<IPersonRepository, PersonRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
             #endregion
 
             return services;

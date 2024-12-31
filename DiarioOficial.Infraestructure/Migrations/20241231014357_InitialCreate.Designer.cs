@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DiarioOficial.Infraestructure.Migrations
 {
     [DbContext(typeof(OfficialDiaryDbContext))]
-    [Migration("20241229090921_AddNewTablePerson")]
-    partial class AddNewTablePerson
+    [Migration("20241231014357_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -77,6 +77,10 @@ namespace DiarioOficial.Infraestructure.Migrations
                     b.Property<DateTime?>("CreateAt")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -85,7 +89,12 @@ namespace DiarioOficial.Infraestructure.Migrations
                     b.Property<DateTime?>("UpdateAt")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Person");
                 });
@@ -118,6 +127,45 @@ namespace DiarioOficial.Infraestructure.Migrations
                     b.ToTable("Sessions");
                 });
 
+            modelBuilder.Entity("DiarioOficial.Domain.Entities.User.User", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<DateTime?>("CreateAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(true);
+
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("Roles")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("UpdateAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("User");
+                });
+
             modelBuilder.Entity("DiarioOficial.Domain.Entities.OfficialStateDiary.OfficialStateDiary", b =>
                 {
                     b.HasOne("DiarioOficial.Domain.Entities.Session.Session", "Session")
@@ -127,6 +175,17 @@ namespace DiarioOficial.Infraestructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Session");
+                });
+
+            modelBuilder.Entity("DiarioOficial.Domain.Entities.Person.Person", b =>
+                {
+                    b.HasOne("DiarioOficial.Domain.Entities.User.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("DiarioOficial.Domain.Entities.Session.Session", b =>
