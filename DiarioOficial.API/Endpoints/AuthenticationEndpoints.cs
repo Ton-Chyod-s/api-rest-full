@@ -1,10 +1,7 @@
 ﻿using DiarioOficial.CrossCutting.DTOs.Login;
-using DiarioOficial.CrossCutting.DTOs.OfficialElectronicDiary;
-using DiarioOficial.CrossCutting.DTOs.SendEmail;
 using DiarioOficial.CrossCutting.DTOs.Token;
 using DiarioOficial.CrossCutting.Errors;
 using DiarioOficial.Domain.Interface.UseCases.Login;
-using DiarioOficial.Domain.Interface.UseCases.SendEmail;
 using Microsoft.AspNetCore.Mvc;
 using OneOf;
 

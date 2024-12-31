@@ -1,4 +1,5 @@
-﻿using DiarioOficial.Domain.Entities.User;
+﻿using DiarioOficial.CrossCutting.Enums.User;
+using DiarioOficial.Domain.Entities.User;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -19,7 +20,8 @@ namespace DiarioOficial.Infraestructure.Context.Configurations
             builder.Property(x => x.Email)
                 .HasDefaultValue("seuemail@seuemail.com");
 
+            builder.Property(x => x.Roles)
+                .HasDefaultValue(UserEnum.User);
         }
-
     }
 }
