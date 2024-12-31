@@ -7,8 +7,8 @@ namespace DiarioOficial.Domain.Interface.UnitOfWork
     {
         IPersonRepository PersonRepository { get; }
         IOfficialStateDiaryRepository OfficialStateDiaryRepository { get; }
-        ISessionRepository ISessionRepository { get; }
-        IUserRepository IUserRepository { get; }
+        ISessionRepository SessionRepository { get; }
+        IUserRepository UserRepository { get; }
 
         Task<IDbContextTransaction> BeginTransactionAsync();
     }

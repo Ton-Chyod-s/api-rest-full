@@ -19,4 +19,7 @@ namespace DiarioOficial.CrossCutting.Errors.Common
 
     public record InvalitYear()
             : BaseError("Ano inválido!", nameof(InvalitYear), StatusCodes.Status400BadRequest);
+
+    public record UnauthorizedAccess()
+            : BaseError("Acesso não autorizado!", nameof(UnauthorizedAccess), StatusCodes.Status401Unauthorized);
 }

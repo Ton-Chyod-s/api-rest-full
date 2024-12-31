@@ -2,6 +2,7 @@
 using DiarioOficial.Domain.Entities.OfficialStateDiary;
 using DiarioOficial.Domain.Entities.Person;
 using DiarioOficial.Domain.Entities.Session;
+using DiarioOficial.Domain.Entities.User;
 using Microsoft.EntityFrameworkCore;
 
 namespace DiarioOficial.Infraestructure.Context
@@ -13,6 +14,7 @@ namespace DiarioOficial.Infraestructure.Context
         public DbSet<OfficialStateDiary> OfficialStateDiaries { get; set; }
         public DbSet<Session> Sessions { get; set; }
         public DbSet<Person> Person { get; set; }
+        public DbSet<User> User { get; set; }
         #endregion
 
         #region [Config Official Diary]
