@@ -23,7 +23,7 @@ namespace DiarioOficial.Domain.Entities.User
             Roles = roles;
         }
 
-        public void Update(string username, string email, bool isActive, UserEnum roles)
+        public void UpdateUser(string username, string email, bool isActive, UserEnum roles)
         {
             Username = username;
             Email = email;
