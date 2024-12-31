@@ -2,7 +2,6 @@
 using DiarioOficial.CrossCutting.DTOs.Token;
 using DiarioOficial.CrossCutting.Errors;
 using DiarioOficial.CrossCutting.Errors.Common;
-using DiarioOficial.Domain.Interface.Repository;
 using DiarioOficial.Domain.Interface.Services.Token;
 using DiarioOficial.Domain.Interface.UnitOfWork;
 using DiarioOficial.Domain.Interface.UseCases.Login;

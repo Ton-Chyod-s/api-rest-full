@@ -16,6 +16,9 @@ namespace DiarioOficial.Infraestructure.Context.Configurations
             builder.Property(x => x.IsActive)
                 .HasDefaultValue(true);
 
+            builder.Property(x => x.Email)
+                .HasDefaultValue("seuemail@seuemail.com");
+
         }
 
     }

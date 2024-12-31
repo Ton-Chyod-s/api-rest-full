@@ -1,4 +1,5 @@
-﻿using DiarioOficial.CrossCutting.Enums.User;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using DiarioOficial.CrossCutting.Enums.User;
 
 namespace DiarioOficial.Domain.Entities.User
 {
@@ -9,6 +10,7 @@ namespace DiarioOficial.Domain.Entities.User
         public string Email { get; private set; }
         public bool IsActive { get; private set; }
         public UserEnum Roles { get; private set; }
+        public long AuthTokenÌd { get; private set; }
 
         private User() { }
 
@@ -28,5 +30,10 @@ namespace DiarioOficial.Domain.Entities.User
             IsActive = isActive;
             Roles = roles;
         }
+
+        #region [Foreign Key]
+        [ForeignKey(nameof(AuthTokenÌd))]
+        public Token.AuthToken AuthToken { get; set; }
+        #endregion
     }
 }

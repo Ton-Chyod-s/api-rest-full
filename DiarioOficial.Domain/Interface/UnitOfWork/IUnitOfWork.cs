@@ -9,6 +9,8 @@ namespace DiarioOficial.Domain.Interface.UnitOfWork
         IOfficialStateDiaryRepository OfficialStateDiaryRepository { get; }
         ISessionRepository SessionRepository { get; }
         IUserRepository UserRepository { get; }
+        IAuthTokenRepository AuthTokenRepository { get; }
+
 
         Task<IDbContextTransaction> BeginTransactionAsync();
     }

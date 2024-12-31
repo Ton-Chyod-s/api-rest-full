@@ -19,6 +19,19 @@ namespace DiarioOficial.API.Endpoints
                 .WithDescription("This endpoint allows users to authenticate themselves by providing valid credentials.")
                 .WithOpenApi();
 
+            root.MapPost("/", async ([FromServices] IAddOrUpdateLogin addOrUpdateLogin, [FromBody] ResquestAddOrUpdateLoginDTO resquestAddOrUpdateLoginDTO) =>
+            {
+                var result = await addOrUpdateLogin.AddOrUpdateLogin(resquestAddOrUpdateLoginDTO);
+
+                return result.Match(
+                    response => Results.Ok(response),
+                    error => Results.Json(error, statusCode: error.HttpErrorCode));
+            })
+           .WithName("Create or Update Login")
+           .Produces<OneOf<ResponseTokenDTO, BaseError>>(StatusCodes.Status200OK)
+           .Produces<OneOf<ResponseTokenDTO, BaseError>>(StatusCodes.Status404NotFound)
+           .Produces<OneOf<ResponseTokenDTO, BaseError>>(StatusCodes.Status500InternalServerError);
+
             root.MapGet("/generate-token", async ([FromServices] ILoginUseCase loginUseCase, [FromQuery] string userName, [FromQuery] string passwordHash) =>
             {
                 var requestLoginDTO = new RequestLoginDTO ( userName, passwordHash );
@@ -33,6 +46,7 @@ namespace DiarioOficial.API.Endpoints
            .Produces<OneOf<ResponseTokenDTO, BaseError>>(StatusCodes.Status200OK)
            .Produces<OneOf<ResponseTokenDTO, BaseError>>(StatusCodes.Status404NotFound)
            .Produces<OneOf<ResponseTokenDTO, BaseError>>(StatusCodes.Status500InternalServerError);
+
 
             return app;
         }
