@@ -1,9 +1,11 @@
 ﻿using DiarioOficial.CrossCutting.DTOs.OfficialElectronicDiary;
 using DiarioOficial.CrossCutting.DTOs.OfficialStateDiary;
+using DiarioOficial.CrossCutting.Enums.User;
 using DiarioOficial.CrossCutting.Errors;
 using DiarioOficial.Domain.Interface.UseCases.OfficialElectronicDiary;
 using DiarioOficial.Domain.Interface.UseCases.OfficialStateDiary;
 using DiarioOficial.Domain.Interface.UseCases.SaveAndNotify;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OneOf;
 
@@ -18,7 +20,8 @@ namespace DiarioOficial.API.Endpoints
                 .WithDescription("Endpoints related to the Official Diary!!!")
                 .WithOpenApi();
 
-            root.MapGet("/official-electronic-diary", async ([FromServices] IOfficialElectronicDiaryUseCase officialElectronicDiaryUseCase, [FromQuery] string name, [FromQuery] string year) =>
+
+           root.MapGet("/official-electronic-diary", async ([FromServices] IOfficialElectronicDiaryUseCase officialElectronicDiaryUseCase, [FromQuery] string name, [FromQuery] string year) =>
             {
                 var result = await officialElectronicDiaryUseCase.GetElectronicDiaryRecords(name, year);
 
@@ -27,10 +30,11 @@ namespace DiarioOficial.API.Endpoints
                     error => Results.Json(error, statusCode: error.HttpErrorCode));
             })
             .WithName("Official Electronic Diary")
+            .RequireAuthorization(policy => policy.RequireRole(UserEnum.User.ToString()))
             .Produces<OneOf<List<ResponseOfficialElectronicDiaryDTO>, BaseError>>(StatusCodes.Status200OK)
             .Produces<OneOf<List<ResponseOfficialElectronicDiaryDTO>, BaseError>>(StatusCodes.Status404NotFound)
             .Produces<OneOf<List<ResponseOfficialElectronicDiaryDTO>, BaseError>>(StatusCodes.Status500InternalServerError);
-
+          
             root.MapGet("/official-state-diary", async ([FromServices] IOfficialStateDiaryUseCase officialStateDiary, [FromQuery] string name, [FromQuery] string year) =>
             {
                 var result = await officialStateDiary.GetStateDiaryRecords(name, year);
