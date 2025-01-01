@@ -16,6 +16,7 @@ namespace DiarioOficial.Infraestructure.UnitOfWork
         public ISessionRepository SessionRepository { get; private set; } = new Repository.SessionRepository(context);
         public IUserRepository UserRepository { get; private set; } = new Repository.UserRepository(context);
         public IAuthTokenRepository AuthTokenRepository { get; private set; } = new Repository.AuthTokenRepository(context);
+        public ICreateOrUpdateLoginRepository CreateOrUpdateLoginRepository { get; private set; } = new Repository.CreateOrUpdateLoginRepository(context);
         #endregion
 
         #region [Methods]

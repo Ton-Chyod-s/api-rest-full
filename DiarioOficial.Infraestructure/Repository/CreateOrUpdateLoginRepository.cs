@@ -14,7 +14,7 @@ namespace DiarioOficial.Infraestructure.Repository
         public async Task<OneOf<bool, BaseError>> AddOrUpdateUser(CreateOrUpdateLoginDTO createOrUpdateLoginDTO)
         {
             var token = await _context.AuthToken
-                .AddAsync(new AuthToken(createOrUpdateLoginDTO.BearerToken));
+                .AddAsync(new AuthToken(createOrUpdateLoginDTO.BearerToken!));
 
             var findUser = await _context.User.FirstOrDefaultAsync(x => x.Username == createOrUpdateLoginDTO.Username);
 

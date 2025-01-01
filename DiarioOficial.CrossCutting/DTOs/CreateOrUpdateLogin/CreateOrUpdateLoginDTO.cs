@@ -9,7 +9,7 @@ namespace DiarioOficial.CrossCutting.DTOs.CreateOrUpdateLogin
         string Email,
         bool IsActive,
         UserEnum Roles,
-        long BearerToken
+        string? BearerToken
     );
 
 } 

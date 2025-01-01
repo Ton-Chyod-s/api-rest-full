@@ -2,16 +2,16 @@
 {
     public class AuthToken : BaseEntity.BaseEntity
     {
-        public long Bearer { get; private set; }
+        public string Bearer { get; private set; }
 
         private AuthToken() { } 
 
-        public AuthToken(long bearer)
+        public AuthToken(string bearer)
         {
             Bearer = bearer;
         }
 
-        public void UpdateBearer(long bearer)
+        public void UpdateBearer(string bearer)
         {
             Bearer = bearer;
         }

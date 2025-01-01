@@ -10,7 +10,7 @@ namespace DiarioOficial.Domain.Interface.UnitOfWork
         ISessionRepository SessionRepository { get; }
         IUserRepository UserRepository { get; }
         IAuthTokenRepository AuthTokenRepository { get; }
-
+        ICreateOrUpdateLoginRepository CreateOrUpdateLoginRepository { get; }
 
         Task<IDbContextTransaction> BeginTransactionAsync();
     }
