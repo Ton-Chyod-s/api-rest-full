@@ -30,7 +30,7 @@ namespace DiarioOficial.API.Endpoints
                     error => Results.Json(error, statusCode: error.HttpErrorCode));
             })
             .WithName("Official Electronic Diary")
-            .RequireAuthorization(policy => policy.RequireRole(UserEnum.User.ToString()))
+            .RequireAuthorization(policy => policy.RequireRole(UserEnum.User.ToString(), UserEnum.Admin.ToString()))
             .Produces<OneOf<List<ResponseOfficialElectronicDiaryDTO>, BaseError>>(StatusCodes.Status200OK)
             .Produces<OneOf<List<ResponseOfficialElectronicDiaryDTO>, BaseError>>(StatusCodes.Status404NotFound)
             .Produces<OneOf<List<ResponseOfficialElectronicDiaryDTO>, BaseError>>(StatusCodes.Status500InternalServerError);
@@ -44,6 +44,7 @@ namespace DiarioOficial.API.Endpoints
                     error => Results.Json(error, statusCode: error.HttpErrorCode));
             })
             .WithName("Official State Diary")
+            .RequireAuthorization(policy => policy.RequireRole(UserEnum.User.ToString(), UserEnum.Admin.ToString()))
             .Produces<OneOf<List<ResponseOfficialStateDiaryDTO>, BaseError>>(StatusCodes.Status200OK)
             .Produces<OneOf<List<ResponseOfficialStateDiaryDTO>, BaseError>>(StatusCodes.Status404NotFound)
             .Produces<OneOf<List<ResponseOfficialStateDiaryDTO>, BaseError>>(StatusCodes.Status500InternalServerError);

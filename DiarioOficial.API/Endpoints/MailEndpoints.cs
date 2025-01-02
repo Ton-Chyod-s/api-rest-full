@@ -1,5 +1,6 @@
 ﻿using DiarioOficial.CrossCutting.DTOs.OfficialElectronicDiary;
 using DiarioOficial.CrossCutting.DTOs.SendEmail;
+using DiarioOficial.CrossCutting.Enums.User;
 using DiarioOficial.CrossCutting.Errors;
 using DiarioOficial.Domain.Interface.UseCases.SendEmail;
 using Microsoft.AspNetCore.Mvc;
@@ -25,6 +26,7 @@ namespace DiarioOficial.API.Endpoints
                     error => Results.Json(error, statusCode: error.HttpErrorCode));
             })
            .WithName("Send e-mail")
+           .RequireAuthorization(policy => policy.RequireRole(UserEnum.Admin.ToString()))
            .Produces<OneOf<List<ResponseOfficialElectronicDiaryDTO>, BaseError>>(StatusCodes.Status200OK)
            .Produces<OneOf<List<ResponseOfficialElectronicDiaryDTO>, BaseError>>(StatusCodes.Status404NotFound)
            .Produces<OneOf<List<ResponseOfficialElectronicDiaryDTO>, BaseError>>(StatusCodes.Status500InternalServerError);

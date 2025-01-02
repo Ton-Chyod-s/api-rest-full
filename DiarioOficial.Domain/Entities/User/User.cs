@@ -9,12 +9,12 @@ namespace DiarioOficial.Domain.Entities.User
         public string PasswordHash { get; private set; }
         public string Email { get; private set; }
         public bool IsActive { get; private set; }
-        public UserEnum Roles { get; private set; }
+        public UserEnum? Roles { get; private set; }
         public long AuthTokenÌd { get; private set; }
 
         private User() { }
 
-        public User(string username, string passwordHash, string email, bool isActive, UserEnum roles)
+        public User(string username, string passwordHash, string email, bool isActive, UserEnum? roles)
         {
             Username = username;
             PasswordHash = passwordHash;
@@ -23,7 +23,7 @@ namespace DiarioOficial.Domain.Entities.User
             Roles = roles;
         }
 
-        public void UpdateUser(string username, string email, bool isActive, UserEnum roles)
+        public void UpdateUser(string username, string email, bool isActive, UserEnum? roles)
         {
             Username = username;
             Email = email;

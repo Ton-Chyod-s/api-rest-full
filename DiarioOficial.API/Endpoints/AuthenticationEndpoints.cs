@@ -16,7 +16,7 @@ namespace DiarioOficial.API.Endpoints
                 .WithDescription("This endpoint allows users to authenticate themselves by providing valid credentials.")
                 .WithOpenApi();
 
-            root.MapPost("/", async ([FromServices] IAddOrUpdateLogin addOrUpdateLogin, [FromBody] ResquestAddOrUpdateLoginDTO resquestAddOrUpdateLoginDTO) =>
+            root.MapPost("/", async ([FromServices] ICreateOrUpdateLoginUseCase addOrUpdateLogin, [FromBody] ResquestAddOrUpdateLoginDTO resquestAddOrUpdateLoginDTO) =>
             {
                 var result = await addOrUpdateLogin.AddOrUpdateLogin(resquestAddOrUpdateLoginDTO);
 
@@ -43,6 +43,19 @@ namespace DiarioOficial.API.Endpoints
            .Produces<OneOf<ResponseTokenDTO, BaseError>>(StatusCodes.Status200OK)
            .Produces<OneOf<ResponseTokenDTO, BaseError>>(StatusCodes.Status404NotFound)
            .Produces<OneOf<ResponseTokenDTO, BaseError>>(StatusCodes.Status500InternalServerError);
+
+            root.MapPost("/update-token", async ([FromServices] IUpdateTokenUseCase updateTokenUseCase, [FromBody] RequestUpdateTokenDTO requestUpdateTokenDTO) =>
+            {
+                var result = await updateTokenUseCase.UpdateToken(requestUpdateTokenDTO.AuthToken, requestUpdateTokenDTO.Token);
+
+                return result.Match(
+                    response => Results.Ok(response),
+                    error => Results.Json(error, statusCode: error.HttpErrorCode));
+            })
+           .WithName("Update Token")
+           .Produces<OneOf<bool, BaseError>>(StatusCodes.Status200OK)
+           .Produces<OneOf<bool, BaseError>>(StatusCodes.Status404NotFound)
+           .Produces<OneOf<bool, BaseError>>(StatusCodes.Status500InternalServerError);
 
 
             return app;

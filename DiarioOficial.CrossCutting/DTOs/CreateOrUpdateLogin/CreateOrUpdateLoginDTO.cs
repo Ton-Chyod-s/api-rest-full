@@ -1,3 +1,4 @@
+using DiarioOficial.CrossCutting.DTOs.Token;
 using DiarioOficial.CrossCutting.Enums.User;
 
 namespace DiarioOficial.CrossCutting.DTOs.CreateOrUpdateLogin
@@ -8,7 +9,7 @@ namespace DiarioOficial.CrossCutting.DTOs.CreateOrUpdateLogin
         string PasswordHash,
         string Email,
         bool IsActive,
-        UserEnum Roles,
+        UserEnum? Roles,
         string? BearerToken
     );
 

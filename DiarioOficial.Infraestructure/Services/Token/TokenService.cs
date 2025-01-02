@@ -18,7 +18,7 @@ namespace DiarioOficial.Infraestructure.Services.Token
     {
         private readonly IConfiguration _configuration = configuration;
 
-        public ResponseTokenDTO GenerateToken(RequestLoginDTO loginDTO, User user)
+        public ResponseTokenDTO GenerateToken(User user)
         {
             var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"] ?? string.Empty));
 

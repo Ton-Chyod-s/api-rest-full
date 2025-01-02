@@ -22,7 +22,7 @@ namespace DiarioOficial.Application.UseCases.Login
         {
             var userNameByDb = await _unitOfWork.UserRepository.GetUserByName(loginDTO.Username, loginDTO.PasswordHash);
 
-            var token = _tokenService.GenerateToken(loginDTO, userNameByDb);
+            var token = _tokenService.GenerateToken(userNameByDb);
 
             if (token is null)
                 return new UnauthorizedAccess();

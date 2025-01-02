@@ -6,6 +6,6 @@ namespace DiarioOficial.Domain.Interface.Services.Token
 {
     public interface ITokenService
     {
-        ResponseTokenDTO GenerateToken(RequestLoginDTO loginDTO, User user);
+        ResponseTokenDTO GenerateToken(User user);
     }
 }

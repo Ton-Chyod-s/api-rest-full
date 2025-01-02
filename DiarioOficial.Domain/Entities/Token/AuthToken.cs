@@ -1,4 +1,6 @@
-﻿namespace DiarioOficial.Domain.Entities.Token
+﻿using DiarioOficial.CrossCutting.DTOs.Token;
+
+namespace DiarioOficial.Domain.Entities.Token
 {
     public class AuthToken : BaseEntity.BaseEntity
     {

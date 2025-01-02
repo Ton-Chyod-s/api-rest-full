@@ -6,7 +6,7 @@ using OneOf;
 
 namespace DiarioOficial.Domain.Interface.UseCases.Login
 {
-    public interface IAddOrUpdateLogin
+    public interface ICreateOrUpdateLoginUseCase
     {
         Task<OneOf<bool, BaseError>> AddOrUpdateLogin(ResquestAddOrUpdateLoginDTO resquestAddOrUpdateLoginDTO);
 

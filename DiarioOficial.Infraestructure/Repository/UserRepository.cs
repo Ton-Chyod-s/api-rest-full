@@ -7,9 +7,14 @@ namespace DiarioOficial.Infraestructure.Repository
 {
     internal class UserRepository(OfficialDiaryDbContext context) : BaseRepository<User>(context), IUserRepository
     {
-        public async Task<User> GetUserByName(string name, string password)
+        public async Task<User?> GetUserByName(string name, string password)
         {
-            return await _context.User.FirstAsync(x => x.Username == name && x.PasswordHash == password);
+            var nameUser = await _context.User.FirstOrDefaultAsync(x => x.Username == name && x.PasswordHash == password);
+
+            if (nameUser is null)
+                return null;
+
+            return nameUser;
         }
     }
 }

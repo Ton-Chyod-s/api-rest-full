@@ -1,6 +1,7 @@
 ﻿using DiarioOficial.CrossCutting.DTOs.OfficialElectronicDiary;
 using DiarioOficial.CrossCutting.DTOs.SendEmail;
 using DiarioOficial.CrossCutting.Enums.Person;
+using DiarioOficial.CrossCutting.Enums.User;
 using DiarioOficial.CrossCutting.Errors;
 using DiarioOficial.Domain.Interface.Repository;
 using DiarioOficial.Domain.Interface.UseCases.Person;
@@ -28,6 +29,7 @@ namespace DiarioOficial.API.Endpoints
                     error => Results.Json(error, statusCode: error.HttpErrorCode));
             })
            .WithName("Person")
+           .RequireAuthorization(policy => policy.RequireRole(UserEnum.Admin.ToString()))
            .Produces<OneOf<bool, BaseError>>(StatusCodes.Status200OK)
            .Produces<OneOf<bool, BaseError>>(StatusCodes.Status404NotFound)
            .Produces<OneOf<bool, BaseError>>(StatusCodes.Status500InternalServerError);
@@ -41,6 +43,7 @@ namespace DiarioOficial.API.Endpoints
                     error => Results.Json(error, statusCode: error.HttpErrorCode));
             })
            .WithName("RemovePerson")
+           .RequireAuthorization(policy => policy.RequireRole(UserEnum.Admin.ToString()))
            .Produces<OneOf<long, BaseError>>(StatusCodes.Status200OK)
            .Produces<OneOf<long, BaseError>>(StatusCodes.Status404NotFound)
            .Produces<OneOf<long, BaseError>>(StatusCodes.Status500InternalServerError);
