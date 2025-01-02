@@ -70,11 +70,11 @@ builder.Services.AddSwaggerGen(options =>
 });
 
 builder.Services.AddAuthentication
-(x => 
+(x =>
 {
     x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-}).AddJwtBearer(Options => 
+}).AddJwtBearer(Options =>
 {
     Options.TokenValidationParameters = new TokenValidationParameters
     {
@@ -95,7 +95,7 @@ if (string.IsNullOrEmpty(connectionString))
     throw new InvalidOperationException("Connection string 'OfficialDiaryDb' not found.");
 }
 
-var configuration = builder.Configuration; 
+var configuration = builder.Configuration;
 
 builder.Services
     .AddSingleton(connectionString)
@@ -118,7 +118,7 @@ app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseHttpsRedirection();
 
-app.UseAuthentication(); 
+app.UseAuthentication();
 
 app.UseAuthorization();
 
