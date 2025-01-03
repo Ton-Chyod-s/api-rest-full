@@ -9,7 +9,7 @@ namespace DiarioOficial.Infraestructure.Repository
     {
         public async Task<User?> GetUserByName(string name, string password)
         {
-            var nameUser = await _context.User.FirstOrDefaultAsync(x => x.Username == name && x.PasswordHash == password);
+            var nameUser = await _context.User.FirstOrDefaultAsync(x => x.UserName == name && x.PassWordHash == password);
 
             if (nameUser is null)
                 return null;

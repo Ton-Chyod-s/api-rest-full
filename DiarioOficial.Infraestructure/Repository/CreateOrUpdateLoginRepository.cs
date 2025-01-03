@@ -16,7 +16,7 @@ namespace DiarioOficial.Infraestructure.Repository
             var token = await _context.AuthToken
                 .AddAsync(new AuthToken(createOrUpdateLoginDTO.BearerToken!));
 
-            var findUser = await _context.User.FirstOrDefaultAsync(x => x.Username == createOrUpdateLoginDTO.Username);
+            var findUser = await _context.User.FirstOrDefaultAsync(x => x.UserName == createOrUpdateLoginDTO.Username);
 
             if (findUser is null)
             {
@@ -24,7 +24,6 @@ namespace DiarioOficial.Infraestructure.Repository
                 (
                     createOrUpdateLoginDTO.Username,
                     createOrUpdateLoginDTO.PasswordHash,
-                    createOrUpdateLoginDTO.Email,
                     createOrUpdateLoginDTO.IsActive,
                     createOrUpdateLoginDTO.Roles
                 );
@@ -34,7 +33,6 @@ namespace DiarioOficial.Infraestructure.Repository
                 findUser.UpdateUser
                 (
                     createOrUpdateLoginDTO.Username,
-                    createOrUpdateLoginDTO.Email,
                     createOrUpdateLoginDTO.IsActive,
                     createOrUpdateLoginDTO.Roles
                 );

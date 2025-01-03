@@ -33,7 +33,6 @@ namespace DiarioOficial.Application.UseCases.Login
                     (
                         resquestAddOrUpdateLoginDTO.UserName,
                         resquestAddOrUpdateLoginDTO.PasswordHash,
-                        resquestAddOrUpdateLoginDTO.Email,
                         true,
                         UserEnum.User
                     );
