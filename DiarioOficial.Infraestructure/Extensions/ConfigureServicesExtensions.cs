@@ -19,8 +19,8 @@ namespace DiarioOficial.Infraestructure.Extensions
         public static IServiceCollection ConfigureServices(this IServiceCollection services, IConfiguration configuration)
         {
             #region [Services]
-            services.AddTransient<IOfficialStateDiaryService, OfficialStateDiaryService>();
-            services.AddTransient<IOfficialElectronicDiaryService, OfficialElectronicDiaryService>();
+            services.AddTransient<IOfficialMunicipalDiaryService, OfficialMunicipalDiaryService>();
+            services.AddTransient<IOfficialStateDiaryService, OfficialElectronicDiaryService>();
             services.AddTransient<ISendEmailService, SendEmailService>();
             services.AddTransient<ITokenService, TokenService>();
             #endregion

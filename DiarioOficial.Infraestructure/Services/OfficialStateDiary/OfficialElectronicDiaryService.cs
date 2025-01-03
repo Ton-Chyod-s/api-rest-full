@@ -1,5 +1,4 @@
 ﻿using DiarioOficial.CrossCutting.DTOs.OfficialElectronicDiary;
-using DiarioOficial.CrossCutting.DTOs.OfficialStateDiary;
 using DiarioOficial.CrossCutting.Enums.OfficialStateDiaries;
 using DiarioOficial.CrossCutting.Errors;
 using DiarioOficial.CrossCutting.Errors.OfficialStateDiary;
@@ -13,9 +12,9 @@ using RestSharp;
 
 namespace DiarioOficial.Infraestructure.Services.OfficialElectronicDiary
 {
-    public class OfficialElectronicDiaryService : IOfficialElectronicDiaryService
+    public class OfficialElectronicDiaryService : IOfficialStateDiaryService
     {
-        public async Task<OneOf<List<ResponseOfficialElectronicDiaryDTO>, BaseError>> GetOfficialElectronicDiaryresponse(string name, string year)
+        public async Task<OneOf<List<ResponseOfficialStateDiaryDTO>, BaseError>> GetOfficialStateDiaryResponse(string name, string year)
         {
             var requestQuery = CreateRequestBody(name, year);
 
@@ -40,7 +39,7 @@ namespace DiarioOficial.Infraestructure.Services.OfficialElectronicDiary
             };
         }
 
-        internal OneOf<List<ResponseOfficialElectronicDiaryDTO>, BaseError> DeserializeOfficialStateDiary(RestResponse restResponse)
+        internal OneOf<List<ResponseOfficialStateDiaryDTO>, BaseError> DeserializeOfficialStateDiary(RestResponse restResponse)
         {
             var diaryContent = restResponse.Content;
 
@@ -58,7 +57,7 @@ namespace DiarioOficial.Infraestructure.Services.OfficialElectronicDiary
             var lol = dataArray;
 
             var diary = dataArray
-                .Select(jsonItem => new ResponseOfficialElectronicDiaryDTO(
+                .Select(jsonItem => new ResponseOfficialStateDiaryDTO(
                     jsonItem["Source"]?["Numero"]?.ToString() ?? string.Empty,
                     jsonItem["Source"]?["DataInicioPublicacaoArquivo"]?.ToString() ?? string.Empty,
                     jsonItem["Source"]?["NomeArquivo"]?.ToString() ?? string.Empty,

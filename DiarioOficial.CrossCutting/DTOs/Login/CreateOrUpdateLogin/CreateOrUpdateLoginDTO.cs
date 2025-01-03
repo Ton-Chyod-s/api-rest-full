@@ -1,7 +1,7 @@
 using DiarioOficial.CrossCutting.DTOs.Token;
 using DiarioOficial.CrossCutting.Enums.User;
 
-namespace DiarioOficial.CrossCutting.DTOs.CreateOrUpdateLogin
+namespace DiarioOficial.CrossCutting.DTOs.Login.CreateOrUpdateLogin
 {
     public record CreateOrUpdateLoginDTO
     (
@@ -13,4 +13,4 @@ namespace DiarioOficial.CrossCutting.DTOs.CreateOrUpdateLogin
         string? BearerToken
     );
 
-} 
+}

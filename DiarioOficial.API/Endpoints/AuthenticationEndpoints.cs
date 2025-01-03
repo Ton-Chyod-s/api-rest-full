@@ -29,11 +29,11 @@ namespace DiarioOficial.API.Endpoints
            .Produces<OneOf<ResponseTokenDTO, BaseError>>(StatusCodes.Status404NotFound)
            .Produces<OneOf<ResponseTokenDTO, BaseError>>(StatusCodes.Status500InternalServerError);
 
-            root.MapGet("/generate-token", async ([FromServices] ILoginUseCase loginUseCase, [FromQuery] string userName, [FromQuery] string passwordHash) =>
+            root.MapGet("/generate-token", async ([FromServices] IGenerateTokenUseCase loginUseCase, [FromQuery] string userName, [FromQuery] string passwordHash) =>
             {
                 var requestLoginDTO = new RequestLoginDTO ( userName, passwordHash );
 
-                var result = await loginUseCase.LoginGenerateToken(requestLoginDTO);
+                var result = await loginUseCase.GenerateToken(requestLoginDTO);
 
                 return result.Match(
                     response => Results.Ok(response),

@@ -12,20 +12,20 @@ using RestSharp;
 
 namespace DiarioOficial.Infraestructure.Services.OfficialStateDiary
 {
-    public class OfficialStateDiaryService() : IOfficialStateDiaryService
+    public class OfficialMunicipalDiaryService() : IOfficialMunicipalDiaryService
     {
-        public async Task<OneOf<List<ResponseOfficialStateDiaryDTO>, BaseError>> GetOfficialStateDiaryResponse(string name, string year)
+        public async Task<OneOf<List<ResponseOfficialMunicipalDiaryDTO>, BaseError>> GetOfficialMunicipalDiaryResponse(string name, string year)
         {
             var requestQuery = CreateRequestQuery(name, year);
 
             var url = UrlConstants.OFFICIAL_DIARY_URL;
 
-            var response = await RestClientQueryHelpers.GetOfficialStateDiary(requestQuery, url);
+            var response = await RestClientQueryHelpers.GetOfficialMunicipalDiary(requestQuery, url);
 
             if (response is null)
                 return new InvalidResponseContent();
 
-            return DeserializeOfficialStateDiary(response);
+            return DeserializeDiary(response);
         }
 
         internal Dictionary<string, string> CreateRequestQuery(string name, string year)
@@ -39,7 +39,7 @@ namespace DiarioOficial.Infraestructure.Services.OfficialStateDiary
             };
         }
 
-        internal OneOf<List<ResponseOfficialStateDiaryDTO>, BaseError> DeserializeOfficialStateDiary(RestResponse restResponse)
+        internal OneOf<List<ResponseOfficialMunicipalDiaryDTO>, BaseError> DeserializeDiary(RestResponse restResponse)
         {
             var diaryContent = restResponse.Content;
 
@@ -55,7 +55,7 @@ namespace DiarioOficial.Infraestructure.Services.OfficialStateDiary
                 return new NotFoundOfficialStateDiary();
 
             var diary = dataArray
-                .Select(jsonItem => new ResponseOfficialStateDiaryDTO(
+                .Select(jsonItem => new ResponseOfficialMunicipalDiaryDTO(
                     jsonItem["numero"]?.ToString() ?? string.Empty,
                     jsonItem["dia"]?.ToString() ?? string.Empty,
                     jsonItem["arquivo"]?.ToString() ?? string.Empty,

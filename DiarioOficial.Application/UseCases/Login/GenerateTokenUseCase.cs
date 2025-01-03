@@ -9,16 +9,16 @@ using OneOf;
 
 namespace DiarioOficial.Application.UseCases.Login
 {
-    internal class LoginUseCase
+    internal class GenerateTokenUseCase
         (
             ITokenService tokenService,
             IUnitOfWork unitOfWork
-        ) : ILoginUseCase
+        ) : IGenerateTokenUseCase
     {
         private readonly ITokenService _tokenService = tokenService;
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
 
-        public async Task<OneOf<ResponseTokenDTO, BaseError>> LoginGenerateToken(RequestLoginDTO loginDTO)
+        public async Task<OneOf<ResponseTokenDTO, BaseError>> GenerateToken(RequestLoginDTO loginDTO)
         {
             var userNameByDb = await _unitOfWork.UserRepository.GetUserByName(loginDTO.Username, loginDTO.PasswordHash);
 

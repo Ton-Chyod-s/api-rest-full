@@ -5,8 +5,8 @@ using OneOf;
 
 namespace DiarioOficial.Domain.Interface.UseCases.Login
 {
-    public interface ILoginUseCase
+    public interface IGenerateTokenUseCase
     {
-        Task<OneOf<ResponseTokenDTO, BaseError>> LoginGenerateToken(RequestLoginDTO loginDTO);
+        Task<OneOf<ResponseTokenDTO, BaseError>> GenerateToken(RequestLoginDTO loginDTO);
     }
 }

@@ -30,14 +30,6 @@ namespace DiarioOficial.Infraestructure.Repository
             return true;
         }
 
-        public async Task<long?> GetIdPerson(string name)
-        {
-            return await _context.Person
-                .Where(p => p.Name.Contains(name))
-                .Select(p => p.Id)   
-                .FirstOrDefaultAsync();
-        }
-
         public async Task<OneOf<bool?, BaseError>> RemovePerson(long personId)
         {
             var person = await _context.Person

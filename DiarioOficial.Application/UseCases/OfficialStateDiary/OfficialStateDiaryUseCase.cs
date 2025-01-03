@@ -1,21 +1,21 @@
-﻿using DiarioOficial.CrossCutting.DTOs.OfficialStateDiary;
+﻿using DiarioOficial.CrossCutting.DTOs.OfficialElectronicDiary;
 using DiarioOficial.CrossCutting.Errors;
 using DiarioOficial.CrossCutting.Errors.OfficialStateDiary;
 using DiarioOficial.CrossCutting.Extensions;
-using DiarioOficial.Domain.Interface.Services.OfficialStateDiary;
-using DiarioOficial.Domain.Interface.UseCases.OfficialStateDiary;
+using DiarioOficial.Domain.Interface.Services.OfficialElectronicDiary;
+using DiarioOficial.Domain.Interface.UseCases.OfficialElectronicDiary;
 using OneOf;
 
-namespace DiarioOficial.Application.UseCases.OfficialStateDiary
+namespace DiarioOficial.Application.UseCases.OfficialElectronicDiary
 {
     internal class OfficialStateDiaryUseCase
         (
-            IOfficialStateDiaryService officialStateDiaryService
+            IOfficialStateDiaryService officialElectronicDiaryService
         ) : IOfficialStateDiaryUseCase
     {
-        private readonly IOfficialStateDiaryService _officialStateDiaryService = officialStateDiaryService;
+        private readonly IOfficialStateDiaryService _officialElectronicDiaryService = officialElectronicDiaryService;
 
-        public async Task<OneOf<List<ResponseOfficialStateDiaryDTO>, BaseError>> GetStateDiaryRecords(string name, string year)
+        public async Task<OneOf<List<ResponseOfficialStateDiaryDTO>, BaseError>> GetOfficialStateDiaryRecords(string name, string year)
         {
             if (string.IsNullOrWhiteSpace(name) || name.Length < 3)
                 return new InvalidName();
@@ -25,8 +25,8 @@ namespace DiarioOficial.Application.UseCases.OfficialStateDiary
             if (yearValid.IsError())
                 return yearValid.GetError();
 
-            return await _officialStateDiaryService.GetOfficialStateDiaryResponse(name, yearValid.GetValue());
+            return await _officialElectronicDiaryService.GetOfficialStateDiaryResponse(name, year);
         }
+            
     }
 }
-

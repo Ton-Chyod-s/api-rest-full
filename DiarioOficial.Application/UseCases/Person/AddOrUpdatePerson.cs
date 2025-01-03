@@ -8,14 +8,14 @@ using OneOf;
 
 namespace DiarioOficial.Application.UseCases.Person
 {
-    internal class PersonUseCase
+    internal class AddOrUpdatePerson
         (
             IUnitOfWork unitOfWork
         ) : IPersonUseCase
     {
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
 
-        public async Task<OneOf<bool, BaseError>> AddOrUpdatePerson(PersonEnum personEnum)
+        public async Task<OneOf<bool, BaseError>> ExecuteAddOrUpdatePerson(PersonEnum personEnum)
         {
             if (string.IsNullOrWhiteSpace(personEnum.Name) || personEnum.Name.Length < 3)
                 return new InvalidName();

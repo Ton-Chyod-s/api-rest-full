@@ -1,9 +1,8 @@
-﻿using DiarioOficial.CrossCutting.DTOs.OfficialStateDiary;
+﻿using DiarioOficial.CrossCutting.DTOs.OfficialElectronicDiary;
 using DiarioOficial.CrossCutting.Errors;
 using OneOf;
-using RestSharp;
 
-namespace DiarioOficial.Domain.Interface.Services.OfficialStateDiary
+namespace DiarioOficial.Domain.Interface.Services.OfficialElectronicDiary
 {
     public interface IOfficialStateDiaryService
     {

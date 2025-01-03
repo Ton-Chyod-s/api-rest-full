@@ -22,7 +22,7 @@ namespace DiarioOficial.API.Endpoints
 
             root.MapPost("", async ([FromServices] IPersonUseCase personUseCase, [FromBody] PersonEnum personEnum) =>
             {
-                var result = await personUseCase.AddOrUpdatePerson(personEnum);
+                var result = await personUseCase.ExecuteAddOrUpdatePerson(personEnum);
 
                 return result.Match(
                     response => Results.Ok(response),

@@ -12,14 +12,14 @@ namespace DiarioOficial.Application.UseCases.SaveAndNotify
     internal class SaveAndNotifyUseCase 
         (
             IUnitOfWork unitOfWork,
-            IOfficialStateDiaryService officialStateDiaryService,
-            IOfficialElectronicDiaryService officialElectronicDiaryService
+            IOfficialMunicipalDiaryService officialStateDiaryService,
+            IOfficialStateDiaryService officialElectronicDiaryService
 
         ) : ISaveAndNotifyUseCase
     {
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
-        private readonly IOfficialStateDiaryService _officialStateDiaryService = officialStateDiaryService;
-        private readonly IOfficialElectronicDiaryService _officialElectronicDiaryService = officialElectronicDiaryService;
+        private readonly IOfficialMunicipalDiaryService _officialStateDiaryService = officialStateDiaryService;
+        private readonly IOfficialStateDiaryService _officialElectronicDiaryService = officialElectronicDiaryService;
 
         public async Task<OneOf<bool, BaseError>> SaveAndNotify()
         {
@@ -35,12 +35,12 @@ namespace DiarioOficial.Application.UseCases.SaveAndNotify
             if (yearValid.IsError())
                 return yearValid.GetError();
 
-            var stateDiaryData = await _officialStateDiaryService.GetOfficialStateDiaryResponse(name, yearValid.GetValue());
+            var stateDiaryData = await _officialStateDiaryService.GetOfficialMunicipalDiaryResponse(name, yearValid.GetValue());
 
             if (stateDiaryData.IsError())
                 return stateDiaryData.GetError();
 
-            var electronicDiaryData = await _officialElectronicDiaryService.GetOfficialElectronicDiaryresponse(name, yearValid.GetValue());
+            var electronicDiaryData = await _officialElectronicDiaryService.GetOfficialStateDiaryResponse(name, yearValid.GetValue());
 
             if (electronicDiaryData.IsError())
                 return electronicDiaryData.GetError();

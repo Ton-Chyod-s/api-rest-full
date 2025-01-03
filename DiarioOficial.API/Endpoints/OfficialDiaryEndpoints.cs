@@ -21,9 +21,9 @@ namespace DiarioOficial.API.Endpoints
                 .WithOpenApi();
 
 
-           root.MapGet("/official-electronic-diary", async ([FromServices] IOfficialElectronicDiaryUseCase officialElectronicDiaryUseCase, [FromQuery] string name, [FromQuery] string year) =>
+           root.MapGet("/official-electronic-diary", async ([FromServices] IOfficialStateDiaryUseCase officialElectronicDiaryUseCase, [FromQuery] string name, [FromQuery] string year) =>
             {
-                var result = await officialElectronicDiaryUseCase.GetElectronicDiaryRecords(name, year);
+                var result = await officialElectronicDiaryUseCase.GetOfficialStateDiaryRecords(name, year);
 
                 return result.Match(
                     response => Results.Ok(response),
@@ -31,11 +31,11 @@ namespace DiarioOficial.API.Endpoints
             })
             .WithName("Official Electronic Diary")
             .RequireAuthorization(policy => policy.RequireRole(UserEnum.User.ToString(), UserEnum.Admin.ToString()))
-            .Produces<OneOf<List<ResponseOfficialElectronicDiaryDTO>, BaseError>>(StatusCodes.Status200OK)
-            .Produces<OneOf<List<ResponseOfficialElectronicDiaryDTO>, BaseError>>(StatusCodes.Status404NotFound)
-            .Produces<OneOf<List<ResponseOfficialElectronicDiaryDTO>, BaseError>>(StatusCodes.Status500InternalServerError);
+            .Produces<OneOf<List<ResponseOfficialStateDiaryDTO>, BaseError>>(StatusCodes.Status200OK)
+            .Produces<OneOf<List<ResponseOfficialStateDiaryDTO>, BaseError>>(StatusCodes.Status404NotFound)
+            .Produces<OneOf<List<ResponseOfficialStateDiaryDTO>, BaseError>>(StatusCodes.Status500InternalServerError);
           
-            root.MapGet("/official-state-diary", async ([FromServices] IOfficialStateDiaryUseCase officialStateDiary, [FromQuery] string name, [FromQuery] string year) =>
+            root.MapGet("/official-state-diary", async ([FromServices] IOfficialMunicipalDiaryUseCase officialStateDiary, [FromQuery] string name, [FromQuery] string year) =>
             {
                 var result = await officialStateDiary.GetStateDiaryRecords(name, year);
 
@@ -45,9 +45,9 @@ namespace DiarioOficial.API.Endpoints
             })
             .WithName("Official State Diary")
             .RequireAuthorization(policy => policy.RequireRole(UserEnum.User.ToString(), UserEnum.Admin.ToString()))
-            .Produces<OneOf<List<ResponseOfficialStateDiaryDTO>, BaseError>>(StatusCodes.Status200OK)
-            .Produces<OneOf<List<ResponseOfficialStateDiaryDTO>, BaseError>>(StatusCodes.Status404NotFound)
-            .Produces<OneOf<List<ResponseOfficialStateDiaryDTO>, BaseError>>(StatusCodes.Status500InternalServerError);
+            .Produces<OneOf<List<ResponseOfficialMunicipalDiaryDTO>, BaseError>>(StatusCodes.Status200OK)
+            .Produces<OneOf<List<ResponseOfficialMunicipalDiaryDTO>, BaseError>>(StatusCodes.Status404NotFound)
+            .Produces<OneOf<List<ResponseOfficialMunicipalDiaryDTO>, BaseError>>(StatusCodes.Status500InternalServerError);
 
             root.MapPost("/save-and-notify", async ([FromServices] ISaveAndNotifyUseCase saveAndNotifyUseCase) =>
             {

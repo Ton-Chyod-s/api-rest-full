@@ -12,7 +12,7 @@ namespace DiarioOficial.Infraestructure.UnitOfWork
 
         #region [Repositories]
         public IPersonRepository PersonRepository { get; private set; } = new Repository.PersonRepository(context);
-        public IOfficialStateDiaryRepository OfficialStateDiaryRepository { get; private set; } = new Repository.OfficialStateDiaryRepository(context);
+        public IOfficialStateDiaryRepository OfficialStateDiaryRepository { get; private set; } = new Repository.OfficialDiaryRepository(context);
         public ISessionRepository SessionRepository { get; private set; } = new Repository.SessionRepository(context);
         public IUserRepository UserRepository { get; private set; } = new Repository.UserRepository(context);
         public IAuthTokenRepository AuthTokenRepository { get; private set; } = new Repository.AuthTokenRepository(context);

@@ -4,7 +4,7 @@ namespace DiarioOficial.Infraestructure.Helpers.RestClientHelpers
 {
     internal static class RestClientQueryHelpers
     {
-        internal static async Task<RestResponse?> GetOfficialStateDiary(Dictionary<string, string> queryBody, string client)
+        internal static async Task<RestResponse?> GetOfficialMunicipalDiary(Dictionary<string, string> queryBody, string client)
         {
             var request = CreateHttpRequestQuery(queryBody, client);
 

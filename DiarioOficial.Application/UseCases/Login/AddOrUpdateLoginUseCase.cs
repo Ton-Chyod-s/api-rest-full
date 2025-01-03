@@ -1,6 +1,5 @@
-﻿using System.Data;
-using DiarioOficial.CrossCutting.DTOs.CreateOrUpdateLogin;
-using DiarioOficial.CrossCutting.DTOs.Login;
+﻿using DiarioOficial.CrossCutting.DTOs.Login;
+using DiarioOficial.CrossCutting.DTOs.Login.CreateOrUpdateLogin;
 using DiarioOficial.CrossCutting.DTOs.Token;
 using DiarioOficial.CrossCutting.Enums.User;
 using DiarioOficial.CrossCutting.Errors;
@@ -14,7 +13,7 @@ using OneOf;
 
 namespace DiarioOficial.Application.UseCases.Login
 {
-    internal class CreateOrUpdateLoginUseCase
+    internal class AddOrUpdateLoginUseCase
     (
         IUnitOfWork unitOfWork,
         ITokenService tokenService

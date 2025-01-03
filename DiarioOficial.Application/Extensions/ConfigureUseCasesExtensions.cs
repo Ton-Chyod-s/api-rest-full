@@ -18,16 +18,15 @@ namespace DiarioOficial.Application.Extensions
     {
         public static IServiceCollection AddUseCases(this IServiceCollection services)
         {
+            services.AddScoped<IOfficialMunicipalDiaryUseCase, OfficialMunicipalDiaryUseCase>();
             services.AddScoped<IOfficialStateDiaryUseCase, OfficialStateDiaryUseCase>();
-            services.AddScoped<IOfficialElectronicDiaryUseCase, OfficialElectronicDiaryUseCase>();
             services.AddScoped<ISendEmailUseCase, SendEmailUseCase>();
-            services.AddScoped<IPersonUseCase, PersonUseCase>();
-            services.AddScoped<IGetIdPersonUseCase, GetIdPersonUseCase>();
+            services.AddScoped<IPersonUseCase, AddOrUpdatePerson>();
             services.AddScoped<IRemovePersonUseCase, RemovePersonUseCase>();
             services.AddScoped<ISaveAndNotifyUseCase, SaveAndNotifyUseCase>();
-            services.AddScoped<ILoginUseCase, LoginUseCase>();
+            services.AddScoped<IGenerateTokenUseCase, GenerateTokenUseCase>();
             services.AddScoped<IUpdateTokenUseCase, UpdateTokenUseCase>();
-            services.AddScoped<ICreateOrUpdateLoginUseCase, CreateOrUpdateLoginUseCase>();
+            services.AddScoped<ICreateOrUpdateLoginUseCase, AddOrUpdateLoginUseCase>();
 
             return services;
         }
