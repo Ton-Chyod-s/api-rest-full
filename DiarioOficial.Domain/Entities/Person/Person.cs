@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using DiarioOficial.Domain.Entities.OfficialStateDiary;
 
 namespace DiarioOficial.Domain.Entities.Person
 {
@@ -10,6 +11,8 @@ namespace DiarioOficial.Domain.Entities.Person
         public string Name { get; private set; }
         public string Email { get; private set; }
         public long UserId { get; private set; }
+        public ICollection<OfficialDiaries> OfficialDiaries { get; private set; }
+        public ICollection<Session.Session> Sessions { get; private set; }
 
         private Person() { }
 
@@ -28,6 +31,7 @@ namespace DiarioOficial.Domain.Entities.Person
         #region [Foreign Key]
         [ForeignKey(nameof(UserId))]
         public User.User User { get; set; }
+
         #endregion
 
     }

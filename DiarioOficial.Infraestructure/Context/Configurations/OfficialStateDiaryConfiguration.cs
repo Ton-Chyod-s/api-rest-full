@@ -16,6 +16,10 @@ namespace DiarioOficial.Infraestructure.Context.Configurations
             builder.HasOne(x => x.Session)
                  .WithMany(x => x.OfficialStateDiaries)
                  .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasOne(x => x.Person)
+                 .WithMany(x => x.OfficialDiaries)
+                 .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using DiarioOficial.Domain.Entities.OfficialStateDiary;
-using DiarioOficial.Domain.Entities.Person;
+﻿using DiarioOficial.Domain.Entities.Person;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

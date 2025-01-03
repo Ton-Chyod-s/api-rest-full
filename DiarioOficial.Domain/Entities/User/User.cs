@@ -7,13 +7,13 @@ namespace DiarioOficial.Domain.Entities.User
     {
         public string UserName { get; private set; }
         public string PassWordHash { get; private set; }
-        public bool IsActive { get; private set; }
+        public bool? IsActive { get; private set; }
         public UserEnum? Roles { get; private set; }
         public long AuthTokenÌd { get; private set; }
 
         private User() { }
 
-        public User(string username, string passwordHash, bool isActive, UserEnum? roles)
+        public User(string username, string passwordHash, bool? isActive, UserEnum? roles)
         {
             UserName = username;
             PassWordHash = passwordHash;
@@ -21,7 +21,7 @@ namespace DiarioOficial.Domain.Entities.User
             Roles = roles;
         }
 
-        public void UpdateUser(string username, string email, bool isActive, UserEnum? roles)
+        public void UpdateUser(string username, bool isActive, UserEnum? roles)
         {
             UserName = username;
             IsActive = isActive;

@@ -13,6 +13,10 @@ namespace DiarioOficial.Infraestructure.Context.Configurations
 
             builder.Property(x => x.Id)
                 .ValueGeneratedOnAdd();
+            
+            builder.HasOne(x => x.Person)
+                 .WithMany(x => x.Sessions)
+                 .OnDelete(DeleteBehavior.Cascade);
 
         }
     }
