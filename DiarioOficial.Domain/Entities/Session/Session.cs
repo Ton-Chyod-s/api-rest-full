@@ -6,7 +6,7 @@ namespace DiarioOficial.Domain.Entities.Session
     {
         public long NameID { get; set; }
         public string Year { get; set; }
-        public ICollection<OfficialStateDiary.OfficialStateDiary> OfficialStateDiaries { get; set; }
+        public ICollection<OfficialStateDiary.OfficialDiaries> OfficialStateDiaries { get; set; }
 
         private Session() { }
 
@@ -16,7 +16,7 @@ namespace DiarioOficial.Domain.Entities.Session
             Year = year;
         }
 
-        public void AddOfficialStateDiary(OfficialStateDiary.OfficialStateDiary officialStateDiary)
+        public void AddOfficialStateDiary(OfficialStateDiary.OfficialDiaries officialStateDiary)
         {
             OfficialStateDiaries.Add(officialStateDiary);
         }

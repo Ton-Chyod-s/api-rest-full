@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DiarioOficial.Domain.Entities.OfficialStateDiary
 {
-    public class OfficialStateDiary : BaseEntity.BaseEntity
+    public class OfficialDiaries : BaseEntity.BaseEntity
     {
         [Required]
         [StringLength(50)]
@@ -13,9 +13,9 @@ namespace DiarioOficial.Domain.Entities.OfficialStateDiary
         public string Description { get; private set; }
         public long SessionId { get; private set; }
 
-        private OfficialStateDiary() { }
+        private OfficialDiaries() { }
       
-        public OfficialStateDiary(string number, string day, string file, string description, long sessionId)
+        public OfficialDiaries(string number, string day, string file, string description, long sessionId)
         {
             Number = number;
             Day = day;

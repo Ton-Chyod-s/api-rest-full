@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DiarioOficial.Infraestructure.Context.Configurations
 {
-    internal sealed class OfficialStateDiaryConfiguration : IEntityTypeConfiguration<OfficialStateDiary>
+    internal sealed class OfficialStateDiaryConfiguration : IEntityTypeConfiguration<OfficialDiaries>
     {
-        public void Configure(EntityTypeBuilder<OfficialStateDiary> builder)
+        public void Configure(EntityTypeBuilder<OfficialDiaries> builder)
         {
             builder.HasKey(x => x.Id);
 
