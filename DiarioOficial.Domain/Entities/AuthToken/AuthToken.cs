@@ -10,9 +10,10 @@ namespace DiarioOficial.Domain.Entities.Token
 
         private AuthToken() { } 
 
-        public AuthToken(string bearer)
+        public AuthToken(string bearer, long userId)
         {
             Bearer = bearer;
+            UserId = userId;
         }
 
         public void UpdateBearer(string bearer)

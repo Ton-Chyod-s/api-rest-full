@@ -6,7 +6,6 @@ namespace DiarioOficial.CrossCutting.DTOs.Login
         (
             string UserName,
             string PasswordHash,
-            string Email,
-            UserEnum role
+            UserEnum? role
         );
 }

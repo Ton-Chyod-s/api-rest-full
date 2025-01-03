@@ -3,6 +3,7 @@
     public record RequestUpdateTokenDTO
         (
             long AuthToken,
-            string Token
+            string Token,
+            long userId
         );
 }

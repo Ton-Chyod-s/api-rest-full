@@ -6,6 +6,6 @@ namespace DiarioOficial.Domain.Interface.UseCases.Login
 {
     public interface IUpdateTokenUseCase
     {
-        Task<OneOf<bool, BaseError>> UpdateToken(long authToken, string token);
+        Task<OneOf<bool, BaseError>> UpdateToken(long authToken, string token, long userId);
     }
 }

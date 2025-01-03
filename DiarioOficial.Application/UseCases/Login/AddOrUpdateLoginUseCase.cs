@@ -24,6 +24,35 @@ namespace DiarioOficial.Application.UseCases.Login
 
         public async Task<OneOf<bool, BaseError>> AddOrUpdateLogin(ResquestAddOrUpdateLoginDTO resquestAddOrUpdateLoginDTO)
         {
+            var CheckUser = await GetOrCreateUser(resquestAddOrUpdateLoginDTO);
+
+            var token = _tokenService.GenerateToken(CheckUser);
+
+            if (token is null)
+                return new UnauthorizedAccess();
+
+            var addOrUpdateUser = await _unitOfWork.UserRepository.AddOrUpdateUser(CheckUser);
+
+            if (addOrUpdateUser.IsError())
+                return addOrUpdateUser.GetError();
+
+            var UserId = await GetOrCreateUser(resquestAddOrUpdateLoginDTO);
+
+            var addOrUpdateToken = await _unitOfWork.UserRepository.AddOrUpdateToken(DesaralizeToken(token), UserId.Id);    
+
+            if (addOrUpdateToken.IsError())
+                return addOrUpdateToken.GetError();
+
+            return true;
+        }
+
+        internal string DesaralizeToken(ResponseTokenDTO responseTokenDTO)
+        {
+            return responseTokenDTO.Bearer;
+        }
+
+        internal async Task<User> GetOrCreateUser(ResquestAddOrUpdateLoginDTO resquestAddOrUpdateLoginDTO)
+        {
             var userNameByDb = await _unitOfWork.UserRepository.GetUserByName(resquestAddOrUpdateLoginDTO.UserName, resquestAddOrUpdateLoginDTO.PasswordHash);
 
             if (userNameByDb is null)
@@ -32,37 +61,23 @@ namespace DiarioOficial.Application.UseCases.Login
                     (
                         resquestAddOrUpdateLoginDTO.UserName,
                         resquestAddOrUpdateLoginDTO.PasswordHash,
-                        true,
-                        UserEnum.User
+                        null,
+                        null
                     );
             }
 
-            var token = _tokenService.GenerateToken(userNameByDb);
+            if (resquestAddOrUpdateLoginDTO.role != userNameByDb.Roles)
+            {
+                userNameByDb = new User
+                    (
+                        resquestAddOrUpdateLoginDTO.UserName,
+                        resquestAddOrUpdateLoginDTO.PasswordHash,
+                        null,
+                        resquestAddOrUpdateLoginDTO.role
+                    );
+            }
 
-            if (token is null)
-                return new UnauthorizedAccess();
-
-            var createOrUpdateLogin = new CreateOrUpdateLoginDTO
-            (
-                resquestAddOrUpdateLoginDTO.UserName,
-                resquestAddOrUpdateLoginDTO.PasswordHash,
-                resquestAddOrUpdateLoginDTO.Email,
-                true,
-                null,
-                DesaralizeToken(token)
-            );
-
-            var addOrUpdateUser = await _unitOfWork.CreateOrUpdateLoginRepository.AddOrUpdateUser(createOrUpdateLogin);
-
-            if (addOrUpdateUser.IsError())
-                return addOrUpdateUser.GetError();
-            
-            return true;
-        }
-
-        internal string DesaralizeToken(ResponseTokenDTO responseTokenDTO)
-        {
-            return responseTokenDTO.Bearer;
+            return userNameByDb;
         }
 
     }

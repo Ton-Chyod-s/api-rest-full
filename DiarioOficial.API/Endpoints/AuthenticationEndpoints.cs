@@ -46,7 +46,7 @@ namespace DiarioOficial.API.Endpoints
 
             root.MapPost("/update-token", async ([FromServices] IUpdateTokenUseCase updateTokenUseCase, [FromBody] RequestUpdateTokenDTO requestUpdateTokenDTO) =>
             {
-                var result = await updateTokenUseCase.UpdateToken(requestUpdateTokenDTO.AuthToken, requestUpdateTokenDTO.Token);
+                var result = await updateTokenUseCase.UpdateToken(requestUpdateTokenDTO.AuthToken, requestUpdateTokenDTO.Token, requestUpdateTokenDTO.userId);
 
                 return result.Match(
                     response => Results.Ok(response),

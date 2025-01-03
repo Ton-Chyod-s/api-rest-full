@@ -3,14 +3,12 @@ using DiarioOficial.CrossCutting.Enums.User;
 
 namespace DiarioOficial.CrossCutting.DTOs.Login.CreateOrUpdateLogin
 {
-    public record CreateOrUpdateLoginDTO
+    public record AddOrUpdateLoginDTO
     (
         string Username,
         string PasswordHash,
-        string Email,
-        bool IsActive,
-        UserEnum? Roles,
-        string? BearerToken
+        bool? IsActive,
+        UserEnum? Roles
     );
 
 }

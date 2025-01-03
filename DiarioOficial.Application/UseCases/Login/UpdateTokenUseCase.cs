@@ -14,9 +14,9 @@ namespace DiarioOficial.Application.UseCases.Login
     {
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
 
-        public async Task<OneOf<bool, BaseError>> UpdateToken(long authToken, string token)
+        public async Task<OneOf<bool, BaseError>> UpdateToken(long authToken, string token, long userId)
         {
-            var userNameByDb = await _unitOfWork.AuthTokenRepository.AddOrUpdateAuthToken(authToken, token);
+            var userNameByDb = await _unitOfWork.AuthTokenRepository.AddOrUpdateAuthToken(authToken, token, userId);
 
             if (!userNameByDb)
                 return new UnauthorizedAccess();
