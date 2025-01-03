@@ -16,16 +16,28 @@ namespace DiarioOficial.Domain.Entities.Person
 
         private Person() { }
 
-        public Person(string name, string email)
+        public Person(string name, string email, long userId)
         {
             Name = name;
             Email = email;
+            UserId = userId;
+
         }
 
         public void UpdatePerson(string name, string email)
         {
             Name = name;
             Email = email;
+        }
+
+        public void AddSession(Session.Session session)
+        {
+            Sessions.Add(session);
+        }
+
+        public void AddOfficialStateDiary(OfficialDiaries officialStateDiary)
+        {
+            OfficialDiaries.Add(officialStateDiary);
         }
 
         #region [Foreign Key]

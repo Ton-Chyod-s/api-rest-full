@@ -6,7 +6,7 @@ namespace DiarioOficial.Domain.Interface.Repository
 {
     public interface IPersonRepository : IBaseRepository<Person>
     {
-        Task<OneOf<bool, BaseError>> AddOrUpdatePerson(string name, string email);
+        Task<OneOf<bool, BaseError>> AddOrUpdatePerson(string name, string email, long userId);
         Task<OneOf<bool?, BaseError>> RemovePerson(long personId);
     }
 }

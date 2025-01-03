@@ -22,7 +22,10 @@ namespace DiarioOficial.Application.UseCases.Person
 
             var sizeName = personEnum.Name.EnsureValidName();
 
-            var getOrAddPerson = await _unitOfWork.PersonRepository.AddOrUpdatePerson(personEnum.Name.TextToTitleCase(), personEnum.Email.ToLower());
+            var getOrAddPerson = await _unitOfWork.PersonRepository.AddOrUpdatePerson(personEnum.Name.TextToTitleCase(), personEnum.Email.ToLower(), personEnum.UserId);
+
+            if (getOrAddPerson.IsError())
+                return getOrAddPerson.GetError();
 
             return true;
         }

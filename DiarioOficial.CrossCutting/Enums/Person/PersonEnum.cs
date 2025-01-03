@@ -3,6 +3,7 @@
     public record PersonEnum
         (
             string Name,
-            string Email
+            string Email,
+            long UserId
         );
 }

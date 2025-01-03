@@ -10,6 +10,7 @@ using DiarioOficial.Domain.Interface.UseCases.OfficialStateDiary;
 using DiarioOficial.Domain.Interface.UseCases.Person;
 using DiarioOficial.Domain.Interface.UseCases.SaveAndNotify;
 using DiarioOficial.Domain.Interface.UseCases.SendEmail;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace DiarioOficial.Application.Extensions

@@ -10,14 +10,14 @@ namespace DiarioOficial.Infraestructure.Repository
 {
     internal class PersonRepository(OfficialDiaryDbContext context) : BaseRepository<Person>(context), IPersonRepository
     {
-        public async Task<OneOf<bool, BaseError>> AddOrUpdatePerson(string name, string email)
+        public async Task<OneOf<bool, BaseError>> AddOrUpdatePerson(string name, string email, long userId)
         {
             var person = await _context.Person
                 .FirstOrDefaultAsync(p => p.Name.Contains(name));
 
-            if (person is null || !person.Name.Contains(name))
+            if (person is null)
             {
-                var newPerson = new Person(name, email);
+                var newPerson = new Person(name, email, userId);
                 await _context.Person.AddAsync(newPerson);
             } else
             {
@@ -25,7 +25,8 @@ namespace DiarioOficial.Infraestructure.Repository
                 _context.Person.Update(person);
             }
 
-            await _context.SaveChangesAsync();
+            if (await _context.SaveChangesAsync() < 0)
+                return new PersonNotSaved();
 
             return true;
         }
@@ -42,6 +43,7 @@ namespace DiarioOficial.Infraestructure.Repository
 
             _context.Person.Remove(person);
             await _context.SaveChangesAsync();
+
             return true;
         }
     }

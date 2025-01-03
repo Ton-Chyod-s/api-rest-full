@@ -3,27 +3,27 @@ using DiarioOficial.CrossCutting.Errors.OfficialStateDiary;
 using DiarioOficial.CrossCutting.Extensions;
 using DiarioOficial.Domain.Interface.Services.OfficialElectronicDiary;
 using DiarioOficial.Domain.Interface.Services.OfficialStateDiary;
-using DiarioOficial.Domain.Interface.UnitOfWork;
 using DiarioOficial.Domain.Interface.UseCases.SaveAndNotify;
+using Microsoft.AspNetCore.Http;
 using OneOf;
 
 namespace DiarioOficial.Application.UseCases.SaveAndNotify
 {
     internal class SaveAndNotifyUseCase 
         (
-            IUnitOfWork unitOfWork,
             IOfficialMunicipalDiaryService officialStateDiaryService,
-            IOfficialStateDiaryService officialElectronicDiaryService
+            IOfficialStateDiaryService officialElectronicDiaryService,
+            IHttpContextAccessor httpContextAccessor
 
         ) : ISaveAndNotifyUseCase
     {
-        private readonly IUnitOfWork _unitOfWork = unitOfWork;
         private readonly IOfficialMunicipalDiaryService _officialStateDiaryService = officialStateDiaryService;
         private readonly IOfficialStateDiaryService _officialElectronicDiaryService = officialElectronicDiaryService;
+        private readonly IHttpContextAccessor _httpContextAccessor = httpContextAccessor;
 
         public async Task<OneOf<bool, BaseError>> SaveAndNotify()
         {
-            var name = "Klayton Chrysthian";
+            var name = _httpContextAccessor.HttpContext.GetSystemIdentifierIdByContext();
 
             if (string.IsNullOrWhiteSpace(name) || name.Length < 3)
                 return new InvalidName();

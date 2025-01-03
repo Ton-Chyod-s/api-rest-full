@@ -16,11 +16,6 @@ namespace DiarioOficial.Domain.Entities.Session
             Year = year;
         }
 
-        public void AddOfficialStateDiary(OfficialStateDiary.OfficialDiaries officialStateDiary)
-        {
-            OfficialStateDiaries.Add(officialStateDiary);
-        }
-
         #region [Foreign Key]
         [ForeignKey(nameof(PersonID))]
         public Person.Person Person { get; set; }

@@ -31,7 +31,7 @@ namespace DiarioOficial.CrossCutting.Extensions
 
             if (claims == null || claims.Length == 0) return string.Empty;
 
-            string? identifier = claims.FirstOrDefault(claim => claim.Type == "nameid")?.Value;
+            string? identifier = claims.FirstOrDefault(claim => claim.Type == "Name")?.Value;
 
             if (string.IsNullOrEmpty(identifier)) return string.Empty;
 
