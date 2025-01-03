@@ -12,6 +12,7 @@ namespace DiarioOficial.Infraestructure.Context.Configurations
 
             builder.Property(x => x.Id)
                 .ValueGeneratedOnAdd();
+
         }
     }
 }
