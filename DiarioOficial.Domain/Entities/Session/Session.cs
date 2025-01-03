@@ -4,15 +4,15 @@ namespace DiarioOficial.Domain.Entities.Session
 {
     public class Session : BaseEntity.BaseEntity
     {
-        public long NameID { get; set; }
+        public long PersonID { get; set; }
         public string Year { get; set; }
         public ICollection<OfficialStateDiary.OfficialDiaries> OfficialStateDiaries { get; set; }
 
         private Session() { }
 
-        public Session(long nameID, string year)
+        public Session(long personID, string year)
         {
-            NameID = nameID;
+            PersonID = personID;
             Year = year;
         }
 
@@ -22,7 +22,7 @@ namespace DiarioOficial.Domain.Entities.Session
         }
 
         #region [Foreign Key]
-        [ForeignKey(nameof(NameID))]
+        [ForeignKey(nameof(PersonID))]
         public Person.Person Person { get; set; }
         #endregion
     }

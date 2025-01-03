@@ -12,6 +12,7 @@ namespace DiarioOficial.Domain.Entities.OfficialStateDiary
         public string File { get; private set; }
         public string Description { get; private set; }
         public long SessionId { get; private set; }
+        public long PersonId { get; private set; }
 
         private OfficialDiaries() { }
       
@@ -27,6 +28,9 @@ namespace DiarioOficial.Domain.Entities.OfficialStateDiary
         #region [Foreign Key]
         [ForeignKey(nameof(SessionId))]
         public Session.Session Session { get; private set; }
+
+        [ForeignKey(nameof(PersonId))]
+        public Person.Person Person { get; private set; }
         #endregion
     }
 }
