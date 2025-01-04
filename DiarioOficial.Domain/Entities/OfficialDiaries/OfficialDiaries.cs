@@ -11,12 +11,12 @@ namespace DiarioOficial.Domain.Entities.OfficialStateDiary
         public string Day { get; private set; }
         public string File { get; private set; }
         public string Description { get; private set; }
-        public long SessionId { get; private set; }
+        public long? SessionId { get; private set; } 
         public long PersonId { get; private set; }
 
         private OfficialDiaries() { }
       
-        public OfficialDiaries(string number, string day, string file, string description, long sessionId)
+        public OfficialDiaries(string number, string day, string file, string description, long? sessionId)
         {
             Number = number;
             Day = day;

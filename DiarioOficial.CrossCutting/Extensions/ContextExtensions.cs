@@ -31,7 +31,7 @@ namespace DiarioOficial.CrossCutting.Extensions
 
             if (claims == null || claims.Length == 0) return string.Empty;
 
-            string? identifier = claims.FirstOrDefault(claim => claim.Type == "Name")?.Value;
+            string? identifier = claims.FirstOrDefault(claim => claim.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name")?.Value;
 
             if (string.IsNullOrEmpty(identifier)) return string.Empty;
 

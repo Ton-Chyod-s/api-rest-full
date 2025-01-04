@@ -60,7 +60,9 @@ namespace DiarioOficial.Infraestructure.Services.OfficialStateDiary
                     jsonItem["dia"]?.ToString() ?? string.Empty,
                     jsonItem["arquivo"]?.ToString() ?? string.Empty,
                     jsonItem["desctpd"]?.ToString() ?? string.Empty,
-                    TypeDiaryEnum.OfficialStateDiary
+                    TypeDiaryEnum.OfficialStateDiary,
+                    null,
+                    null
                 ))
                 .ToList();
 

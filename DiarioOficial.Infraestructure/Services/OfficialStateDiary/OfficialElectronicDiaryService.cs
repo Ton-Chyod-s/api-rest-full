@@ -1,4 +1,5 @@
 ﻿using DiarioOficial.CrossCutting.DTOs.OfficialElectronicDiary;
+using DiarioOficial.CrossCutting.DTOs.OfficialStateDiary;
 using DiarioOficial.CrossCutting.Enums.OfficialStateDiaries;
 using DiarioOficial.CrossCutting.Errors;
 using DiarioOficial.CrossCutting.Errors.OfficialStateDiary;
@@ -14,7 +15,7 @@ namespace DiarioOficial.Infraestructure.Services.OfficialElectronicDiary
 {
     public class OfficialElectronicDiaryService : IOfficialStateDiaryService
     {
-        public async Task<OneOf<List<ResponseOfficialStateDiaryDTO>, BaseError>> GetOfficialStateDiaryResponse(string name, string year)
+        public async Task<OneOf<List<ResponseOfficialMunicipalDiaryDTO>, BaseError>> GetOfficialStateDiaryResponse(string name, string year)
         {
             var requestQuery = CreateRequestBody(name, year);
 
@@ -39,7 +40,7 @@ namespace DiarioOficial.Infraestructure.Services.OfficialElectronicDiary
             };
         }
 
-        internal OneOf<List<ResponseOfficialStateDiaryDTO>, BaseError> DeserializeOfficialStateDiary(RestResponse restResponse)
+        internal OneOf<List<ResponseOfficialMunicipalDiaryDTO>, BaseError> DeserializeOfficialStateDiary(RestResponse restResponse)
         {
             var diaryContent = restResponse.Content;
 
@@ -54,15 +55,15 @@ namespace DiarioOficial.Infraestructure.Services.OfficialElectronicDiary
             if (!diaryObject.TryGetValue("dataElastic", out var data) || data is not JArray dataArray)
                 return new NotFoundOfficialStateDiary();
 
-            var lol = dataArray;
-
             var diary = dataArray
-                .Select(jsonItem => new ResponseOfficialStateDiaryDTO(
+                .Select(jsonItem => new ResponseOfficialMunicipalDiaryDTO(
                     jsonItem["Source"]?["Numero"]?.ToString() ?? string.Empty,
                     jsonItem["Source"]?["DataInicioPublicacaoArquivo"]?.ToString() ?? string.Empty,
                     jsonItem["Source"]?["NomeArquivo"]?.ToString() ?? string.Empty,
                     jsonItem["Source"]?["Descricao"]?.ToString() ?? string.Empty,
-                    TypeDiaryEnum.OfficialElectronicDiary
+                    TypeDiaryEnum.OfficialElectronicDiary,
+                    null,
+                    null
                 ))
 
                 .ToList();

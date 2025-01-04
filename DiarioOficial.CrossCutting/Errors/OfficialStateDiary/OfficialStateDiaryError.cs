@@ -10,4 +10,6 @@ namespace DiarioOficial.CrossCutting.Errors.OfficialStateDiary
         : BaseError("O parâmetro 'year' deve ser um ano válido..", nameof(InvalidYear), StatusCodes.Status400BadRequest);
     public record InvalidName()
         : BaseError("O parâmetro 'name' não pode ser nulo ou vazio.", nameof(InvalidName), StatusCodes.Status400BadRequest);
+    public record OfficialDiaryNotSaved()
+        : BaseError("O Diário Oficial não foi salvo.", nameof(OfficialDiaryNotSaved), StatusCodes.Status500InternalServerError);
 }

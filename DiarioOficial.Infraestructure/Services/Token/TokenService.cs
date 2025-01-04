@@ -33,9 +33,9 @@ namespace DiarioOficial.Infraestructure.Services.Token
                 audience: audience,
                 claims: new List<Claim>()
                 {
-                    new Claim("NameId", user.Id.ToString()),
-                    new Claim("Name", user.UserName),
-                    new Claim("Role", user.Roles.ToString()!)
+                    new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                    new Claim(ClaimTypes.Name, user.UserName),
+                    new Claim(ClaimTypes.Role, user.Roles.ToString()!)
                 },
                 expires: DateTime.UtcNow.AddDays(1),
                 signingCredentials: signingCredentials

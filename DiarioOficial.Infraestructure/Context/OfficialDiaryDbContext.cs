@@ -12,7 +12,7 @@ namespace DiarioOficial.Infraestructure.Context
     {
 
         #region [DbSet]
-        public DbSet<OfficialDiaries> OfficialStateDiaries { get; set; }
+        public DbSet<OfficialDiaries> OfficialDiaries { get; set; }
         public DbSet<Session> Sessions { get; set; }
         public DbSet<Person> Person { get; set; }
         public DbSet<User> User { get; set; }

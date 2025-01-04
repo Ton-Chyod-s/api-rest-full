@@ -1,4 +1,4 @@
-﻿using DiarioOficial.CrossCutting.DTOs.OfficialElectronicDiary;
+﻿using DiarioOficial.CrossCutting.DTOs.OfficialStateDiary;
 using DiarioOficial.CrossCutting.Errors;
 using DiarioOficial.CrossCutting.Errors.OfficialStateDiary;
 using DiarioOficial.CrossCutting.Extensions;
@@ -15,7 +15,7 @@ namespace DiarioOficial.Application.UseCases.OfficialElectronicDiary
     {
         private readonly IOfficialStateDiaryService _officialElectronicDiaryService = officialElectronicDiaryService;
 
-        public async Task<OneOf<List<ResponseOfficialStateDiaryDTO>, BaseError>> GetOfficialStateDiaryRecords(string name, string year)
+        public async Task<OneOf<List<ResponseOfficialMunicipalDiaryDTO>, BaseError>> GetOfficialStateDiaryRecords(string name, string year)
         {
             if (string.IsNullOrWhiteSpace(name) || name.Length < 3)
                 return new InvalidName();

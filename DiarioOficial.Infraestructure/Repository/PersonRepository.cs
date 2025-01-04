@@ -1,6 +1,14 @@
-﻿using DiarioOficial.CrossCutting.Errors;
+﻿using DiarioOficial.CrossCutting.DTOs.OfficialDiary;
+using DiarioOficial.CrossCutting.DTOs.OfficialStateDiary;
+using DiarioOficial.CrossCutting.DTOs.Person;
+using DiarioOficial.CrossCutting.Errors;
+using DiarioOficial.CrossCutting.Errors.OfficialStateDiary;
 using DiarioOficial.CrossCutting.Errors.Person;
+using DiarioOficial.CrossCutting.Errors.Session;
+using DiarioOficial.CrossCutting.Extensions;
+using DiarioOficial.Domain.Entities.OfficialStateDiary;
 using DiarioOficial.Domain.Entities.Person;
+using DiarioOficial.Domain.Entities.Session;
 using DiarioOficial.Domain.Interface.Repository;
 using DiarioOficial.Infraestructure.Context;
 using Microsoft.EntityFrameworkCore;
@@ -31,6 +39,39 @@ namespace DiarioOficial.Infraestructure.Repository
             return true;
         }
 
+        public async Task<OneOf<bool, BaseError>> AddSession(long personId, string year)
+        {
+            var session = await _context.Sessions
+                .FirstOrDefaultAsync(s => s.PersonID == personId);
+
+            if (session is null)
+            {
+                var newSession = new Session(personId, year);
+                await _context.Sessions.AddAsync(newSession);
+            }
+
+            if (await _context.SaveChangesAsync() < 0)
+                return new SessionErrors();
+
+            return true;
+        }
+
+        public async Task<OneOf<bool, BaseError>> addOfficialDiary(List<ResponseOfficialMunicipalDiaryDTO> responseOfficialMunicipalDiaryDTO)
+        {
+            foreach (var item in responseOfficialMunicipalDiaryDTO)
+            {
+                var newOfficialDiary = new OfficialDiaries(item.Number, item.Day, item.File, item.Description, item.SessionId);
+                await _context.OfficialDiaries.AddAsync(newOfficialDiary);
+            }
+
+            if (await _context.SaveChangesAsync() < 0)
+                return new OfficialDiaryNotSaved();
+
+            return true;
+        }
+
+
+
         public async Task<OneOf<bool?, BaseError>> RemovePerson(long personId)
         {
             var person = await _context.Person
@@ -45,6 +86,19 @@ namespace DiarioOficial.Infraestructure.Repository
             await _context.SaveChangesAsync();
 
             return true;
+        }
+
+        public async Task<ResponsePersonDTO> GetPersonDTOAsync(string name)
+        {
+            var person = await _context.Person
+                .FirstOrDefaultAsync(p => p.Name.Contains(name.FirstCharToUpper()));
+
+            if (person is null)
+            {
+                return new ResponsePersonDTO(0, string.Empty, string.Empty);
+            }
+
+            return new ResponsePersonDTO(person.Id, person.Name, person.Email);
         }
     }
 }

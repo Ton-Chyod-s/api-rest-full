@@ -31,9 +31,9 @@ namespace DiarioOficial.API.Endpoints
             })
             .WithName("Official Electronic Diary")
             .RequireAuthorization(policy => policy.RequireRole(UserEnum.User.ToString(), UserEnum.Admin.ToString()))
-            .Produces<OneOf<List<ResponseOfficialStateDiaryDTO>, BaseError>>(StatusCodes.Status200OK)
-            .Produces<OneOf<List<ResponseOfficialStateDiaryDTO>, BaseError>>(StatusCodes.Status404NotFound)
-            .Produces<OneOf<List<ResponseOfficialStateDiaryDTO>, BaseError>>(StatusCodes.Status500InternalServerError);
+            .Produces<OneOf<List<ResponseOfficialMunicipalDiaryDTO>, BaseError>>(StatusCodes.Status200OK)
+            .Produces<OneOf<List<ResponseOfficialMunicipalDiaryDTO>, BaseError>>(StatusCodes.Status404NotFound)
+            .Produces<OneOf<List<ResponseOfficialMunicipalDiaryDTO>, BaseError>>(StatusCodes.Status500InternalServerError);
           
             root.MapGet("/official-state-diary", async ([FromServices] IOfficialMunicipalDiaryUseCase officialStateDiary, [FromQuery] string name, [FromQuery] string year) =>
             {

@@ -8,6 +8,8 @@ namespace DiarioOficial.CrossCutting.DTOs.OfficialStateDiary
             string Day,
             string File,
             string Description,
-            TypeDiaryEnum Type
+            TypeDiaryEnum Type,
+            long? PersonId,
+            long? SessionId
         );
 }
