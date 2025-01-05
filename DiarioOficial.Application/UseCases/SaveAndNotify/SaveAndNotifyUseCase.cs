@@ -1,4 +1,5 @@
 ﻿using DiarioOficial.CrossCutting.DTOs.OfficialStateDiary;
+using DiarioOficial.CrossCutting.DTOs.Person;
 using DiarioOficial.CrossCutting.Errors;
 using DiarioOficial.CrossCutting.Errors.OfficialStateDiary;
 using DiarioOficial.CrossCutting.Extensions;
@@ -46,34 +47,7 @@ namespace DiarioOficial.Application.UseCases.SaveAndNotify
             if (sessionData.IsError())
                 return sessionData.GetError();
 
-
-
-
-
-
-
-            var stateDiaryData = await _officialStateDiaryService.GetOfficialMunicipalDiaryResponse(personData.Name, yearValid.GetValue());
-
-            if (stateDiaryData.IsError())
-                return stateDiaryData.GetError();
-
-            var stateDiaryDataValue = stateDiaryData.GetValue();
-
-            var officialStateDiaryData = addOfficialDiary(stateDiaryDataValue);
-
-
-
-
-
-            var electronicDiaryData = await _officialElectronicDiaryService.GetOfficialStateDiaryResponse(personData.Name, yearValid.GetValue());
-
-            if (electronicDiaryData.IsError())
-                return electronicDiaryData.GetError();
-
-            var electronicDiaryDataValue = electronicDiaryData.GetValue();
-
-            var officialElectronicDiaryData = addOfficialDiary(electronicDiaryDataValue);
-
+            var fetchAndProcessDiaries = FetchAndProcessDiaries(personData, year);
 
 
 
@@ -82,9 +56,38 @@ namespace DiarioOficial.Application.UseCases.SaveAndNotify
             return true;
         }
 
-        internal async Task<OneOf<bool, BaseError>> addOfficialDiary(List<ResponseOfficialMunicipalDiaryDTO> responseOfficialMunicipalDiaryDTO) 
+
+        internal async Task<OneOf<bool, BaseError>> FetchAndProcessDiaries(ResponsePersonDTO responsePersonDTO, string year)
         {
-            return await _personRepository.addOfficialDiary(responseOfficialMunicipalDiaryDTO);
+            var stateDiaryData = await _officialStateDiaryService.GetOfficialMunicipalDiaryResponse(responsePersonDTO.Name, year);
+
+            if (stateDiaryData.IsError())
+                return stateDiaryData.GetError();
+
+            var officialStateDiaryData = ProcessDiaryData(stateDiaryData);
+
+
+            var electronicDiaryData = await _officialElectronicDiaryService.GetOfficialStateDiaryResponse(responsePersonDTO.Name, year);
+
+            if (electronicDiaryData.IsError())
+                return electronicDiaryData.GetError();
+
+            var officialElectronicDiaryData = ProcessDiaryData(electronicDiaryData);
+
+            return true;
+        }
+
+
+        internal async Task<OneOf<bool, BaseError>> ProcessDiaryData(OneOf<List<ResponseOfficialMunicipalDiaryDTO>, BaseError> responseOfficialDiaryDTO) 
+        {
+            if (responseOfficialDiaryDTO.IsSuccess())
+            {
+                var officialMunicipalDiaryEntries = responseOfficialDiaryDTO.GetValue();
+
+                return await _personRepository.addOfficialDiary(officialMunicipalDiaryEntries);
+            }
+
+            return false;
         }
 
     }
