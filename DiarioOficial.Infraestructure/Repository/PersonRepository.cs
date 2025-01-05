@@ -37,7 +37,7 @@ namespace DiarioOficial.Infraestructure.Repository
             return true;
         }
 
-        public async Task<OneOf<bool, BaseError>> AddSession(long personId, string year)
+        public async Task<OneOf<long, BaseError>> AddSession(long personId, string year)
         {
             var session = await _context.Sessions
                 .FirstOrDefaultAsync(s => s.PersonID == personId);
@@ -46,12 +46,15 @@ namespace DiarioOficial.Infraestructure.Repository
             {
                 var newSession = new Session(personId, year);
                 await _context.Sessions.AddAsync(newSession);
+
+                if (await _context.SaveChangesAsync() > 0)
+                    return newSession.Id;
             }
 
             if (await _context.SaveChangesAsync() < 0)
                 return new SessionErrors();
 
-            return true;
+            return session.Id;
         }
 
         public async Task<OneOf<bool, BaseError>> addOfficialDiary(List<Dictionary<string, string>> responseOfficialMunicipalDiaryDTO)

@@ -1,9 +1,7 @@
 ﻿using DiarioOficial.CrossCutting.DTOs.OfficialStateDiary;
-using DiarioOficial.CrossCutting.DTOs.Person;
 using DiarioOficial.CrossCutting.Errors;
 using DiarioOficial.CrossCutting.Errors.OfficialStateDiary;
 using DiarioOficial.CrossCutting.Extensions;
-using DiarioOficial.Domain.Entities.Session;
 using DiarioOficial.Domain.Interface.Repository;
 using DiarioOficial.Domain.Interface.Services.OfficialElectronicDiary;
 using DiarioOficial.Domain.Interface.Services.OfficialStateDiary;
@@ -48,7 +46,7 @@ namespace DiarioOficial.Application.UseCases.SaveAndNotify
             if (sessionData.IsError())
                 return sessionData.GetError();
 
-            var fetchAndProcessDiaries = FetchAndProcessDiaries(personData.Name, year, personData.Id);
+            var fetchAndProcessDiaries = FetchAndProcessDiaries(personData.Name, year, personData.Id, sessionData.GetValue());
 
 
 
@@ -58,14 +56,14 @@ namespace DiarioOficial.Application.UseCases.SaveAndNotify
         }
 
 
-        internal async Task<OneOf<bool, BaseError>> FetchAndProcessDiaries(string name, string year, long personId)
+        internal async Task<OneOf<bool, BaseError>> FetchAndProcessDiaries(string name, string year, long personId, long sessionId)
         {
-            var municipalDiaryResult = await FetchAndProcessDiaryData(() => _officialStateDiaryService.GetOfficialMunicipalDiaryResponse(name, year), personId);
+            var municipalDiaryResult = await FetchAndProcessDiaryData(() => _officialStateDiaryService.GetOfficialMunicipalDiaryResponse(name, year), personId, sessionId);
 
             if (municipalDiaryResult.IsError())
                 return municipalDiaryResult.GetError();
 
-            var electronicDiaryResult = await FetchAndProcessDiaryData(() => _officialElectronicDiaryService.GetOfficialStateDiaryResponse(name, year), personId);
+            var electronicDiaryResult = await FetchAndProcessDiaryData(() => _officialElectronicDiaryService.GetOfficialStateDiaryResponse(name, year), personId, sessionId);
 
             if (electronicDiaryResult.IsError()) 
                 return electronicDiaryResult.GetError();
@@ -73,7 +71,7 @@ namespace DiarioOficial.Application.UseCases.SaveAndNotify
             return true;
         }
 
-        internal async Task<OneOf<List<Dictionary<string, string>>, BaseError>> FetchAndProcessDiaryData(Func<Task<OneOf<List<ResponseOfficialMunicipalDiaryDTO>, BaseError>>> fetchDiaryData, long personId) 
+        internal async Task<OneOf<List<Dictionary<string, string>>, BaseError>> FetchAndProcessDiaryData(Func<Task<OneOf<List<ResponseOfficialMunicipalDiaryDTO>, BaseError>>> fetchDiaryData, long personId, long sessionId) 
         {
             var diaryData = await fetchDiaryData();
 
@@ -88,7 +86,7 @@ namespace DiarioOficial.Application.UseCases.SaveAndNotify
                 { "Day", item.Day },
                 { "File", item.File },
                 { "Description", item.Description },
-                { "SessionId", item.SessionId.ToString() },
+                { "SessionId", sessionId.ToString() },
                 { "PersonId", personId.ToString() }
             }).ToList();
 
