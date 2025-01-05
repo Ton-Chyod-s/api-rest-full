@@ -1,6 +1,4 @@
-﻿using DiarioOficial.CrossCutting.DTOs.OfficialDiary;
-using DiarioOficial.CrossCutting.DTOs.OfficialStateDiary;
-using DiarioOficial.CrossCutting.DTOs.Person;
+﻿using DiarioOficial.CrossCutting.DTOs.Person;
 using DiarioOficial.CrossCutting.Errors;
 using DiarioOficial.CrossCutting.Errors.OfficialStateDiary;
 using DiarioOficial.CrossCutting.Errors.Person;
@@ -56,11 +54,17 @@ namespace DiarioOficial.Infraestructure.Repository
             return true;
         }
 
-        public async Task<OneOf<bool, BaseError>> addOfficialDiary(List<ResponseOfficialMunicipalDiaryDTO> responseOfficialMunicipalDiaryDTO)
+        public async Task<OneOf<bool, BaseError>> addOfficialDiary(List<Dictionary<string, string>> responseOfficialMunicipalDiaryDTO)
         {
             foreach (var item in responseOfficialMunicipalDiaryDTO)
             {
-                var newOfficialDiary = new OfficialDiaries(item.Number, item.Day, item.File, item.Description, item.SessionId);
+                var newOfficialDiary = new OfficialDiaries(
+                    item["Number"],
+                    item["Day"],
+                    item["File"],
+                    item["Description"],
+                    int.Parse(item["SessionId"])
+                    );
                 await _context.OfficialDiaries.AddAsync(newOfficialDiary);
             }
 
