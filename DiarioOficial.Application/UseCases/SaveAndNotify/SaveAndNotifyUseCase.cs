@@ -32,7 +32,7 @@ namespace DiarioOficial.Application.UseCases.SaveAndNotify
             if (string.IsNullOrWhiteSpace(userName) || userName.Length < 3)
                 return new InvalidName();
 
-            var year = "2021";   //DateTime.Now.Year.ToString();
+            var year = DateTime.Now.Year.ToString();
 
             var yearValid = year.EnsureValidYear();
 
