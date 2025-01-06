@@ -32,7 +32,7 @@ namespace DiarioOficial.Application.UseCases.SaveAndNotify
             if (string.IsNullOrWhiteSpace(userName) || userName.Length < 3)
                 return new InvalidName();
 
-            var year = DateTime.Now.Year.ToString();
+            var year = "2021";   //DateTime.Now.Year.ToString();
 
             var yearValid = year.EnsureValidYear();
 
@@ -46,7 +46,7 @@ namespace DiarioOficial.Application.UseCases.SaveAndNotify
             if (sessionData.IsError())
                 return sessionData.GetError();
 
-            var fetchAndProcessDiaries = FetchAndProcessDiaries(personData.Name, year, personData.Id, sessionData.GetValue());
+            var fetchAndProcessDiaries = await FetchAndProcessDiaries(personData.Name, year, personData.Id, sessionData.GetValue());
 
 
 

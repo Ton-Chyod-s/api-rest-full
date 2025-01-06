@@ -40,7 +40,7 @@ namespace DiarioOficial.Infraestructure.Repository
         public async Task<OneOf<long, BaseError>> AddSession(long personId, string year)
         {
             var session = await _context.Sessions
-                .FirstOrDefaultAsync(s => s.PersonID == personId);
+                .FirstOrDefaultAsync(s => s.PersonID == personId && s.Year == year);
 
             if (session is null)
             {
@@ -66,7 +66,8 @@ namespace DiarioOficial.Infraestructure.Repository
                     item["Day"],
                     item["File"],
                     item["Description"],
-                    int.Parse(item["SessionId"])
+                    int.Parse(item["SessionId"]),
+                    int.Parse(item["PersonId"])
                     );
                 await _context.OfficialDiaries.AddAsync(newOfficialDiary);
             }

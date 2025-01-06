@@ -16,13 +16,14 @@ namespace DiarioOficial.Domain.Entities.OfficialStateDiary
 
         private OfficialDiaries() { }
       
-        public OfficialDiaries(string number, string day, string file, string description, long? sessionId)
+        public OfficialDiaries(string number, string day, string file, string description, long? sessionId, long personId)
         {
             Number = number;
             Day = day;
             File = file;
             Description = description;
             SessionId = sessionId;
+            PersonId = personId;
         }
 
         #region [Foreign Key]

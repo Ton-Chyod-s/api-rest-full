@@ -13,6 +13,6 @@ namespace DiarioOficial.Domain.Interface.Repository
         Task<OneOf<bool?, BaseError>> RemovePerson(long personId);
         Task<ResponsePersonDTO> GetPersonDTOAsync(string name);
         Task<OneOf<long, BaseError>> AddSession(long personId, string year);
-        Task<OneOf<bool, BaseError>> addOfficialDiary(List<Dictionary<string, string>> responseOfficialMunicipalDiaryDTO));
+        Task<OneOf<bool, BaseError>> addOfficialDiary(List<Dictionary<string, string>> responseOfficialMunicipalDiaryDTO);
     }
 }
