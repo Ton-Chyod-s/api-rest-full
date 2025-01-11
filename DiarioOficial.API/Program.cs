@@ -99,8 +99,10 @@ if (string.IsNullOrEmpty(connectionString))
 
 var configuration = builder.Configuration;
 
+builder.Services.AddDbContext<DbContext>(options =>
+    options.UseNpgsql(connectionString));
+
 builder.Services
-    .AddSingleton(connectionString)
     .ConfigureServices(builder.Configuration)
     .ConfigureRepositories(builder.Configuration)
     .AddUseCases();
