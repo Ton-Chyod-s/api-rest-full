@@ -31,7 +31,7 @@ Certifique-se de configurar as seguintes variáveis de ambiente no arquivo `conf
 
 ### Dependências
 
-- .NET 6.0
+- .NET 9.0
 - RestSharp
 - Microsoft.AspNetCore.Authentication.JwtBearer
 - Microsoft.EntityFrameworkCore
