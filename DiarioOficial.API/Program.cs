@@ -1,9 +1,19 @@
 using System.Text.Json.Serialization;
 using DiarioOficial.API.Endpoints;
 using Microsoft.AspNetCore.Mvc;
+using DiarioOficial.Application.Extensions;
+using DiarioOficial.Infraestructure.Extensions;
+using DiarioOficial.API.Middlewares;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddHttpContextAccessor();
 
 builder.Services.ConfigureHttpJsonOptions(options =>
 {
@@ -15,35 +25,90 @@ builder.Services.Configure<JsonOptions>(options =>
     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
 });
 
-
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+
 builder.Services.AddOpenApi();
 
-// Configuration title for Swagger documentation
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
     options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
     {
-        Title = "Official Diary API",
+        Title = "Public Records API",
         Version = "v1",
-        Description = "Endpoints related to the Official Diary",
+        Description = "API for accessing and managing public records and official diaries.",
         Contact = new Microsoft.OpenApi.Models.OpenApiContact
         {
             Name = "Dev-Ton-Chyod-$",
-            Email = "seuemail@dominio.com",
-            Url = new Uri("https://seusite.com"),
+            Email = "hix_x@hotmail.com",
+            Url = new Uri("https://github.com/Ton-Chyod-s"),
+        }
+    });
+
+    options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Description = "JWT Authorization header using the Bearer scheme.",
+        Name = "Authorization",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer",
+        BearerFormat = "Jwt"
+    });
+
+    options.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            new List<string>()
         }
     });
 });
 
+builder.Services.AddAuthentication
+(x =>
+{
+    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(Options =>
+{
+    Options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true,
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidIssuer = builder.Configuration["Jwt:Issuer"],
+        ValidAudience = builder.Configuration["Jwt:Audience"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"] ?? throw new InvalidOperationException("JWT Key not found")))
+    };
+});
+
+var connectionString = builder.Configuration.GetConnectionString("OfficialDiaryDb");
+
+if (string.IsNullOrEmpty(connectionString))
+{
+    throw new InvalidOperationException("Connection string 'OfficialDiaryDb' not found.");
+}
+
+var configuration = builder.Configuration;
+
+builder.Services
+    .AddSingleton(connectionString)
+    .ConfigureServices(builder.Configuration)
+    .ConfigureRepositories(builder.Configuration)
+    .AddUseCases();
+
+builder.Services.AddTransient<ExceptionMiddleware>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -51,11 +116,18 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
+app.UseMiddleware<ExceptionMiddleware>();
+
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 
 app
-    .MapOfficialDiaryEndpoints();
+    .MapAuthenticationEndpoints()
+    .MapOfficialDiaryEndpoints()
+    .MapMailEndpoints()
+    .MapPersonEndpoints();
 
 app.Run();

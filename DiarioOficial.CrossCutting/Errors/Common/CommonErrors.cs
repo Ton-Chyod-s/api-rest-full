@@ -13,4 +13,13 @@ namespace DiarioOficial.CrossCutting.Errors.Common
 
     public record DatabaseError()
             : BaseError("Erro ao atualizar o banco de dados!", nameof(DatabaseError), StatusCodes.Status500InternalServerError);
+
+    public record NotFoundError(string Message)
+            : BaseError(Message, nameof(NotFoundError), StatusCodes.Status404NotFound);
+
+    public record InvalitYear()
+            : BaseError("Ano inválido!", nameof(InvalitYear), StatusCodes.Status400BadRequest);
+
+    public record UnauthorizedAccess()
+            : BaseError("Acesso não autorizado!", nameof(UnauthorizedAccess), StatusCodes.Status401Unauthorized);
 }
