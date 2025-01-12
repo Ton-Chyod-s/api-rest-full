@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using DiarioOficial.CrossCutting.Enums.OfficialStateDiaries;
 
 namespace DiarioOficial.Domain.Entities.OfficialStateDiary
 {
@@ -13,10 +14,11 @@ namespace DiarioOficial.Domain.Entities.OfficialStateDiary
         public string Description { get; private set; }
         public long? SessionId { get; private set; } 
         public long PersonId { get; private set; }
+        public TypeDiaryEnum Type { get; private set; }
 
         private OfficialDiaries() { }
       
-        public OfficialDiaries(string number, string day, string file, string description, long? sessionId, long personId)
+        public OfficialDiaries(string number, string day, string file, string description, long? sessionId, long personId, TypeDiaryEnum type)
         {
             Number = number;
             Day = day;
@@ -24,6 +26,7 @@ namespace DiarioOficial.Domain.Entities.OfficialStateDiary
             Description = description;
             SessionId = sessionId;
             PersonId = personId;
+            Type = type;
         }
 
         #region [Foreign Key]

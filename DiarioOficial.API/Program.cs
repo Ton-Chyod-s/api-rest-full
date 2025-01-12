@@ -90,17 +90,17 @@ builder.Services.AddAuthentication
     };
 });
 
-var connectionString = builder.Configuration.GetConnectionString("OfficialDiaryDb");
+//var connectionString = builder.Configuration.GetConnectionString("OfficialDiaryDb");
 
-if (string.IsNullOrEmpty(connectionString))
-{
-    throw new InvalidOperationException("Connection string 'OfficialDiaryDb' not found.");
-}
+//if (string.IsNullOrEmpty(connectionString))
+//{
+//    throw new InvalidOperationException("Connection string 'OfficialDiaryDb' not found.");
+//}
 
-var configuration = builder.Configuration;
+//var configuration = builder.Configuration;
 
-builder.Services.AddDbContext<DbContext>(options =>
-    options.UseNpgsql(connectionString));
+//builder.Services.AddDbContext<DbContext>(options =>
+//    options.UseNpgsql(connectionString));
 
 builder.Services
     .ConfigureServices(builder.Configuration)

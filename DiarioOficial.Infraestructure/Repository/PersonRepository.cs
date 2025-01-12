@@ -1,4 +1,5 @@
 ﻿using DiarioOficial.CrossCutting.DTOs.Person;
+using DiarioOficial.CrossCutting.Enums.OfficialStateDiaries;
 using DiarioOficial.CrossCutting.Errors;
 using DiarioOficial.CrossCutting.Errors.OfficialStateDiary;
 using DiarioOficial.CrossCutting.Errors.Person;
@@ -67,7 +68,8 @@ namespace DiarioOficial.Infraestructure.Repository
                     item["File"],
                     item["Description"],
                     int.Parse(item["SessionId"]),
-                    int.Parse(item["PersonId"])
+                    int.Parse(item["PersonId"]),
+                    Enum.Parse<TypeDiaryEnum>(item["Type"])
                     );
                 await _context.OfficialDiaries.AddAsync(newOfficialDiary);
             }

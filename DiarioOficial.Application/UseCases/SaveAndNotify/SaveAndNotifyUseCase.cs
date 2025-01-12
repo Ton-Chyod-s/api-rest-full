@@ -32,9 +32,11 @@ namespace DiarioOficial.Application.UseCases.SaveAndNotify
             if (string.IsNullOrWhiteSpace(userName) || userName.Length < 3)
                 return new InvalidName();
 
-            var year = DateTime.Now.Year.ToString();
+            var intYear = DateTime.Now.Year - 2;    
 
-            var yearValid = year.EnsureValidYear();
+            var stringYear = intYear.ToString();
+
+            var yearValid = stringYear.EnsureValidYear();
 
             if (yearValid.IsError())
                 return yearValid.GetError();
@@ -46,7 +48,7 @@ namespace DiarioOficial.Application.UseCases.SaveAndNotify
             if (sessionData.IsError())
                 return sessionData.GetError();
 
-            var fetchAndProcessDiaries = await FetchAndProcessDiaries(personData.Name, year, personData.Id, sessionData.GetValue());
+            var fetchAndProcessDiaries = await FetchAndProcessDiaries(personData.Name, stringYear, personData.Id, sessionData.GetValue());
 
 
 
@@ -87,7 +89,8 @@ namespace DiarioOficial.Application.UseCases.SaveAndNotify
                 { "File", item.File },
                 { "Description", item.Description },
                 { "SessionId", sessionId.ToString() },
-                { "PersonId", personId.ToString() }
+                { "PersonId", personId.ToString() },
+                { "Type", item.Type.ToString() }
             }).ToList();
 
             var addOfficialDiary = await _personRepository.addOfficialDiary(newList);
@@ -98,9 +101,6 @@ namespace DiarioOficial.Application.UseCases.SaveAndNotify
             return newList;
 
         }
-
-   
-
 
     }
 }
