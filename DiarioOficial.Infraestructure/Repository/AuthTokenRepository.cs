@@ -1,5 +1,4 @@
-﻿using DiarioOficial.CrossCutting.DTOs.Token;
-using DiarioOficial.Domain.Entities.Token;
+﻿using DiarioOficial.Domain.Entities.Token;
 using DiarioOficial.Domain.Interface.Repository;
 using DiarioOficial.Infraestructure.Context;
 

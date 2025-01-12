@@ -28,7 +28,7 @@ namespace DiarioOficial.Infraestructure.Extensions
             services.AddScoped<IPersonRepository, PersonRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IAuthTokenRepository, AuthTokenRepository>();
-            services.AddScoped<ICreateOrUpdateLoginRepository, CreateOrUpdateLoginRepository>();
+            services.AddScoped<IAddOrUpdateLoginRepository, AddOrUpdateLoginRepository>();
 
             #endregion
 

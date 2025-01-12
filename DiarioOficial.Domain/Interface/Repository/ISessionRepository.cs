@@ -1,5 +1,4 @@
-﻿using DiarioOficial.Domain.Entities.OfficialStateDiary;
-using DiarioOficial.Domain.Entities.Session;
+﻿using DiarioOficial.Domain.Entities.Session;
 
 namespace DiarioOficial.Domain.Interface.Repository
 {

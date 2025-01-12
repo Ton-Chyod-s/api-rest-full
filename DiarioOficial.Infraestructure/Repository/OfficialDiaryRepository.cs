@@ -5,7 +5,7 @@ using RestSharp;
 
 namespace DiarioOficial.Infraestructure.Repository
 {
-    internal class OfficialDiaryRepository(OfficialDiaryDbContext context) : BaseRepository<OfficialDiaries>(context), IOfficialStateDiaryRepository
+    internal class OfficialDiaryRepository(OfficialDiaryDbContext context) : BaseRepository<OfficialDiaries>(context), IOfficialDiariesRepository
     {
          
     }

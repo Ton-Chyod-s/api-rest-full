@@ -23,8 +23,8 @@ namespace DiarioOficial.Infraestructure.Repository
 
             if (person is null)
             {
-                var newPerson = new Person(name, email, userId);
-                await _context.Person.AddAsync(newPerson);
+                person = new Person(name, email, userId);
+                await _context.Person.AddAsync(person);
             } else
             {
                 person.UpdatePerson(name, email);
@@ -44,11 +44,11 @@ namespace DiarioOficial.Infraestructure.Repository
 
             if (session is null)
             {
-                var newSession = new Session(personId, year);
-                await _context.Sessions.AddAsync(newSession);
+                session = new Session(personId, year);
+                await _context.Sessions.AddAsync(session);
 
                 if (await _context.SaveChangesAsync() > 0)
-                    return newSession.Id;
+                    return session.Id;
             }
 
             if (await _context.SaveChangesAsync() < 0)

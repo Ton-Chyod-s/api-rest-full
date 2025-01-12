@@ -17,7 +17,7 @@ namespace DiarioOficial.Application.UseCases.Login
     (
         IUnitOfWork unitOfWork,
         ITokenService tokenService
-    ) : ICreateOrUpdateLoginUseCase
+    ) : IAddOrUpdateLoginUseCase
     {
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
         private readonly ITokenService _tokenService = tokenService;

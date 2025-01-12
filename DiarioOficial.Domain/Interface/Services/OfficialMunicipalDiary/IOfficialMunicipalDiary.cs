@@ -7,6 +7,6 @@ namespace DiarioOficial.Domain.Interface.Services.OfficialStateDiary
 {
     public interface IOfficialMunicipalDiaryService
     {
-        Task<OneOf<List<ResponseOfficialMunicipalDiaryDTO>, BaseError>> GetOfficialMunicipalDiaryResponse(string name, string year);
+        Task<OneOf<List<ResponseOfficialDiaryDTO>, BaseError>> GetOfficialMunicipalDiaryResponse(string name, string year);
     }
 }

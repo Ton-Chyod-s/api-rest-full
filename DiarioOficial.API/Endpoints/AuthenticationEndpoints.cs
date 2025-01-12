@@ -16,7 +16,7 @@ namespace DiarioOficial.API.Endpoints
                 .WithDescription("This endpoint allows users to authenticate themselves by providing valid credentials.")
                 .WithOpenApi();
 
-            root.MapPost("/", async ([FromServices] ICreateOrUpdateLoginUseCase addOrUpdateLogin, [FromBody] ResquestAddOrUpdateLoginDTO resquestAddOrUpdateLoginDTO) =>
+            root.MapPost("/", async ([FromServices] IAddOrUpdateLoginUseCase addOrUpdateLogin, [FromBody] ResquestAddOrUpdateLoginDTO resquestAddOrUpdateLoginDTO) =>
             {
                 var result = await addOrUpdateLogin.AddOrUpdateLogin(resquestAddOrUpdateLoginDTO);
 

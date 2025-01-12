@@ -27,7 +27,7 @@ namespace DiarioOficial.Application.Extensions
             services.AddScoped<ISaveAndNotifyUseCase, SaveAndNotifyUseCase>();
             services.AddScoped<IGenerateTokenUseCase, GenerateTokenUseCase>();
             services.AddScoped<IUpdateTokenUseCase, UpdateTokenUseCase>();
-            services.AddScoped<ICreateOrUpdateLoginUseCase, AddOrUpdateLoginUseCase>();
+            services.AddScoped<IAddOrUpdateLoginUseCase, AddOrUpdateLoginUseCase>();
 
             return services;
         }

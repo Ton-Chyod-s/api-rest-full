@@ -6,6 +6,6 @@ namespace DiarioOficial.Domain.Interface.UseCases.OfficialStateDiary
 {
     public interface IOfficialMunicipalDiaryUseCase
     {
-        Task<OneOf<List<ResponseOfficialMunicipalDiaryDTO>, BaseError>> GetStateDiaryRecords(string cpf, string year);
+        Task<OneOf<List<ResponseOfficialDiaryDTO>, BaseError>> GetOfficialMunicipalDiary(string cpf, string year);
     }
 }

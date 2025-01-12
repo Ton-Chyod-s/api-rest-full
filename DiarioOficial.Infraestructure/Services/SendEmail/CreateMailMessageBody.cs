@@ -1,6 +1,4 @@
-﻿using static System.Net.Mime.MediaTypeNames;
-using System.Drawing;
-using System.Text;
+﻿using System.Text;
 
 namespace DiarioOficial.Infraestructure.Services.SendEmail
 {

@@ -1,5 +1,4 @@
-﻿using DiarioOficial.CrossCutting.DTOs.OfficialElectronicDiary;
-using DiarioOficial.CrossCutting.DTOs.SendEmail;
+﻿using DiarioOficial.CrossCutting.DTOs.SendEmail;
 using DiarioOficial.CrossCutting.Enums.User;
 using DiarioOficial.CrossCutting.Errors;
 using DiarioOficial.Domain.Interface.UseCases.SendEmail;
@@ -27,9 +26,9 @@ namespace DiarioOficial.API.Endpoints
             })
            .WithName("Send e-mail")
            .RequireAuthorization(policy => policy.RequireRole(UserEnum.Admin.ToString()))
-           .Produces<OneOf<List<ResponseOfficialStateDiaryDTO>, BaseError>>(StatusCodes.Status200OK)
-           .Produces<OneOf<List<ResponseOfficialStateDiaryDTO>, BaseError>>(StatusCodes.Status404NotFound)
-           .Produces<OneOf<List<ResponseOfficialStateDiaryDTO>, BaseError>>(StatusCodes.Status500InternalServerError);
+           .Produces<OneOf<bool, BaseError>>(StatusCodes.Status200OK)
+           .Produces<OneOf<bool, BaseError>>(StatusCodes.Status404NotFound)
+           .Produces<OneOf<bool, BaseError>>(StatusCodes.Status500InternalServerError);
 
 
             return app;

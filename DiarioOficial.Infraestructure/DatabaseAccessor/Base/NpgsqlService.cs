@@ -21,5 +21,6 @@ namespace DiarioOficial.Infraestructure.DatabaseAccessor.Base
             using var command = new NpgsqlCommand(query, connection);
             return await command.ExecuteReaderAsync(CommandBehavior.CloseConnection);
         }
+
     }
 }

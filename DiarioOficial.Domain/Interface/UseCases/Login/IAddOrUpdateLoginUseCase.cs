@@ -4,7 +4,7 @@ using OneOf;
 
 namespace DiarioOficial.Domain.Interface.UseCases.Login
 {
-    public interface ICreateOrUpdateLoginUseCase
+    public interface IAddOrUpdateLoginUseCase
     {
         Task<OneOf<bool, BaseError>> AddOrUpdateLogin(ResquestAddOrUpdateLoginDTO resquestAddOrUpdateLoginDTO);
 

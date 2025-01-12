@@ -14,7 +14,7 @@ namespace DiarioOficial.Infraestructure.Services.OfficialStateDiary
 {
     public class OfficialMunicipalDiaryService() : IOfficialMunicipalDiaryService
     {
-        public async Task<OneOf<List<ResponseOfficialMunicipalDiaryDTO>, BaseError>> GetOfficialMunicipalDiaryResponse(string name, string year)
+        public async Task<OneOf<List<ResponseOfficialDiaryDTO>, BaseError>> GetOfficialMunicipalDiaryResponse(string name, string year)
         {
             var requestQuery = CreateRequestQuery(name, year);
 
@@ -39,7 +39,7 @@ namespace DiarioOficial.Infraestructure.Services.OfficialStateDiary
             };
         }
 
-        internal OneOf<List<ResponseOfficialMunicipalDiaryDTO>, BaseError> DeserializeDiary(RestResponse restResponse)
+        internal OneOf<List<ResponseOfficialDiaryDTO>, BaseError> DeserializeDiary(RestResponse restResponse)
         {
             var diaryContent = restResponse.Content;
 
@@ -55,12 +55,12 @@ namespace DiarioOficial.Infraestructure.Services.OfficialStateDiary
                 return new NotFoundOfficialStateDiary();
 
             var diary = dataArray
-                .Select(jsonItem => new ResponseOfficialMunicipalDiaryDTO(
+                .Select(jsonItem => new ResponseOfficialDiaryDTO(
                     jsonItem["numero"]?.ToString() ?? string.Empty,
                     jsonItem["dia"]?.ToString() ?? string.Empty,
                     jsonItem["arquivo"]?.ToString() ?? string.Empty,
                     jsonItem["desctpd"]?.ToString() ?? string.Empty,
-                    TypeDiaryEnum.OfficialStateDiary,
+                    TypeDiaryEnum.OfficialMunicipalDiary,
                     null,
                     null
                 ))

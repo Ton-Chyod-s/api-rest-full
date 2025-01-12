@@ -3,7 +3,7 @@ using DiarioOficial.Domain.Entities.Session;
 
 namespace DiarioOficial.Domain.Interface.Repository
 {
-    public interface IOfficialStateDiaryRepository : IBaseRepository<OfficialDiaries>
+    public interface IOfficialDiariesRepository : IBaseRepository<OfficialDiaries>
     {
 
     }

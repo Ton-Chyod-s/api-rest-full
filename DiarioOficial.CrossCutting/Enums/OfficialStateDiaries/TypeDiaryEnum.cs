@@ -2,8 +2,8 @@
 {
     public enum TypeDiaryEnum
     {
-        OfficialStateDiary,
-        OfficialElectronicDiary
+        OfficialMunicipalDiary,
+        OfficialStateDiary
     }
 
 }

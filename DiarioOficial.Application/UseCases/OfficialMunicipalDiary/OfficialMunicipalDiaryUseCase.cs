@@ -15,7 +15,7 @@ namespace DiarioOficial.Application.UseCases.OfficialStateDiary
     {
         private readonly IOfficialMunicipalDiaryService _officialStateDiaryService = officialStateDiaryService;
 
-        public async Task<OneOf<List<ResponseOfficialMunicipalDiaryDTO>, BaseError>> GetStateDiaryRecords(string name, string year)
+        public async Task<OneOf<List<ResponseOfficialDiaryDTO>, BaseError>> GetOfficialMunicipalDiary(string name, string year)
         {
             if (string.IsNullOrWhiteSpace(name) || name.Length < 3)
                 return new InvalidName();

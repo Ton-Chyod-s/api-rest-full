@@ -1,5 +1,4 @@
-﻿using DiarioOficial.CrossCutting.DTOs.Login.CreateOrUpdateLogin;
-using DiarioOficial.CrossCutting.Errors;
+﻿using DiarioOficial.CrossCutting.Errors;
 using DiarioOficial.Domain.Entities.User;
 using OneOf;
 

@@ -71,7 +71,7 @@ namespace DiarioOficial.Application.UseCases.SaveAndNotify
             return true;
         }
 
-        internal async Task<OneOf<List<Dictionary<string, string>>, BaseError>> FetchAndProcessDiaryData(Func<Task<OneOf<List<ResponseOfficialMunicipalDiaryDTO>, BaseError>>> fetchDiaryData, long personId, long sessionId) 
+        internal async Task<OneOf<List<Dictionary<string, string>>, BaseError>> FetchAndProcessDiaryData(Func<Task<OneOf<List<ResponseOfficialDiaryDTO>, BaseError>>> fetchDiaryData, long personId, long sessionId) 
         {
             var diaryData = await fetchDiaryData();
 

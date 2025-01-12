@@ -1,6 +1,5 @@
-﻿using DiarioOficial.CrossCutting.DTOs.Login.CreateOrUpdateLogin;
+﻿using DiarioOficial.CrossCutting.Errors;
 using DiarioOficial.CrossCutting.Errors.Login;
-using DiarioOficial.CrossCutting.Errors;
 using DiarioOficial.Domain.Entities.Token;
 using DiarioOficial.Domain.Entities.User;
 using DiarioOficial.Domain.Interface.Repository;
@@ -23,14 +22,14 @@ namespace DiarioOficial.Infraestructure.Repository
 
             if (findUser is null)
             {
-                var newUser = new User
+                findUser = new User
                 (
                     user.UserName,
                     user.PassWordHash,
                     user.IsActive,
                     user.Roles
                 );
-                await _context.User.AddAsync(newUser);
+                await _context.User.AddAsync(findUser);
             }
             else
             {
@@ -55,8 +54,8 @@ namespace DiarioOficial.Infraestructure.Repository
 
             if (token is null)
             {
-                var newToken = new AuthToken(bearerToken, userId);
-                await _context.AuthToken.AddAsync(newToken);
+                token = new AuthToken(bearerToken, userId);
+                await _context.AuthToken.AddAsync(token);
 
             }
             else

@@ -2,7 +2,7 @@
 
 namespace DiarioOficial.CrossCutting.DTOs.OfficialStateDiary
 {
-    public record ResponseOfficialMunicipalDiaryDTO
+    public record ResponseOfficialDiaryDTO
         (
             string Number,
             string Day,

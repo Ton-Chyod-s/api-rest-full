@@ -3,7 +3,6 @@ using DiarioOficial.Domain.Interface.Services.OfficialElectronicDiary;
 using DiarioOficial.Domain.Interface.Services.OfficialStateDiary;
 using DiarioOficial.Domain.Interface.Services.SendEmail;
 using DiarioOficial.Domain.Interface.Services.Token;
-using DiarioOficial.Domain.Interface.UnitOfWork;
 using DiarioOficial.Infraestructure.DatabaseAccessor.Base;
 using DiarioOficial.Infraestructure.Services.OfficialElectronicDiary;
 using DiarioOficial.Infraestructure.Services.OfficialStateDiary;
@@ -20,12 +19,23 @@ namespace DiarioOficial.Infraestructure.Extensions
         {
             #region [Services]
             services.AddTransient<IOfficialMunicipalDiaryService, OfficialMunicipalDiaryService>();
-            services.AddTransient<IOfficialStateDiaryService, OfficialElectronicDiaryService>();
+            services.AddTransient<IOfficialStateDiaryService, OfficialStateDiaryService>();
             services.AddTransient<ISendEmailService, SendEmailService>();
             services.AddTransient<ITokenService, TokenService>();
             #endregion
 
-            services.AddScoped<INpgsqlService, NpgsqlService>();
+            services.AddScoped<INpgsqlService, NpgsqlService>(provider =>
+            {
+                var configuration = provider.GetRequiredService<IConfiguration>();
+                var connectionString = configuration.GetConnectionString("OfficialDiaryDb");
+
+                if (string.IsNullOrEmpty(connectionString))
+                {
+                    throw new InvalidOperationException("Connection string 'OfficialDiaryDb' not found.");
+                }
+
+                return new NpgsqlService(connectionString);
+            });
 
             return services;
         }

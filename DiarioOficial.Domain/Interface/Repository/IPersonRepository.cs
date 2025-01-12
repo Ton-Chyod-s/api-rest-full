@@ -1,6 +1,4 @@
-﻿using DiarioOficial.CrossCutting.DTOs.OfficialDiary;
-using DiarioOficial.CrossCutting.DTOs.OfficialStateDiary;
-using DiarioOficial.CrossCutting.DTOs.Person;
+﻿using DiarioOficial.CrossCutting.DTOs.Person;
 using DiarioOficial.CrossCutting.Errors;
 using DiarioOficial.Domain.Entities.Person;
 using OneOf;
