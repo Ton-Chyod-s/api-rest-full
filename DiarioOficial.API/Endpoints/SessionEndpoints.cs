@@ -7,7 +7,7 @@ using OneOf;
 
 namespace DiarioOficial.API.Endpoints
 {
-    public static class AuthenticationEndpoints
+    public static class SessionEndpoints
     {
         public static WebApplication MapAuthenticationEndpoints(this WebApplication app)
         {
@@ -28,6 +28,18 @@ namespace DiarioOficial.API.Endpoints
            .Produces<OneOf<ResponseTokenDTO, BaseError>>(StatusCodes.Status200OK)
            .Produces<OneOf<ResponseTokenDTO, BaseError>>(StatusCodes.Status404NotFound)
            .Produces<OneOf<ResponseTokenDTO, BaseError>>(StatusCodes.Status500InternalServerError);
+
+            root.MapPost("/AddLogin", async ([FromServices] ICreateLoginUseCase createLoginUseCase, [FromBody] ResquestAddOrUpdateLoginDTO resquestAddOrUpdateLoginDTO) =>
+            {
+                var result = await createLoginUseCase.CreateLogin(resquestAddOrUpdateLoginDTO);
+
+                return result.Match(
+                    response => Results.Ok(response),
+                    error => Results.Json(error, statusCode: error.HttpErrorCode));
+            })
+           .WithName("Create Login With App")
+           .Produces<OneOf<bool, BaseError>>(StatusCodes.Status200OK)
+           .Produces<OneOf<bool, BaseError>>(StatusCodes.Status500InternalServerError);
 
             return app;
         }

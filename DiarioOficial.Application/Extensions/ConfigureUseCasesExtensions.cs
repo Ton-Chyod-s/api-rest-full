@@ -25,6 +25,7 @@ namespace DiarioOficial.Application.Extensions
             services.AddScoped<IRemovePersonUseCase, RemovePersonUseCase>();
             services.AddScoped<ISaveAndNotifyUseCase, SaveAndNotifyUseCase>();
             services.AddScoped<ILoginUseCase, LoginUseCase>();
+            services.AddScoped<ICreateLoginUseCase, CreateLoginUseCase>();
 
             return services;
         }
