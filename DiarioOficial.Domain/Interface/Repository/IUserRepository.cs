@@ -8,9 +8,9 @@ namespace DiarioOficial.Domain.Interface.Repository
 {
     public interface IUserRepository : IBaseRepository<User>
     {
-        Task<User?> GetUserByName(string name, string password);
+        Task<User?> GetUserByName(string name);
         Task<OneOf<bool, BaseError>> AddOrUpdateToken(string bearerToken, long userId);
-        Task<bool> AddUser(ResquestAddOrLoginDTO content);
-        Task<OneOf<bool, BaseError>> UpdateUser(string name, UserEnum? type);
+        Task<OneOf<bool, BaseError>> AddUser(ResquestAddOrLoginDTO content);
+        Task<OneOf<bool, BaseError>> UpdateUser(string name, RequestUpdateLoginDTO requestUpdateLoginDTO);
     }
 }

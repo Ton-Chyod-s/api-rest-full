@@ -19,7 +19,7 @@ namespace DiarioOficial.Application.UseCases.Login
             if (content.UserName is null || content is null)
                 return new UserNotSaved();
 
-            var getUser = await _unitOfWork.UserRepository.GetUserByName(content.UserName, content.Password);
+            var getUser = await _unitOfWork.UserRepository.GetUserByName(content.UserName);
 
             if (getUser is not null)
                 return new UserNotSaved();

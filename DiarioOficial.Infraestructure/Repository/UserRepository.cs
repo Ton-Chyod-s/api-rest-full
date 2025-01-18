@@ -13,30 +13,36 @@ namespace DiarioOficial.Infraestructure.Repository
 {
     internal class UserRepository(OfficialDiaryDbContext context) : BaseRepository<User>(context), IUserRepository
     {
-        public async Task<User?> GetUserByName(string name, string password)
+        public async Task<User?> GetUserByName(string name)
         {
-            return await _context.User.FirstOrDefaultAsync(x => x.UserName == name && x.PassWordHash == password);
+            return await _context.User.FirstOrDefaultAsync(x => x.UserName == name);
         }
 
-        public async Task<bool> AddUser(ResquestAddOrLoginDTO content)
+        public async Task<OneOf<bool, BaseError>> AddUser(ResquestAddOrLoginDTO content)
         {
             var findUser = new User(content.UserName,content.Password);
             await _context.User.AddAsync(findUser);
 
-            return await _context.SaveChangesAsync() < 0;
+            if (await _context.SaveChangesAsync() <= 0)
+                return new UserNotSaved();
+
+            return true;
         }
 
-        public async Task<OneOf<bool, BaseError>> UpdateUser(string name, UserEnum? type)
+        public async Task<OneOf<bool, BaseError>> UpdateUser(string userName, RequestUpdateLoginDTO requestUpdateLoginDTO)
         {
-            var findUser = await _context.User.FirstOrDefaultAsync(x => x.UserName == name);
+            var findUser = await _context.User.FirstOrDefaultAsync(x => x.UserName == userName);
 
-            if (findUser is not null)
-            {
-                findUser.UpdateUser(name, true, type);
-                _context.User.Update(findUser);
-            }
+            if (findUser is null)
+                return new UserNotUpdate();
 
-            return await _context.SaveChangesAsync() < 0;
+            findUser.UpdateUser(requestUpdateLoginDTO.Name, true, requestUpdateLoginDTO.Type);
+            _context.User.Update(findUser);
+
+            if (await _context.SaveChangesAsync() <= 0)
+                return new UserNotUpdate();
+
+            return true;
         }
 
         public async Task<OneOf<bool, BaseError>> AddOrUpdateToken(string bearerToken, long userId)

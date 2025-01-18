@@ -16,7 +16,7 @@ namespace DiarioOficial.API.Endpoints
                 .WithDescription("This group contains endpoints for managing email-related operations.")
                 .WithOpenApi();
 
-            root.MapPost("/send-email", async ([FromServices] ISendEmailUseCase sendEmailUseCase, [FromBody] RequestSendEmailDTO requestSendEmailDTO) =>
+            root.MapPost("/send", async ([FromServices] ISendEmailUseCase sendEmailUseCase, [FromBody] RequestSendEmailDTO requestSendEmailDTO) =>
             {
                 var result = await sendEmailUseCase.SendAsyncEmail(requestSendEmailDTO);
 

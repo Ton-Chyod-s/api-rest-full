@@ -30,7 +30,7 @@ namespace DiarioOficial.API.Endpoints
            .Produces<OneOf<bool, BaseError>>(StatusCodes.Status404NotFound)
            .Produces<OneOf<bool, BaseError>>(StatusCodes.Status500InternalServerError);
 
-            root.MapDelete("/remove-person", async ([FromServices] IRemovePersonUseCase removePersonUseCase, [FromQuery] long personId) =>
+            root.MapDelete("/remove", async ([FromServices] IRemovePersonUseCase removePersonUseCase, [FromQuery] long personId) =>
             {
                 var result = await removePersonUseCase.RemovePerson(personId);
 

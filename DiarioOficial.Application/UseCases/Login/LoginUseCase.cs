@@ -22,7 +22,7 @@ namespace DiarioOficial.Application.UseCases.Login
 
         public async Task<OneOf<ResponseTokenDTO, BaseError>> LoginWithApp(ResquestAddOrLoginDTO resquestAddOrUpdateLoginDTO)
         {
-            var userResult = await _unitOfWork.UserRepository.GetUserByName(resquestAddOrUpdateLoginDTO.UserName, resquestAddOrUpdateLoginDTO.Password);
+            var userResult = await _unitOfWork.UserRepository.GetUserByName(resquestAddOrUpdateLoginDTO.UserName);
 
             if (userResult is null)
                 return new UserNotFound();

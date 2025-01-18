@@ -29,7 +29,7 @@ namespace DiarioOficial.API.Endpoints
            .Produces<OneOf<ResponseTokenDTO, BaseError>>(StatusCodes.Status404NotFound)
            .Produces<OneOf<ResponseTokenDTO, BaseError>>(StatusCodes.Status500InternalServerError);
 
-            root.MapPost("/AddLogin", async ([FromServices] ICreateLoginUseCase createLoginUseCase, [FromBody] ResquestAddOrLoginDTO resquestAddOrUpdateLoginDTO) =>
+            root.MapPost("/add", async ([FromServices] ICreateLoginUseCase createLoginUseCase, [FromBody] ResquestAddOrLoginDTO resquestAddOrUpdateLoginDTO) =>
             {
                 var result = await createLoginUseCase.CreateLogin(resquestAddOrUpdateLoginDTO);
 
@@ -41,7 +41,7 @@ namespace DiarioOficial.API.Endpoints
            .Produces<OneOf<bool, BaseError>>(StatusCodes.Status200OK)
            .Produces<OneOf<bool, BaseError>>(StatusCodes.Status500InternalServerError);
 
-            root.MapPost("/UpdateLogin", async ([FromServices] IUpdateLoginUseCase updateLoginUseCase, [FromBody] RequestUpdateLoginDTO requestUpdateLoginDTO) =>
+            root.MapPut("/update", async ([FromServices] IUpdateLoginUseCase updateLoginUseCase, [FromBody] RequestUpdateLoginDTO requestUpdateLoginDTO) =>
             {
                 var result = await updateLoginUseCase.UpdateLogin(requestUpdateLoginDTO);
 
@@ -50,8 +50,8 @@ namespace DiarioOficial.API.Endpoints
                     error => Results.Json(error, statusCode: error.HttpErrorCode));
             })
            .WithName("Update Login With App")
-           .Produces<OneOf<bool, BaseError>>(StatusCodes.Status200OK)
-           .Produces<OneOf<bool, BaseError>>(StatusCodes.Status500InternalServerError);
+           .Produces<OneOf<ResponseTokenDTO, BaseError>>(StatusCodes.Status200OK)
+           .Produces<OneOf<ResponseTokenDTO, BaseError>>(StatusCodes.Status500InternalServerError);
 
             return app;
         }
