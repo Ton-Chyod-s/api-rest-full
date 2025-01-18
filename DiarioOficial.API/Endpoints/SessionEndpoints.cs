@@ -16,7 +16,7 @@ namespace DiarioOficial.API.Endpoints
                 .WithDescription("This endpoint allows users to authenticate themselves by providing valid credentials.")
                 .WithOpenApi();
 
-            root.MapPost("/", async ([FromServices] ILoginUseCase addOrUpdateLogin, [FromBody] ResquestAddOrUpdateLoginDTO resquestAddOrUpdateLoginDTO) =>
+            root.MapPost("/", async ([FromServices] ILoginUseCase addOrUpdateLogin, [FromBody] ResquestAddOrLoginDTO resquestAddOrUpdateLoginDTO) =>
             {
                 var result = await addOrUpdateLogin.LoginWithApp(resquestAddOrUpdateLoginDTO);
 
@@ -29,7 +29,7 @@ namespace DiarioOficial.API.Endpoints
            .Produces<OneOf<ResponseTokenDTO, BaseError>>(StatusCodes.Status404NotFound)
            .Produces<OneOf<ResponseTokenDTO, BaseError>>(StatusCodes.Status500InternalServerError);
 
-            root.MapPost("/AddLogin", async ([FromServices] ICreateLoginUseCase createLoginUseCase, [FromBody] ResquestAddOrUpdateLoginDTO resquestAddOrUpdateLoginDTO) =>
+            root.MapPost("/AddLogin", async ([FromServices] ICreateLoginUseCase createLoginUseCase, [FromBody] ResquestAddOrLoginDTO resquestAddOrUpdateLoginDTO) =>
             {
                 var result = await createLoginUseCase.CreateLogin(resquestAddOrUpdateLoginDTO);
 
@@ -38,6 +38,18 @@ namespace DiarioOficial.API.Endpoints
                     error => Results.Json(error, statusCode: error.HttpErrorCode));
             })
            .WithName("Create Login With App")
+           .Produces<OneOf<bool, BaseError>>(StatusCodes.Status200OK)
+           .Produces<OneOf<bool, BaseError>>(StatusCodes.Status500InternalServerError);
+
+            root.MapPost("/UpdateLogin", async ([FromServices] IUpdateLoginUseCase updateLoginUseCase, [FromBody] RequestUpdateLoginDTO requestUpdateLoginDTO) =>
+            {
+                var result = await updateLoginUseCase.UpdateLogin(requestUpdateLoginDTO);
+
+                return result.Match(
+                    response => Results.Ok(response),
+                    error => Results.Json(error, statusCode: error.HttpErrorCode));
+            })
+           .WithName("Update Login With App")
            .Produces<OneOf<bool, BaseError>>(StatusCodes.Status200OK)
            .Produces<OneOf<bool, BaseError>>(StatusCodes.Status500InternalServerError);
 

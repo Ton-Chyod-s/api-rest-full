@@ -2,9 +2,10 @@
 
 namespace DiarioOficial.CrossCutting.DTOs.Login
 {
-    public record ResquestAddOrUpdateLoginDTO
+    public record RequestUpdateLoginDTO
         (
-            string UserName,
-            string Password
+            string Name,
+            UserEnum? Type
         );
+
 }

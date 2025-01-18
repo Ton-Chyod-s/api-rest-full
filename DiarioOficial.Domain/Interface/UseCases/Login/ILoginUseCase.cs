@@ -7,7 +7,7 @@ namespace DiarioOficial.Domain.Interface.UseCases.Login
 {
     public interface ILoginUseCase
     {
-        Task<OneOf<ResponseTokenDTO, BaseError>> LoginWithApp(ResquestAddOrUpdateLoginDTO resquestAddOrUpdateLoginDTO);
+        Task<OneOf<ResponseTokenDTO, BaseError>> LoginWithApp(ResquestAddOrLoginDTO resquestAddOrUpdateLoginDTO);
 
     }
 }

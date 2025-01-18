@@ -18,7 +18,7 @@ namespace DiarioOficial.Infraestructure.Repository
             return await _context.User.FirstOrDefaultAsync(x => x.UserName == name && x.PassWordHash == password);
         }
 
-        public async Task<bool> AddUser(ResquestAddOrUpdateLoginDTO content)
+        public async Task<bool> AddUser(ResquestAddOrLoginDTO content)
         {
             var findUser = new User(content.UserName,content.Password);
             await _context.User.AddAsync(findUser);
@@ -26,13 +26,13 @@ namespace DiarioOficial.Infraestructure.Repository
             return await _context.SaveChangesAsync() < 0;
         }
 
-        public async Task<OneOf<bool, BaseError>> UpdateUser(ResquestAddOrUpdateLoginDTO content)
+        public async Task<OneOf<bool, BaseError>> UpdateUser(string name, UserEnum? type)
         {
-            var findUser = await _context.User.FirstOrDefaultAsync(x => x.UserName == content.UserName);
+            var findUser = await _context.User.FirstOrDefaultAsync(x => x.UserName == name);
 
             if (findUser is not null)
             {
-                findUser.UpdateUser(content.UserName, true, UserEnum.Admin);
+                findUser.UpdateUser(name, true, type);
                 _context.User.Update(findUser);
             }
 
