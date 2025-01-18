@@ -1,4 +1,6 @@
-﻿using DiarioOficial.CrossCutting.Errors;
+﻿using DiarioOficial.CrossCutting.DTOs.Login;
+using DiarioOficial.CrossCutting.Enums.User;
+using DiarioOficial.CrossCutting.Errors;
 using DiarioOficial.CrossCutting.Errors.Login;
 using DiarioOficial.Domain.Entities.Token;
 using DiarioOficial.Domain.Entities.User;
@@ -16,36 +18,25 @@ namespace DiarioOficial.Infraestructure.Repository
             return await _context.User.FirstOrDefaultAsync(x => x.UserName == name && x.PassWordHash == password);
         }
 
-        public async Task<OneOf<bool, BaseError>> AddOrUpdateUser(User user)
+        public async Task<bool> AddUser(ResquestAddOrUpdateLoginDTO content)
         {
-            var findUser = await _context.User.FirstOrDefaultAsync(x => x.UserName == user.UserName);
+            var findUser = new User(content.UserName,content.Password);
+            await _context.User.AddAsync(findUser);
 
-            if (findUser is null)
+            return await _context.SaveChangesAsync() < 0;
+        }
+
+        public async Task<OneOf<bool, BaseError>> UpdateUser(ResquestAddOrUpdateLoginDTO content)
+        {
+            var findUser = await _context.User.FirstOrDefaultAsync(x => x.UserName == content.UserName);
+
+            if (findUser is not null)
             {
-                findUser = new User
-                (
-                    user.UserName,
-                    user.PassWordHash,
-                    user.IsActive,
-                    user.Roles
-                );
-                await _context.User.AddAsync(findUser);
-            }
-            else
-            {
-                findUser.UpdateUser
-                (
-                    user.UserName,
-                    user.IsActive,
-                    user.Roles
-                );
+                findUser.UpdateUser(content.UserName, true, UserEnum.Admin);
                 _context.User.Update(findUser);
             }
 
-            if (await _context.SaveChangesAsync() < 0)
-                return new UserNotSaved();
-
-            return true;
+            return await _context.SaveChangesAsync() < 0;
         }
 
         public async Task<OneOf<bool, BaseError>> AddOrUpdateToken(string bearerToken, long userId)

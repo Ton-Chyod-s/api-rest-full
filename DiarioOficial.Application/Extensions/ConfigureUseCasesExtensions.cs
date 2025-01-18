@@ -10,7 +10,6 @@ using DiarioOficial.Domain.Interface.UseCases.OfficialStateDiary;
 using DiarioOficial.Domain.Interface.UseCases.Person;
 using DiarioOficial.Domain.Interface.UseCases.SaveAndNotify;
 using DiarioOficial.Domain.Interface.UseCases.SendEmail;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace DiarioOficial.Application.Extensions
@@ -25,9 +24,7 @@ namespace DiarioOficial.Application.Extensions
             services.AddScoped<IPersonUseCase, AddOrUpdatePerson>();
             services.AddScoped<IRemovePersonUseCase, RemovePersonUseCase>();
             services.AddScoped<ISaveAndNotifyUseCase, SaveAndNotifyUseCase>();
-            services.AddScoped<IGenerateTokenUseCase, GenerateTokenUseCase>();
-            services.AddScoped<IUpdateTokenUseCase, UpdateTokenUseCase>();
-            services.AddScoped<IAddOrUpdateLoginUseCase, AddOrUpdateLoginUseCase>();
+            services.AddScoped<ILoginUseCase, LoginUseCase>();
 
             return services;
         }

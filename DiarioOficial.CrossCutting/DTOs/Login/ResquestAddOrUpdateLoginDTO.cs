@@ -5,7 +5,6 @@ namespace DiarioOficial.CrossCutting.DTOs.Login
     public record ResquestAddOrUpdateLoginDTO
         (
             string UserName,
-            string PasswordHash,
-            UserEnum? role
+            string Password
         );
 }

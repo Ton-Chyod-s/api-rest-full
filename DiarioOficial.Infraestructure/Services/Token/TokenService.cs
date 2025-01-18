@@ -1,10 +1,8 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using DiarioOficial.CrossCutting.DTOs.Login;
 using DiarioOficial.CrossCutting.DTOs.Token;
 using DiarioOficial.Domain.Entities.User;
-using DiarioOficial.Domain.Interface.Repository;
 using DiarioOficial.Domain.Interface.Services.Token;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;

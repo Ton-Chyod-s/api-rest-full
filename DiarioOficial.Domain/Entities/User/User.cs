@@ -8,17 +8,15 @@ namespace DiarioOficial.Domain.Entities.User
         public string UserName { get; private set; }
         public string PassWordHash { get; private set; }
         public bool? IsActive { get; private set; }
-        public UserEnum? Roles { get; private set; }
+        public UserEnum? Roles { get; private set; } 
         public ICollection<AuthToken> AuthToken { get; private set; }
 
         private User() { }
 
-        public User(string username, string passwordHash, bool? isActive, UserEnum? roles)
+        public User(string username, string passwordHash)
         {
             UserName = username;
             PassWordHash = passwordHash;
-            IsActive = isActive;
-            Roles = roles;
         }
 
         public void UpdateUser(string username, bool? isActive, UserEnum? roles)
