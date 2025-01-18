@@ -12,5 +12,6 @@ namespace DiarioOficial.Domain.Interface.Repository
         Task<OneOf<bool, BaseError>> AddOrUpdateToken(string bearerToken, long userId);
         Task<OneOf<bool, BaseError>> AddUser(ResquestAddOrLoginDTO content);
         Task<OneOf<bool, BaseError>> UpdateUser(string name, RequestUpdateLoginDTO requestUpdateLoginDTO);
+        Task<OneOf<bool, BaseError>> DeleteUser(long userId);
     }
 }

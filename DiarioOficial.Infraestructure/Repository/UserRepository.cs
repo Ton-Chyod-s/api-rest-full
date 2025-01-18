@@ -45,6 +45,21 @@ namespace DiarioOficial.Infraestructure.Repository
             return true;
         }
 
+        public async Task<OneOf<bool, BaseError>> DeleteUser(long userId)
+        {
+            var findUser = await _context.User.FirstOrDefaultAsync(x => x.Id == userId);
+
+            if (findUser is null)
+                return new UserNotFound();
+
+            _context.User.Remove(findUser);
+
+            if (await _context.SaveChangesAsync() <= 0)
+                return new UserNotFound();
+
+            return true;
+        }
+
         public async Task<OneOf<bool, BaseError>> AddOrUpdateToken(string bearerToken, long userId)
         {
             var token = _context.AuthToken.FirstOrDefault(x => x.UserId == userId);
