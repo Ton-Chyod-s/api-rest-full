@@ -53,9 +53,9 @@ namespace DiarioOficial.API.Endpoints
            .Produces<OneOf<ResponseTokenDTO, BaseError>>(StatusCodes.Status200OK)
            .Produces<OneOf<ResponseTokenDTO, BaseError>>(StatusCodes.Status500InternalServerError);
 
-            root.MapDelete("/delete", async ([FromServices] IDeleteLoginUseCase deleteLoginUseCase, [FromQuery] long userId) =>
+            root.MapDelete("/delete", async ([FromServices] IDeleteLoginUseCase deleteLoginUseCase) =>
             {
-                var result = await deleteLoginUseCase.DeleteUser(userId);
+                var result = await deleteLoginUseCase.DeleteUser();
 
                 return result.Match(
                     response => Results.Ok(response),

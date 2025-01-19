@@ -5,6 +5,6 @@ namespace DiarioOficial.Domain.Interface.UseCases.Login
 {
     public interface IDeleteLoginUseCase
     {
-        Task<OneOf<bool, BaseError>> DeleteUser(long userId);
+        Task<OneOf<bool, BaseError>> DeleteUser();
     }
 }
