@@ -25,7 +25,7 @@ namespace DiarioOficial.API.Endpoints
                     error => Results.Json(error, statusCode: error.HttpErrorCode));
             })
            .WithName("Person")
-           .RequireAuthorization(policy => policy.RequireRole(UserEnum.Admin.ToString()))
+           .RequireAuthorization(policy => policy.RequireRole(UserEnum.User.ToString()))
            .Produces<OneOf<bool, BaseError>>(StatusCodes.Status200OK)
            .Produces<OneOf<bool, BaseError>>(StatusCodes.Status404NotFound)
            .Produces<OneOf<bool, BaseError>>(StatusCodes.Status500InternalServerError);
@@ -39,7 +39,21 @@ namespace DiarioOficial.API.Endpoints
                     error => Results.Json(error, statusCode: error.HttpErrorCode));
             })
            .WithName("RemovePerson")
-           .RequireAuthorization(policy => policy.RequireRole(UserEnum.Admin.ToString()))
+           .RequireAuthorization(policy => policy.RequireRole(UserEnum.User.ToString()))
+           .Produces<OneOf<long, BaseError>>(StatusCodes.Status200OK)
+           .Produces<OneOf<long, BaseError>>(StatusCodes.Status404NotFound)
+           .Produces<OneOf<long, BaseError>>(StatusCodes.Status500InternalServerError);
+
+            root.MapPost("/unauthorized", async ([FromServices] IUpdateAuthPersonUseCase updateAuthPersonUseCase) =>
+            {
+                var result = await updateAuthPersonUseCase.UpdateAuthPerson();
+
+                return result.Match(
+                    response => Results.Ok(response),
+                    error => Results.Json(error, statusCode: error.HttpErrorCode));
+            })
+           .WithName("AuthorizedPerson")
+           .RequireAuthorization(policy => policy.RequireRole(UserEnum.User.ToString()))
            .Produces<OneOf<long, BaseError>>(StatusCodes.Status200OK)
            .Produces<OneOf<long, BaseError>>(StatusCodes.Status404NotFound)
            .Produces<OneOf<long, BaseError>>(StatusCodes.Status500InternalServerError);

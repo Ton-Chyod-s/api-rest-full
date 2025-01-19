@@ -11,6 +11,7 @@ namespace DiarioOficial.Domain.Entities.Person
         public string Name { get; private set; }
         public string Email { get; private set; }
         public long UserId { get; private set; }
+        public bool Authorized { get; private set; }
         public ICollection<OfficialDiaries> OfficialDiaries { get; private set; }
         public ICollection<Session.Session> Sessions { get; private set; }
 
@@ -21,13 +22,18 @@ namespace DiarioOficial.Domain.Entities.Person
             Name = name;
             Email = email;
             UserId = userId;
-
+            Authorized = true;
         }
 
         public void UpdatePerson(string name, string email)
         {
             Name = name;
             Email = email;
+        }
+
+        public void AuthorizePerson(bool isAuth)
+        {
+            Authorized = isAuth;
         }
 
         public void AddSession(Session.Session session)

@@ -26,7 +26,8 @@ namespace DiarioOficial.Infraestructure.Repository
             {
                 person = new Person(name, email, userId);
                 await _context.Person.AddAsync(person);
-            } else
+            }
+            else
             {
                 person.UpdatePerson(name, email);
                 _context.Person.Update(person);
@@ -110,5 +111,23 @@ namespace DiarioOficial.Infraestructure.Repository
 
             return new ResponsePersonDTO(person.Id, person.Name, person.Email);
         }
+
+        public async Task<bool> UpdateAuthorized(long userId)
+        {
+            var person = await _context.Person
+                .FirstOrDefaultAsync(x => x.UserId == userId);
+
+            if (person is not null)
+            {
+                person.AuthorizePerson(false);
+                _context.Person.Update(person);
+            }
+
+            if (await _context.SaveChangesAsync() < 0)
+                return false;
+
+            return true;
+        }
+
     }
 }
